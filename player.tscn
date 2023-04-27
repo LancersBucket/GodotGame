@@ -7,10 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dy1rlhdpweis1" path="res://art/Mario SpritesRun2.png" id="4_pu8g5"]
 [ext_resource type="Texture2D" uid="uid://mql7t0ii6d1e" path="res://art/Mario SpritesRun3.png" id="5_n6a4x"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqwmi"]
-size = Vector2(16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2acaf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dpxjh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -43,15 +40,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Area2D"]
-script = ExtResource("1_08dyy")
-metadata/_edit_group_ = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyhv5"]
+size = Vector2(16, 16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_sqwmi")
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_08dyy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_2acaf")
+sprite_frames = SubResource("SpriteFrames_dpxjh")
 animation = &"idle"
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gyhv5")
