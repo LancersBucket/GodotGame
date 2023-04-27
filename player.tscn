@@ -1,34 +1,19 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=8 format=3 uid="uid://ctjl5c6tui2ke"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_08dyy"]
-[ext_resource type="Texture2D" uid="uid://dohbtas5u6jd4" path="res://art/player/idle/idle_1.png" id="2_lfahx"]
-[ext_resource type="Texture2D" uid="uid://jbtq24qneofb" path="res://art/player/idle/idle_2.png" id="3_gj5rg"]
-[ext_resource type="Texture2D" uid="uid://dx0el05ncbs5q" path="res://art/player/idle/idle_3.png" id="4_5q4k4"]
-[ext_resource type="Texture2D" uid="uid://bmdwa4sgk1lnh" path="res://art/player/up/graveBurst_1.png" id="5_dudbe"]
-[ext_resource type="Texture2D" uid="uid://jplqmgg4jkqu" path="res://art/player/up/graveBurst_2.png" id="6_la8ra"]
-[ext_resource type="Texture2D" uid="uid://ddd2pdghk6y1g" path="res://art/player/up/graveBurst_3.png" id="7_iy5p4"]
-[ext_resource type="Texture2D" uid="uid://cbgs7wjqv3jty" path="res://art/player/up/graveBurst_4.png" id="8_vtqx4"]
-[ext_resource type="Texture2D" uid="uid://b26dcsya0axv0" path="res://art/player/up/graveBurst_5.png" id="9_6y5b1"]
-[ext_resource type="Texture2D" uid="uid://lpuvouhoggou" path="res://art/player/up/graveBurst_6.png" id="10_w6uy7"]
-[ext_resource type="Texture2D" uid="uid://citty00cqebxd" path="res://art/player/run/run_1.png" id="11_ri2r1"]
-[ext_resource type="Texture2D" uid="uid://c5ifhcgu3avpd" path="res://art/player/run/run_2.png" id="12_oeuq7"]
-[ext_resource type="Texture2D" uid="uid://c2cn2oc5vcno2" path="res://art/player/run/run_3.png" id="13_dqo8r"]
-[ext_resource type="Texture2D" uid="uid://cv8oxvf28fcq0" path="res://art/player/run/run_4.png" id="14_3r7c8"]
+[ext_resource type="Texture2D" uid="uid://ckv40lqurru3g" path="res://art/Mario Sprites2.png" id="2_p0tgt"]
+[ext_resource type="Texture2D" uid="uid://bx65i4iurx6vb" path="res://art/Mario SpritesRun1.png" id="3_mjb6i"]
+[ext_resource type="Texture2D" uid="uid://dy1rlhdpweis1" path="res://art/Mario SpritesRun2.png" id="4_pu8g5"]
+[ext_resource type="Texture2D" uid="uid://mql7t0ii6d1e" path="res://art/Mario SpritesRun3.png" id="5_n6a4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqwmi"]
-size = Vector2(38, 50)
+size = Vector2(16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3w6tk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2acaf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_lfahx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_gj5rg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_5q4k4")
+"texture": ExtResource("2_p0tgt")
 }],
 "loop": true,
 "name": &"idle",
@@ -36,42 +21,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_dudbe")
+"texture": ExtResource("3_mjb6i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_la8ra")
+"texture": ExtResource("4_pu8g5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_iy5p4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_vtqx4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_6y5b1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_w6uy7")
+"texture": ExtResource("5_n6a4x")
 }],
 "loop": true,
-"name": &"up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("11_ri2r1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_oeuq7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_dqo8r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_3r7c8")
-}],
-"loop": true,
-"name": &"walk",
+"name": &"run",
 "speed": 5.0
 }]
 
@@ -80,11 +39,10 @@ script = ExtResource("1_08dyy")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_sqwmi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_3w6tk")
+sprite_frames = SubResource("SpriteFrames_2acaf")
 animation = &"idle"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
