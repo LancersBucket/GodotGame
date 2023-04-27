@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cccqpmv5hloin"]
+
+[ext_resource type="Texture2D" uid="uid://dwvy0d8wtcdx4" path="res://art/enemy/GoombaLeft.png" id="1_6umh6"]
+[ext_resource type="Script" path="res://goomba.gd" id="1_r2n73"]
+[ext_resource type="Texture2D" uid="uid://0wh4nhfkhmem" path="res://art/enemy/GoombaRight.png" id="2_nv2n8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16acs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6umh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nv2n8")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tq6he"]
+size = Vector2(16, 16)
+
+[node name="goomba" type="CharacterBody2D"]
+script = ExtResource("1_r2n73")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_16acs")
+animation = &"walk"
+frame_progress = 0.9568
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tq6he")
