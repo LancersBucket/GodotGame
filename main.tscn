@@ -15,6 +15,7 @@ script = ExtResource("1_ysc4g")
 mob_scene = ExtResource("2_gj6d2")
 
 [node name="Player" parent="." instance=ExtResource("2_unlht")]
+position = Vector2(512, 368)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -33,7 +34,6 @@ curve = SubResource("Curve2D_gf6ke")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 
-[connection signal="hit" from="Player" to="." method="new_game"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

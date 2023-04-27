@@ -58,5 +58,5 @@ func _on_body_entered(body):
 func start(pos):
 	position = pos
 	show()
-	# This is calling an error but when I follow the error message it causes more errors. Will fix later
-	$CollisionShape2D.disabled = false
+	$CollisionShape2D.set_deferred("disabled",false)
+	
