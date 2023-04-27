@@ -1,12 +1,11 @@
 extends Area2D
-# Defines a signal to be sent out when it collides with something
-signal hit
 
 @export var speed = 400 # How fast the player will move (pixels/sec)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hide()
+	#hide()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,7 +34,7 @@ func _process(delta):
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
-		$AnimatedSprite2D.flip_h = velocity.x > 0
+		$AnimatedSprite2D.flip_h = velocity.x < 0
 	elif velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = velocity.y > 0
@@ -43,16 +42,7 @@ func _process(delta):
 		$AnimatedSprite2D.animation = "idle"
 		$AnimatedSprite2D.flip_v = false
 
-
-func _on_body_entered(body):
-	hide()
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	# Disables the collision but waits untill the end of physics tick to prevent errors
-	$CollisionShape2D.set_deferred("disabled",true)
 	
 func start(pos):
 	position = pos
-	show()
-	$CollisionShape2D.set_deferred("disabled",false)
 	
