@@ -1,31 +1,35 @@
 extends CharacterBody2D
 
-@export var speed = 400 # How fast the player will move (pixels/sec)
+@export var speed = 300.0
+@export var jump_speed = -350.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	#hide()
-	pass
+# Get the gravity from the project settings so you can sync with rigid body nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
-	var input_direction = Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_up")
-	)
+
+func _physics_process(delta):
+	# Add the gravity.
+	velocity.y += gravity * delta
 	
-	velocity = input_direction * speed
+	# Handle Jump.
+	if Input.is_action_just_pressed("move_up") and is_on_floor():
+		velocity.y = jump_speed
 		
+	# Get the input direction.
+	var direction = Input.get_axis("move_left", "move_right")
+	velocity.x = direction * speed
+	
 	move_and_slide()
 	
-	
-	if velocity.x != 0:
+	if velocity.y != 0:
+		$AnimatedSprite2D.animation = "up"
+		$AnimatedSprite2D.flip_v = false
+		$AnimatedSprite2D.flip_h = velocity.x < 0
+	elif velocity.x != 0:
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = velocity.y > 0
+		$AnimatedSprite2D.play("walk")
 	else:
 		$AnimatedSprite2D.animation = "idle"
 		$AnimatedSprite2D.flip_v = false
@@ -33,4 +37,5 @@ func _physics_process(_delta):
 	
 func start(pos):
 	position = pos
+	
 	
