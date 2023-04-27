@@ -9,6 +9,7 @@ script = ExtResource("1_ysc4g")
 mob_scene = ExtResource("2_gj6d2")
 
 [node name="Player" parent="." instance=ExtResource("2_unlht")]
-position = Vector2(512, 368)
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="hit" from="Player" to="." method="game_over"]

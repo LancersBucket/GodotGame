@@ -20,8 +20,8 @@ func game_over():
 # Linked to the hit signal from player
 func new_game():
 	score = 0
-	$Player.start($StartPosition.position)
-	$StartTimer.start()
+	#$Player.start($StartPosition.position)
+	#$StartTimer.start()
 
 # Linked to the start timer
 func _on_start_timer_timeout():
