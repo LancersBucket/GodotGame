@@ -36,7 +36,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.animation = "idle"
 		$AnimatedSprite2D.flip_v = false
 		
-	camera.position.y = 0
+	#camera.position.y = 0
 	camera.position.x = position.x
 	#camera.global_translate(velocity)
 	
