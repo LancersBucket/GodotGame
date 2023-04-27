@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=9 format=3 uid="uid://ctjl5c6tui2ke"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_08dyy"]
 [ext_resource type="Texture2D" uid="uid://ckv40lqurru3g" path="res://art/Mario Sprites2.png" id="2_p0tgt"]
 [ext_resource type="Texture2D" uid="uid://bx65i4iurx6vb" path="res://art/Mario SpritesRun1.png" id="3_mjb6i"]
+[ext_resource type="Texture2D" uid="uid://bo2dfv7acgxvh" path="res://art/marioup.png" id="3_vnsa4"]
 [ext_resource type="Texture2D" uid="uid://dy1rlhdpweis1" path="res://art/Mario SpritesRun2.png" id="4_pu8g5"]
 [ext_resource type="Texture2D" uid="uid://mql7t0ii6d1e" path="res://art/Mario SpritesRun3.png" id="5_n6a4x"]
 
@@ -21,6 +22,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_vnsa4")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_mjb6i")
 }, {
 "duration": 1.0,
@@ -30,7 +39,7 @@ animations = [{
 "texture": ExtResource("5_n6a4x")
 }],
 "loop": true,
-"name": &"run",
+"name": &"walk",
 "speed": 5.0
 }]
 

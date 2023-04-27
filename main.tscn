@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://vh6u3c678s2g"]
+[gd_scene load_steps=7 format=3 uid="uid://vh6u3c678s2g"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ysc4g"]
 [ext_resource type="PackedScene" uid="uid://b1gtrthw8bcbp" path="res://mob.tscn" id="2_gj6d2"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://player.tscn" id="2_unlht"]
+[ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="4_u3y7b"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdo78"]
+texture = ExtResource("4_u3y7b")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[sub_resource type="TileSet" id="TileSet_6o3uf"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_pdo78")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ysc4g")
@@ -10,6 +26,13 @@ mob_scene = ExtResource("2_gj6d2")
 
 [node name="Player" parent="." instance=ExtResource("2_unlht")]
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_6o3uf")
+format = 2
 
 [connection signal="hit" from="Player" to="." method="game_over"]
