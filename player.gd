@@ -6,6 +6,8 @@ extends CharacterBody2D
 # Get the gravity from the project settings so you can sync with rigid body nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@onready var camera = $"../Camera"
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -33,7 +35,10 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite2D.animation = "idle"
 		$AnimatedSprite2D.flip_v = false
-
+		
+	camera.position.y = 0
+	camera.position.x = position.x
+	#camera.global_translate(velocity)
 	
 func start(pos):
 	position = pos

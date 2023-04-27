@@ -1,6 +1,6 @@
 extends Node
 
-@export var mob_scene: PackedScene
+@onready var player = $Player
 var score
 
 # Called when the node enters the scene tree for the first time.
