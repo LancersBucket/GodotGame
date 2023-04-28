@@ -88,7 +88,7 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite2D.animation = "idle"
 		$AnimatedSprite2D.flip_v = false
-		
+		$AnimatedSprite2D.play("idle")
 	# Camera position code. Sets camera to player x except when player is behind camera x
 	if (position.x > camera.position.x):
 		camera.position.x = position.x
