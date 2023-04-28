@@ -15,7 +15,9 @@ var facing = 1
 var acceleration = 3
 var friction = 0.1
 
-const UP = Vector2(0,-1)
+const NORMAL = Vector2(0,-1)
+const RIGHT = 1
+const LEFT = -1
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -38,42 +40,46 @@ func _physics_process(delta):
 	# Get the input direction.
 	var direction = Input.get_axis("move_left", "move_right")
 	
-	
 	# Whole buch of code to calculate momentum
-	if (is_on_floor() && !Input.is_action_pressed("run")):
-		if (velocity.x > walk_speed+10):
-			velocity.x = lerp(velocity.x, float(walk_speed), friction)
-		else:
-			if direction == 1:
-				velocity.x = min(velocity.x+acceleration, walk_speed)
-			elif direction == -1:
-				velocity.x = max(velocity.x-acceleration, -walk_speed)
+	if (is_on_floor()):
+		# If on floor and running
+		if Input.is_action_pressed("run"):
+			if direction == RIGHT:
+				velocity.x = min(velocity.x+acceleration, run_speed)
+			elif direction == LEFT:
+				velocity.x = max(velocity.x-acceleration, -run_speed)
 			else:
+				# Slowly brings velocity to zero if not touching anything
 				velocity.x = lerp(velocity.x, 0.0, friction)
-	elif (is_on_floor() && Input.is_action_pressed("run")):
-		if direction == 1:
-			velocity.x = min(velocity.x+acceleration, run_speed)
-		elif direction == -1:
-			velocity.x = max(velocity.x-acceleration, -run_speed)
-		else:
-			velocity.x = lerp(velocity.x, 0.0, 0.2)
-	elif (!is_on_floor() && Input.is_action_pressed("run")):
-		if direction == 1:
-			velocity.x = min(velocity.x+(acceleration/2.0), run_speed)
-		elif direction == -1:
-			velocity.x = max(velocity.x-(acceleration/2.0), -run_speed)
-		else:
-			pass
-	elif (!is_on_floor()):
-		if velocity.x > walk_speed:
-			pass
-		else:
-			if direction == 1:
-				velocity.x = min(velocity.x+(acceleration/2.0), walk_speed)
-			elif direction == -1:
-				velocity.x = max(velocity.x-(acceleration/2.0), -walk_speed)
+		# If on floor and walking
+		elif !Input.is_action_pressed("run"):
+			# If speed is > walk_speed decelerate to walk_speed 
+			if (velocity.x > walk_speed+10):
+				velocity.x = lerp(velocity.x, float(walk_speed), friction)
 			else:
+				if direction == RIGHT:
+					velocity.x = min(velocity.x+acceleration, walk_speed)
+				elif direction == LEFT:
+					velocity.x = max(velocity.x-acceleration, -walk_speed)
+				else:
+					# Slowly brings velocity to zero if not touching anything
+					velocity.x = lerp(velocity.x, 0.0, friction)
+	elif !is_on_floor():
+		# If not on floor and running
+		if Input.is_action_pressed("run"):
+			if direction == RIGHT:
+				velocity.x = min(velocity.x+(acceleration/2.0), run_speed)
+			elif direction == LEFT:
+				velocity.x = max(velocity.x-(acceleration/2.0), -run_speed)
+		# If not on floor and walking
+		elif !Input.is_action_pressed("run"):
+			if velocity.x > walk_speed:
 				pass
+			else:
+				if direction == RIGHT:
+					velocity.x = min(velocity.x+(acceleration/2.0), walk_speed)
+				elif direction == LEFT:
+					velocity.x = max(velocity.x-(acceleration/2.0), -walk_speed)
 	
 	# If your running enable higher jumps
 	if (Input.is_action_pressed("run") && is_on_floor()):
@@ -82,11 +88,11 @@ func _physics_process(delta):
 		jump_speed = -350
 	
 	# Prevents direction from going 0 and setting velocity.x instantly to 0
-	if (is_on_floor()):
-		if (direction == -1):
-			facing = -1
-		elif direction == 1:
-			facing = 1
+	if is_on_floor():
+		if direction == LEFT:
+			facing = LEFT
+		elif direction == RIGHT:
+			facing = RIGHT
 
 	move_and_slide()
 	
