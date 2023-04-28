@@ -17,14 +17,11 @@ func _physics_process(delta):
 	# Add the gravity.
 	velocity.y += gravity * delta
 	
-	
-	
 	if !is_on_floor():
 		timer -= 1
 	else:
 		timer = 7
 		
-	print(timer)
 	
 	# Handle Jump.
 	if Input.is_action_just_pressed("move_up") and timer >= 0:
@@ -69,9 +66,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.animation = "idle"
 		$AnimatedSprite2D.flip_v = false
 		
-	#camera.position.y = 0
 	camera.position.x = position.x + 50
-	#camera.global_translate(velocity)
 	
 func start(pos):
 	position = pos
