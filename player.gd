@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var run_speed = 200
-@export var walk_speed = 100
+@export var run_speed = 175
+@export var walk_speed = 75
 @export var jump_speed = -350.0
 
 var screen_size # Size of the game window
@@ -9,13 +9,14 @@ var gravity = 980
 
 @onready var camera = $"../Camera"
 
-var actual_speed = walk_speed
+var actual_speed = 0
 var timer = 7
+var facing = 1
+var mult = 0
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	print(screen_size)
-
+	
 func _physics_process(delta):
 	
 	# Add the gravity.
@@ -34,34 +35,36 @@ func _physics_process(delta):
 	# Get the input direction.
 	var direction = Input.get_axis("move_left", "move_right")
 	
-	var move = 0.0
-	if (Input.is_action_pressed("run")): 
-		move = 5.0
-	else:
-		move = -5.0
-		
-	if velocity.x == 0:
-		actual_speed -= 10
+	if (Input.is_action_pressed("run")) && direction != 0: 
+		mult = 10
+	elif direction != 0:
+		mult = 5
+		actual_speed = minf(maxf(actual_speed, 0), walk_speed)
+	elif direction == 0:
+		mult = -3
 	
-	actual_speed += move
+	actual_speed += mult
 	
 	# Arcane code
-	actual_speed = minf(maxf(actual_speed, walk_speed), run_speed)
+	actual_speed = minf(maxf(actual_speed, 0), run_speed)
 	
 	if (actual_speed > 100):
 		jump_speed = -375
 	else:
 		jump_speed = -350
 	
-	velocity.x = direction * actual_speed
+	if (direction == -1):
+		facing = -1
+	elif direction == 1:
+		facing = 1 
+	velocity.x = (actual_speed*facing)
 	
 	move_and_slide()
 	
-	position.x = minf(maxf(position.x, camera.position.x-(screen_size.x/2)-24), camera.position.x+screen_size.x)
+	position.x = maxf(position.x, camera.position.x-(screen_size.x/2)-24)
 	#position.x = clamp(position.x, 0, camera.position.x+screen_size.x)
 	#position.y = clamp(position.y, 0, screen_size.y)
-	print(camera.position.x-(screen_size.x/2)-24)
-	print("Player: " + str(position.x))
+	
 	if velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = false
