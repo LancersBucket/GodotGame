@@ -5,11 +5,10 @@ extends CharacterBody2D
 @export var jump_speed = -350.0
 
 var screen_size # Size of the game window
-var gravity = 980 
+var gravity = 980
 
 @onready var camera = $"../Camera"
 
-var actual_speed = 0
 var timer = 7
 var facing = 1
 var acceleration = 3
@@ -23,7 +22,6 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	
 func _physics_process(delta):
-	
 	# Add the gravity.
 	velocity.y += gravity * delta
 	
@@ -31,16 +29,15 @@ func _physics_process(delta):
 		timer -= 1
 	else:
 		timer = 7
-		
 	
 	# Handle Jump.
 	if Input.is_action_just_pressed("move_up") and timer >= 0:
 		velocity.y = jump_speed
-		
+	
 	# Get the input direction.
 	var direction = Input.get_axis("move_left", "move_right")
 	
-	# Whole buch of code to calculate momentum
+	# Whole bunch of code to calculate momentum
 	if (is_on_floor()):
 		# If on floor and running
 		if Input.is_action_pressed("run"):
@@ -73,9 +70,7 @@ func _physics_process(delta):
 				velocity.x = max(velocity.x-(acceleration/2.0), -run_speed)
 		# If not on floor and walking
 		elif !Input.is_action_pressed("run"):
-			if velocity.x > walk_speed:
-				pass
-			else:
+			if velocity.x < walk_speed:
 				if direction == RIGHT:
 					velocity.x = min(velocity.x+(acceleration/2.0), walk_speed)
 				elif direction == LEFT:
