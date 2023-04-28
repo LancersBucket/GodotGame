@@ -4,13 +4,17 @@ extends CharacterBody2D
 @export var walk_speed = 100
 @export var jump_speed = -350.0
 
-
+var screen_size # Size of the game window
 var gravity = 980 
 
 @onready var camera = $"../Camera"
 
 var actual_speed = walk_speed
 var timer = 7
+
+func _ready():
+	screen_size = get_viewport_rect().size
+	print(screen_size)
 
 func _physics_process(delta):
 	
@@ -53,6 +57,11 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
+	position.x = minf(maxf(position.x, camera.position.x-(screen_size.x/2)-24), camera.position.x+screen_size.x)
+	#position.x = clamp(position.x, 0, camera.position.x+screen_size.x)
+	#position.y = clamp(position.y, 0, screen_size.y)
+	print(camera.position.x-(screen_size.x/2)-24)
+	print("Player: " + str(position.x))
 	if velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = false
@@ -66,9 +75,12 @@ func _physics_process(delta):
 		$AnimatedSprite2D.animation = "idle"
 		$AnimatedSprite2D.flip_v = false
 		
-	camera.position.x = position.x + 50
+	if (position.x > camera.position.x):
+		camera.position.x = position.x
+		
 	
 func start(pos):
 	position = pos
 	
-	
+func clampNum(_num, _min, _max):
+	_num = minf(maxf(_num, _min), _max)
