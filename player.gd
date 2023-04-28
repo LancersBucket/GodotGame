@@ -37,20 +37,21 @@ func _physics_process(delta):
 	
 	
 	# Whole buch of code to calculate momentum
-	if (Input.is_action_pressed("run")) && direction != 0: 
-		mult = 10
-		actual_speed += mult
-	elif direction != 0 && actual_speed > walk_speed:
-		mult = -3
-		actual_speed += mult
-		minf(maxf(actual_speed, walk_speed), run_speed)
-	elif direction != 0:
-		mult = 5
-		actual_speed += mult
-		actual_speed = minf(maxf(actual_speed, 0), walk_speed)
-	elif direction == 0:
-		mult = -3
-		actual_speed += mult
+	if (is_on_floor()):
+		if (Input.is_action_pressed("run")) && direction != 0: 
+			mult = 10
+			actual_speed += mult
+		elif direction != 0 && actual_speed > walk_speed:
+			mult = -3
+			actual_speed += mult
+			minf(maxf(actual_speed, walk_speed), run_speed)
+		elif direction != 0:
+			mult = 5
+			actual_speed += mult
+			actual_speed = minf(maxf(actual_speed, 0), walk_speed)
+		elif direction == 0:
+			mult = -5
+			actual_speed += mult
 	
 	# Arcane code (Locks speed between 0 and run_speed)
 	actual_speed = minf(maxf(actual_speed, 0), run_speed)
@@ -62,18 +63,17 @@ func _physics_process(delta):
 		jump_speed = -350
 	
 	# Prevents direction from going 0 and setting velocity.x instantly to 0
-	if (direction == -1):
-		facing = -1
-	elif direction == 1:
-		facing = 1 
+	if (is_on_floor()):
+		if (direction == -1):
+			facing = -1
+		elif direction == 1:
+			facing = 1
 	velocity.x = (actual_speed*facing)
 	
 	move_and_slide()
 	
 	# Clamps player position to stay on screen
 	position.x = maxf(position.x, camera.position.x-(screen_size.x/2)-24)
-	#position.x = clamp(position.x, 0, camera.position.x+screen_size.x)
-	#position.y = clamp(position.y, 0, screen_size.y)
 	
 	# Animation
 	if velocity.y != 0:

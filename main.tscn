@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Main.gd" id="1_ysc4g"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://player.tscn" id="2_unlht"]
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="4_u3y7b"]
-[ext_resource type="PackedScene" uid="uid://cccqpmv5hloin" path="res://goomba.tscn" id="5_wahsk"]
+[ext_resource type="PackedScene" uid="uid://d0jpvque2mrhg" path="res://goomba.tscn" id="5_wahsk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdo78"]
 texture = ExtResource("4_u3y7b")
