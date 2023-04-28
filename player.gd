@@ -12,7 +12,7 @@ var gravity = 980
 var actual_speed = 0
 var timer = 7
 var facing = 1
-var mult = 0
+var acceleration = 0
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -39,20 +39,20 @@ func _physics_process(delta):
 	# Whole buch of code to calculate momentum
 	if (is_on_floor()):
 		if (Input.is_action_pressed("run")) && direction != 0: 
-			mult = 10
-			actual_speed += mult
+			acceleration = 10
+			actual_speed += acceleration
 		elif direction != 0 && actual_speed > walk_speed:
-			mult = -3
-			actual_speed += mult
+			acceleration = -3
+			actual_speed += acceleration
 			minf(maxf(actual_speed, walk_speed), run_speed)
 		elif direction != 0:
-			mult = 5
-			actual_speed += mult
+			acceleration = 5
+			actual_speed += acceleration
 			actual_speed = minf(maxf(actual_speed, 0), walk_speed)
 		elif direction == 0:
-			mult = -5
-			actual_speed += mult
-	
+			acceleration = -5
+			actual_speed += acceleration
+			
 	# Arcane code (Locks speed between 0 and run_speed)
 	actual_speed = minf(maxf(actual_speed, 0), run_speed)
 	
