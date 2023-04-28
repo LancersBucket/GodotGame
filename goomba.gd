@@ -1,22 +1,51 @@
 extends CharacterBody2D
+@onready var player = $"../Player"
 
-
-const SPEED = 50.0
+const SPEED = 30.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+var isOnScreen = 0
+var alive = 1
+var x = 0
+var direction = -1
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	if isOnScreen && alive:
+		# Add the gravity.
+		if not is_on_floor():
+			velocity.y += gravity * delta
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = -1
-	velocity.x = direction * SPEED
-	$AnimatedSprite2D.animation = "walk"
-	$AnimatedSprite2D.play("walk")
+		if is_on_wall():
+			direction *= -1
+		
+		velocity.x = direction * SPEED
+		$AnimatedSprite2D.animation = "walk"
+		$AnimatedSprite2D.play("walk")
 
-	move_and_slide()
+		move_and_slide()
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	isOnScreen = 1
+
+func die():
+	$AnimatedSprite2D.animation = "die"
+	$AnimatedSprite2D.play("die")
+	get_node("CollisionShape2D").set_deferred("disabled",true)
+	get_node("Area2D/CollisionShape2D2").set_deferred("disabled",true)
+	get_node("Area2D2/CollisionShape2D3").set_deferred("disabled",true)
+
+	alive = 0
+	
+	await get_tree().create_timer(1).timeout
+	queue_free()
+
+func _on_area_2d_2_body_entered(body):
+	if body.is_in_group("Player"):
+		player.velocity.y = -200
+		die()
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("Player"):
+		get_tree().reload_current_scene()
+
