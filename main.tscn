@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://vh6u3c678s2g"]
+[gd_scene load_steps=8 format=3 uid="uid://vh6u3c678s2g"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ysc4g"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://player.tscn" id="2_unlht"]
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="4_u3y7b"]
+[ext_resource type="PackedScene" uid="uid://cccqpmv5hloin" path="res://goomba.tscn" id="5_wahsk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdo78"]
 texture = ExtResource("4_u3y7b")
@@ -35,3 +36,6 @@ layer_0/tile_data = PackedInt32Array(524279, 0, 0, 589815, 0, 0, 524278, 0, 0, 5
 position = Vector2(-56, 16)
 zoom = Vector2(0.75, 0.75)
 editor_draw_drag_margin = true
+
+[node name="goomba" parent="." instance=ExtResource("5_wahsk")]
+position = Vector2(56, -72)
