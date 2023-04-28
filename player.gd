@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var run_speed = 175
-@export var walk_speed = 75
+@export var walk_speed = 100
 @export var jump_speed = -350.0
 
 var screen_size # Size of the game window
@@ -12,7 +12,10 @@ var gravity = 980
 var actual_speed = 0
 var timer = 7
 var facing = 1
-var acceleration = 0
+var acceleration = 3
+var friction = 0.1
+
+const UP = Vector2(0,-1)
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -37,27 +40,43 @@ func _physics_process(delta):
 	
 	
 	# Whole buch of code to calculate momentum
-	if (is_on_floor()):
-		if (Input.is_action_pressed("run")) && direction != 0: 
-			acceleration = 10
-			actual_speed += acceleration
-		elif direction != 0 && actual_speed > walk_speed:
-			acceleration = -3
-			actual_speed += acceleration
-			minf(maxf(actual_speed, walk_speed), run_speed)
-		elif direction != 0:
-			acceleration = 5
-			actual_speed += acceleration
-			actual_speed = minf(maxf(actual_speed, 0), walk_speed)
-		elif direction == 0:
-			acceleration = -5
-			actual_speed += acceleration
-			
-	# Arcane code (Locks speed between 0 and run_speed)
-	actual_speed = minf(maxf(actual_speed, 0), run_speed)
+	if (is_on_floor() && !Input.is_action_pressed("run")):
+		if (velocity.x > walk_speed+10):
+			velocity.x = lerp(velocity.x, float(walk_speed), friction)
+		else:
+			if direction == 1:
+				velocity.x = min(velocity.x+acceleration, walk_speed)
+			elif direction == -1:
+				velocity.x = max(velocity.x-acceleration, -walk_speed)
+			else:
+				velocity.x = lerp(velocity.x, 0.0, friction)
+	elif (is_on_floor() && Input.is_action_pressed("run")):
+		if direction == 1:
+			velocity.x = min(velocity.x+acceleration, run_speed)
+		elif direction == -1:
+			velocity.x = max(velocity.x-acceleration, -run_speed)
+		else:
+			velocity.x = lerp(velocity.x, 0.0, 0.2)
+	elif (!is_on_floor() && Input.is_action_pressed("run")):
+		if direction == 1:
+			velocity.x = min(velocity.x+(acceleration/2.0), run_speed)
+		elif direction == -1:
+			velocity.x = max(velocity.x-(acceleration/2.0), -run_speed)
+		else:
+			pass
+	elif (!is_on_floor()):
+		if velocity.x > walk_speed:
+			pass
+		else:
+			if direction == 1:
+				velocity.x = min(velocity.x+(acceleration/2.0), walk_speed)
+			elif direction == -1:
+				velocity.x = max(velocity.x-(acceleration/2.0), -walk_speed)
+			else:
+				pass
 	
 	# If your running enable higher jumps
-	if (actual_speed > 100):
+	if (Input.is_action_pressed("run") && is_on_floor()):
 		jump_speed = -375
 	else:
 		jump_speed = -350
@@ -68,8 +87,7 @@ func _physics_process(delta):
 			facing = -1
 		elif direction == 1:
 			facing = 1
-	velocity.x = (actual_speed*facing)
-	
+
 	move_and_slide()
 	
 	# Clamps player position to stay on screen
@@ -80,7 +98,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.x != 0:
+	elif velocity.x != 0 && abs(velocity.x) > 20 :
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.flip_h = velocity.x < 0
