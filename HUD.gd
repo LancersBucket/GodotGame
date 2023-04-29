@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var time = 399
+var time = 401
 var score = 0
 var coins = 0
 
@@ -10,8 +10,9 @@ func _ready():
 		time -= 1
 		$Time.text = "TIME\n " + str(time)
 		await get_tree().create_timer(.5).timeout
+	get_tree().reload_current_scene()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$Score.text = "MARIO\n" + "%06d" % score
-	$Coins.text = "x" + str(coins); 
+	$Coins.text = "x" + "%02d" % coins 
