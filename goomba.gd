@@ -53,5 +53,5 @@ func _on_area_2d_body_entered(body):
 			die()
 			player.velocity.y = -200
 		else:
-			get_tree().reload_current_scene()
+			player.die()
 

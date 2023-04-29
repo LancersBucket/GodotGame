@@ -119,3 +119,6 @@ func start(pos):
 	
 func clampNum(_num, _min, _max):
 	_num = minf(maxf(_num, _min), _max)
+	
+func die():
+	get_tree().reload_current_scene()
