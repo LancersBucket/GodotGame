@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0jpvque2mrhg"]
+[gd_scene load_steps=8 format=3 uid="uid://d0jpvque2mrhg"]
 
 [ext_resource type="Texture2D" uid="uid://dwvy0d8wtcdx4" path="res://art/enemy/GoombaLeft.png" id="1_6umh6"]
 [ext_resource type="Script" path="res://goomba.gd" id="1_r2n73"]
@@ -28,15 +28,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tq6he"]
-size = Vector2(16, 16)
+size = Vector2(14, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7d6p"]
-size = Vector2(16.2, 16.2)
+size = Vector2(16, 17)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbt3y"]
-size = Vector2(15.8, 0.2)
-
-[node name="goomba" type="CharacterBody2D"]
+[node name="goomba" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_r2n73")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -44,6 +43,7 @@ sprite_frames = SubResource("SpriteFrames_16acs")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_tq6he")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
@@ -51,17 +51,11 @@ position = Vector2(2.84217e-14, 5.68434e-14)
 scale = Vector2(0.9, 0.9)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 0.1)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_l7d6p")
-
-[node name="Area2D2" type="Area2D" parent="."]
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D2"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_fbt3y")
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

@@ -55,7 +55,7 @@ sources/0 = SubResource("TileSetAtlasSource_pdo78")
 script = ExtResource("1_ysc4g")
 
 [node name="Player" parent="." instance=ExtResource("2_unlht")]
-position = Vector2(-48, 72)
+position = Vector2(-48, 56)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(32, 16)
