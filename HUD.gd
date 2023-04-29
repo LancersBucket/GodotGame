@@ -15,4 +15,4 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$Score.text = "MARIO\n" + "%06d" % score
-	$Coins.text = "x" + str(coins); 
+	$Coins.text = "x" + "%02d" % coins 

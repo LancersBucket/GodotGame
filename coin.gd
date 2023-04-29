@@ -12,4 +12,5 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	$"/root/Main/HUD".coins += 1;
+	$"/root/Main/HUD".score += 200;
 	queue_free();

@@ -16,4 +16,3 @@ func _on_area_2d_body_entered(body):
 		get_tree().reload_current_scene()
 	elif body.is_in_group("Enemy"):
 		body.queue_free()
-		print("Deleted Enemy")
