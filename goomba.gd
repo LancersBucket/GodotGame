@@ -38,7 +38,9 @@ func die():
 	$AnimatedSprite2D.play("die")
 	get_node("CollisionShape2D").set_deferred("disabled",true)
 	get_node("Area2D/CollisionShape2D2").set_deferred("disabled",true)
-
+	
+	$"../../HUD".score += 100
+	
 	alive = 0
 	
 	await get_tree().create_timer(.5).timeout

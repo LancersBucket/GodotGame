@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://vh6u3c678s2g"]
+[gd_scene load_steps=9 format=3 uid="uid://vh6u3c678s2g"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ysc4g"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://player.tscn" id="2_unlht"]
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="4_u3y7b"]
 [ext_resource type="PackedScene" uid="uid://d0jpvque2mrhg" path="res://goomba.tscn" id="5_wahsk"]
 [ext_resource type="Texture2D" uid="uid://2m2afufpa4pk" path="res://art/SMB_NES_World_1-1_Map.png" id="5_x6ckd"]
+[ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://HUD.tscn" id="6_eflgs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdo78"]
 texture = ExtResource("4_u3y7b")
@@ -55,7 +56,7 @@ sources/0 = SubResource("TileSetAtlasSource_pdo78")
 script = ExtResource("1_ysc4g")
 
 [node name="Player" parent="." instance=ExtResource("2_unlht")]
-position = Vector2(-48, 56)
+position = Vector2(-64, 95)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(32, 16)
@@ -125,3 +126,5 @@ position = Vector2(1632, 24)
 texture = ExtResource("5_x6ckd")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
+
+[node name="HUD" parent="." instance=ExtResource("6_eflgs")]
