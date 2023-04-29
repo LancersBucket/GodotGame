@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vh6u3c678s2g"]
+[gd_scene load_steps=12 format=3 uid="uid://vh6u3c678s2g"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ysc4g"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://player.tscn" id="2_unlht"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://d0jpvque2mrhg" path="res://goomba.tscn" id="5_wahsk"]
 [ext_resource type="Texture2D" uid="uid://2m2afufpa4pk" path="res://art/SMB_NES_World_1-1_Map.png" id="5_x6ckd"]
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://HUD.tscn" id="6_eflgs"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
+tile_data = PackedInt32Array(0, 0, 1, 65536, 131072, 1, 1, 65536, 1, 65537, 196608, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdo78"]
 texture = ExtResource("4_u3y7b")
@@ -53,6 +56,7 @@ texture = ExtResource("4_u3y7b")
 [sub_resource type="TileSet" id="TileSet_6o3uf"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_pdo78")
+pattern_0 = SubResource("TileMapPattern_yytis")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ysc4g")
