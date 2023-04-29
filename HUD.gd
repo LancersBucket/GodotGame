@@ -9,6 +9,7 @@ func _ready():
 		time -= 1
 		$Time.text = "TIME\n " + str(time)
 		await get_tree().create_timer(.5).timeout
+	get_tree().reload_current_scene()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
