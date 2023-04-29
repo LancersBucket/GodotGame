@@ -13,6 +13,7 @@ var timer = 7
 var facing = 1
 var acceleration = 3
 var friction = 0.1
+var lives = 3
 
 const NORMAL = Vector2(0,-1)
 const RIGHT = 1
@@ -121,4 +122,5 @@ func clampNum(_num, _min, _max):
 	_num = minf(maxf(_num, _min), _max)
 	
 func die():
-	get_tree().reload_current_scene()
+	lives -= 1
+	get_tree().change_scene_to_file("res://info_screen.tscn")

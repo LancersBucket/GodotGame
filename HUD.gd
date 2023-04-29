@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var time = 399
+var time = 401
 var score = 0
 var coins = 0
 
