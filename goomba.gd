@@ -1,5 +1,5 @@
 extends CharacterBody2D
-@onready var player = $"../../Player"
+@onready var player = $"/root/Main/Player"
 
 const SPEED = 30.0
 
@@ -39,7 +39,7 @@ func die():
 	get_node("CollisionShape2D").set_deferred("disabled",true)
 	get_node("Area2D/CollisionShape2D2").set_deferred("disabled",true)
 	
-	$"../../HUD".score += 100
+	$"/root/Main/HUD".score += 100
 	
 	alive = 0
 	
