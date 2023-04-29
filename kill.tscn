@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmfkmju6k4r3f"]
+
+[ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="1_yrbm8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpkia"]
+size = Vector2(16, 16)
+
+[node name="Kill" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("1_yrbm8")
+hframes = 6
+vframes = 2
+frame = 3
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_fpkia")
