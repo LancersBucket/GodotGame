@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var time = 399
 var score = 0
+var coins = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,3 +14,4 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$Score.text = "MARIO\n" + "%06d" % score
+	$Coins.text = "x" + coins; 
