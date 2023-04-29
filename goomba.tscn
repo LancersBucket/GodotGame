@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cccqpmv5hloin"]
+[gd_scene load_steps=9 format=3 uid="uid://d0jpvque2mrhg"]
 
 [ext_resource type="Texture2D" uid="uid://dwvy0d8wtcdx4" path="res://art/enemy/GoombaLeft.png" id="1_6umh6"]
 [ext_resource type="Script" path="res://goomba.gd" id="1_r2n73"]
@@ -41,7 +41,7 @@ script = ExtResource("1_r2n73")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_16acs")
-animation = &"die"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tq6he")
