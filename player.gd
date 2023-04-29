@@ -77,7 +77,7 @@ func _physics_process(delta):
 					velocity.x = max(velocity.x-(acceleration/2.0), -walk_speed)
 	
 	# If your running enable higher jumps
-	if (Input.is_action_pressed("run") && is_on_floor()):
+	if (Input.is_action_pressed("run") && is_on_floor() && velocity.x > walk_speed):
 		jump_speed = -375
 	else:
 		jump_speed = -350
@@ -88,18 +88,19 @@ func _physics_process(delta):
 			facing = LEFT
 		elif direction == RIGHT:
 			facing = RIGHT
-
+	
 	move_and_slide()
 	
 	# Clamps player position to stay on screen
 	position.x = maxf(position.x, camera.position.x-(screen_size.x/2)-24)
+	
 	
 	# Animation
 	if velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.flip_h = velocity.x < 0
-	elif velocity.x != 0 && abs(velocity.x) > 20 :
+	elif velocity.x != 0 && abs(velocity.x) > 15 :
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.flip_h = velocity.x < 0
