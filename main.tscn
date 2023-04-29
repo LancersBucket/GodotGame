@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://vh6u3c678s2g"]
+[gd_scene load_steps=11 format=3 uid="uid://vh6u3c678s2g"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ysc4g"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://player.tscn" id="2_unlht"]
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="4_u3y7b"]
+[ext_resource type="PackedScene" uid="uid://bmfkmju6k4r3f" path="res://kill.tscn" id="5_rggr0"]
 [ext_resource type="PackedScene" uid="uid://bhvbl5b3tctc" path="res://coin.tscn" id="5_vrt4i"]
 [ext_resource type="PackedScene" uid="uid://d0jpvque2mrhg" path="res://goomba.tscn" id="5_wahsk"]
 [ext_resource type="Texture2D" uid="uid://2m2afufpa4pk" path="res://art/SMB_NES_World_1-1_Map.png" id="5_x6ckd"]
@@ -121,6 +122,27 @@ position = Vector2(2656, 104)
 
 [node name="goomba16" parent="Full 1-1/Enemies" instance=ExtResource("5_wahsk")]
 position = Vector2(1832, 104)
+
+[node name="Kill" parent="Full 1-1/Enemies" instance=ExtResource("5_rggr0")]
+position = Vector2(952, 184)
+
+[node name="Kill2" parent="Full 1-1/Enemies" instance=ExtResource("5_rggr0")]
+position = Vector2(968, 184)
+
+[node name="Kill3" parent="Full 1-1/Enemies" instance=ExtResource("5_rggr0")]
+position = Vector2(1224, 184)
+
+[node name="Kill4" parent="Full 1-1/Enemies" instance=ExtResource("5_rggr0")]
+position = Vector2(1240, 184)
+
+[node name="Kill5" parent="Full 1-1/Enemies" instance=ExtResource("5_rggr0")]
+position = Vector2(1256, 184)
+
+[node name="Kill6" parent="Full 1-1/Enemies" instance=ExtResource("5_rggr0")]
+position = Vector2(2296, 184)
+
+[node name="Kill7" parent="Full 1-1/Enemies" instance=ExtResource("5_rggr0")]
+position = Vector2(2312, 184)
 
 [node name="Coins" type="Node" parent="Full 1-1"]
 
