@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://citty00cqebxd"
-path="res://.godot/imported/run_1.png-4780bc05998402b048703716e00c5cad.ctex"
+uid="uid://n5vmjkvxaude"
+path="res://.godot/imported/sidle32x50_6fps.png-01acaf68c9978d070bbb1fc0e4a9f90d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player/run/run_1.png"
-dest_files=["res://.godot/imported/run_1.png-4780bc05998402b048703716e00c5cad.ctex"]
+source_file="res://art/player/sidle32x50_6fps.png"
+dest_files=["res://.godot/imported/sidle32x50_6fps.png-01acaf68c9978d070bbb1fc0e4a9f90d.ctex"]
 
 [params]
 

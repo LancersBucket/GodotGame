@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lpuvouhoggou"
-path="res://.godot/imported/graveBurst_6.png-3236e98d44bdb4054f6bab47cd756071.ctex"
+uid="uid://2m2afufpa4pk"
+path="res://.godot/imported/SMB_NES_World_1-1_Map.png-be333d1379f08b3da4bb46e7bc62331e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player/up/graveBurst_6.png"
-dest_files=["res://.godot/imported/graveBurst_6.png-3236e98d44bdb4054f6bab47cd756071.ctex"]
+source_file="res://art/SMB_NES_World_1-1_Map.png"
+dest_files=["res://.godot/imported/SMB_NES_World_1-1_Map.png-be333d1379f08b3da4bb46e7bc62331e.ctex"]
 
 [params]
 
