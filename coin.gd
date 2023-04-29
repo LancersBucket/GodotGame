@@ -11,5 +11,5 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	$"../../../HUD".coins += 1;
+	$"/root/Main/HUD".coins += 1;
 	queue_free();
