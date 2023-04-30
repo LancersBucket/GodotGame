@@ -14,7 +14,10 @@ var facing = 1
 var acceleration = 3
 var friction = 0.1
 var lives = 3
-var playerControl = true;
+var playerControl = true
+var flagControl = false
+var lock = false
+var temp = 0
 
 const NORMAL = Vector2(0,-1)
 const RIGHT = 1
@@ -112,8 +115,28 @@ func _physics_process(delta):
 			$AnimatedSprite2D.animation = "idle"
 			$AnimatedSprite2D.flip_v = false
 			$AnimatedSprite2D.play("idle")
-	elif (!playerControl):
-		pass
+	# Idealy I would have implemented this into a state machine but I don't particuarally care
+	elif (!playerControl && flagControl):
+		velocity.x = 0
+		if (!is_on_floor() && !lock):
+			velocity.x = 0
+			velocity.y = 64
+			temp = position.x
+		elif (is_on_floor() || lock):
+			if (!lock):
+				position.x = temp + 32
+				$AnimatedSprite2D.flip_h = true
+				await get_tree().create_timer(.5).timeout
+				lock = true
+			else:
+				$AnimatedSprite2D.animation = "walk"
+				$AnimatedSprite2D.flip_v = false
+				$AnimatedSprite2D.flip_h = velocity.x < 0
+				$AnimatedSprite2D.play("walk")
+				velocity.y += gravity*delta
+				velocity.x = walk_speed/2.0
+			
+		move_and_slide()
 		
 		
 	# Camera position code. Sets camera to player x except when player is behind camera x
