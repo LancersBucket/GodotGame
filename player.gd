@@ -122,9 +122,10 @@ func _physics_process(delta):
 			velocity.x = 0
 			velocity.y = 64
 			temp = position.x
+			$AnimatedSprite2D.animation = "slide"
 		elif (is_on_floor() || lock):
 			if (!lock):
-				position.x = temp + 32
+				position.x = temp + 22
 				$AnimatedSprite2D.flip_h = true
 				await get_tree().create_timer(.5).timeout
 				lock = true
