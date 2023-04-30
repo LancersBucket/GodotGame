@@ -179,7 +179,7 @@ pattern_0 = SubResource("TileMapPattern_yytis")
 script = ExtResource("1_ysc4g")
 
 [node name="Player" parent="." instance=ExtResource("2_unlht")]
-position = Vector2(2900, 95)
+position = Vector2(-64, 95)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(32, 16)
@@ -328,6 +328,7 @@ position = Vector2(3336, 56)
 position = Vector2(3016, 16)
 
 [node name="SmbNesWorld1-1Map" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.141176)
 position = Vector2(1632, 24)
 texture = ExtResource("5_x6ckd")
