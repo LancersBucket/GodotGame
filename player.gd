@@ -128,13 +128,18 @@ func _physics_process(delta):
 				$AnimatedSprite2D.flip_h = true
 				await get_tree().create_timer(.5).timeout
 				lock = true
+				velocity.x = 0
 			else:
 				$AnimatedSprite2D.animation = "walk"
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = velocity.x < 0
 				$AnimatedSprite2D.play("walk")
 				velocity.y += gravity*delta
-				velocity.x = walk_speed/2.0
+				velocity.x += walk_speed/2.0
+				
+				if (is_on_wall()):
+					await get_tree().create_timer(3).timeout
+					die()
 			
 		move_and_slide()
 		
