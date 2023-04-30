@@ -138,6 +138,8 @@ func _physics_process(delta):
 				velocity.x += walk_speed/2.0
 				
 				if (is_on_wall()):
+					velocity.x = 0
+					$AnimatedSprite2D.stop()
 					await get_tree().create_timer(3).timeout
 					die()
 			
