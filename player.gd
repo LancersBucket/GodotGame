@@ -102,15 +102,19 @@ func _physics_process(delta):
 		
 		
 		# Animation
-		if velocity.y != 0:
+		if velocity.y < 0:
 			$AnimatedSprite2D.animation = "up"
+			$AnimatedSprite2D.flip_v = false
+			$AnimatedSprite2D.flip_h = velocity.x < 0
+		elif velocity.y > 0:
+			$AnimatedSprite2D.animation = "down"
 			$AnimatedSprite2D.flip_v = false
 			$AnimatedSprite2D.flip_h = velocity.x < 0
 		elif velocity.x != 0 && abs(velocity.x) > 15 :
 			$AnimatedSprite2D.animation = "walk"
 			$AnimatedSprite2D.flip_v = false
 			$AnimatedSprite2D.flip_h = velocity.x < 0
-			$AnimatedSprite2D.play("walk")
+			$AnimatedSprite2D.play("walk") 
 		else:
 			$AnimatedSprite2D.animation = "idle"
 			$AnimatedSprite2D.flip_v = false
@@ -125,7 +129,7 @@ func _physics_process(delta):
 			$AnimatedSprite2D.animation = "slide"
 		elif (is_on_floor() || lock):
 			if (!lock):
-				position.x = temp + 22
+				position.x = temp + 28
 				$AnimatedSprite2D.flip_h = true
 				await get_tree().create_timer(.5).timeout
 				lock = true

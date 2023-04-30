@@ -16,6 +16,7 @@ func _on_area_2d_body_entered(body):
 		$"/root/Main/Player".playerControl = false;
 		$Area2D/CollisionShape2D.set_deferred("disabled",true)
 		$"/root/Main/Player/AnimatedSprite2D".animation = "slide";
+		$"/root/Main/Player".position.x = position.x - 12
 		endGame()
 		
 func endGame():
