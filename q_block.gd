@@ -13,16 +13,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (alert):
-		$StaticBody2D/CollisionShape2D.disabled = false
 		$AnimatedSprite2D.play("move")
 		$AnimatedSprite2D.offset.y = temp
 		#player.velocity.y = 0
 		timer -= 1
 
 func _on_area_2d_body_entered(body):
-	if (!end):
+	if (!alert):
 		if body.is_in_group("Player"):
-			if player.velocity.y < 0:
+			if player.velocity.y <= 0 && player.position.y > position.y:
 				alert = true
 			
 

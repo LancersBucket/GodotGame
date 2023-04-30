@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://2m2afufpa4pk" path="res://art/SMB_NES_World_1-1_Map.png" id="5_x6ckd"]
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://HUD.tscn" id="6_eflgs"]
 [ext_resource type="PackedScene" uid="uid://c5do28hphmdnc" path="res://flag.tscn" id="7_xqs8c"]
-[ext_resource type="PackedScene" uid="uid://qp755ub4024c" path="res://q_block.tscn" id="11_kf6uc"]
+[ext_resource type="PackedScene" uid="uid://0n6kq2mm4kks" path="res://q_block.tscn" id="11_kf6uc"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
 tile_data = PackedInt32Array(0, 0, 1, 65536, 131072, 1, 1, 65536, 1, 65537, 196608, 1)
