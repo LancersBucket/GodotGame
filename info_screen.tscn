@@ -12,13 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uh2md")
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 184.0
-offset_top = 176.0
-offset_right = 192.0
-offset_bottom = 184.0
-
 [node name="World" type="Label" parent="."]
 layout_mode = 0
 offset_left = 53.0
