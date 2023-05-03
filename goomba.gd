@@ -10,7 +10,6 @@ var alive = 1
 var x = 0
 var direction = -1
 var cooldown = 0
-var kylepstapftesterprime12 = true
 
 func _physics_process(delta):
 	if isOnScreen && alive:
