@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=18 format=3 uid="uid://ctjl5c6tui2ke"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_08dyy"]
 [ext_resource type="Texture2D" uid="uid://n5vmjkvxaude" path="res://art/player/sidle32x50_6fps.png" id="2_lafkw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ip2yrlr7i2nq" path="res://art/player/sdown32x50.png" id="3_qr2bn"]
 [ext_resource type="Texture2D" uid="uid://barqd2rmcglvy" path="res://art/player/srun32x50_12fps.png" id="4_aibxu"]
 [ext_resource type="Texture2D" uid="uid://cli1mgplwes0o" path="res://art/player/sslide32x50-export.png" id="4_vgrl6"]
+[ext_resource type="AudioStream" uid="uid://e8xkti6rbikw" path="res://audio/jump-soundeffect.wav" id="7_algey"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rj60w"]
 atlas = ExtResource("2_lafkw")
@@ -114,3 +115,7 @@ animation = &"walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_gyhv5")
+
+[node name="boing-boing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_algey")
+volume_db = -18.795
