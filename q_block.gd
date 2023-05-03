@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var player = $"/root/Main/Player"
 var alert = false
+var end = false
 @onready var temp = $AnimatedSprite2D.offset.y - 1
 
 # Called when the node enters the scene tree for the first time.
@@ -15,7 +16,7 @@ func _process(delta):
 		$AnimatedSprite2D.offset.y = temp
 
 func _on_area_2d_body_entered(body):
-	if (!alert):
+	if (!alert && !end):
 		if body.is_in_group("Player"):
 			if player.velocity.y <= 0 && player.position.y > position.y:
 				alert = true
@@ -26,4 +27,5 @@ func _on_animated_sprite_2d_animation_looped():
 		$AnimatedSprite2D.animation = "empty"
 		$AnimatedSprite2D.offset.y = temp + 1
 		alert = false
+		end = true
 		$"/root/Main/HUD".coins += 1;
