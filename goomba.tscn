@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0jpvque2mrhg"]
+[gd_scene load_steps=9 format=3 uid="uid://d0jpvque2mrhg"]
 
 [ext_resource type="Texture2D" uid="uid://dwvy0d8wtcdx4" path="res://art/enemy/GoombaLeft.png" id="1_6umh6"]
 [ext_resource type="Script" path="res://goomba.gd" id="1_r2n73"]
 [ext_resource type="Texture2D" uid="uid://dedl6lp8qcu37" path="res://art/enemy/GoombaSquash.png" id="2_f50hc"]
 [ext_resource type="Texture2D" uid="uid://0wh4nhfkhmem" path="res://art/enemy/GoombaRight.png" id="2_nv2n8"]
+[ext_resource type="AudioStream" uid="uid://e8xkti6rbikw" path="res://audio/jump-soundeffect.wav" id="5_7l7wd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_16acs"]
 animations = [{
@@ -56,6 +57,10 @@ collision_layer = 2
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_l7d6p")
+
+[node name="boing-boing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7l7wd")
+volume_db = -18.795
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
