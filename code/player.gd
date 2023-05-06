@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var walk_speed = 100
 @export var jump_speed = -350.0
 
+enum States {PLAYER_CONTROL}
 const NORMAL = Vector2(0,-1)
 const RIGHT = 1
 const LEFT = -1
@@ -13,13 +14,13 @@ var screen_size
 var gravity = 980
 var timer = 7
 var lives = 3
-var playerControl = true
+var state = States.PLAYER_CONTROL
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	
 func _physics_process(delta):
-	if (playerControl):
+	if (state == States.PLAYER_CONTROL):
 		# Gravity
 		velocity.y += gravity * delta
 		
