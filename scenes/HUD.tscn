@@ -5,15 +5,6 @@
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_lvly0")
 
-[node name="Score" type="Label" parent="."]
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 48.0
-offset_bottom = 40.0
-theme_override_font_sizes/font_size = 7
-text = "MARIO
-000000"
-
 [node name="Coins" type="Label" parent="."]
 offset_left = 72.0
 offset_top = 16.0
@@ -22,18 +13,7 @@ offset_bottom = 42.0
 theme_override_font_sizes/font_size = 7
 text = "x00"
 
-[node name="World" type="Label" parent="."]
-offset_left = 104.0
-offset_top = 8.0
-offset_right = 163.0
-offset_bottom = 60.0
-theme_override_font_sizes/font_size = 7
-text = "WORLD
-    1-1"
-
 [node name="Time" type="Label" parent="."]
-anchors_preset = -1
-anchor_bottom = 0.001
 offset_left = 152.0
 offset_top = 8.0
 offset_right = 192.0
