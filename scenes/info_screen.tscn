@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvrk3nxbydk8l"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://HUD.tscn" id="1_24vey"]
-[ext_resource type="Script" path="res://info_screen.gd" id="1_uh2md"]
+[ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="1_24vey"]
+[ext_resource type="Script" path="res://code/info_screen.gd" id="1_uh2md"]
 
 [node name="InfoScreen" type="Control"]
 layout_mode = 3

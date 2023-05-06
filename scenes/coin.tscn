@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhvbl5b3tctc"]
 
-[ext_resource type="Script" path="res://coin.gd" id="1_cf5nc"]
+[ext_resource type="Script" path="res://code/coin.gd" id="1_cf5nc"]
 [ext_resource type="Texture2D" uid="uid://b66u8srbsj32c" path="res://art/coin.png" id="1_fpd7j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m012o"]

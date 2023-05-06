@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d0jpvque2mrhg"]
 
 [ext_resource type="Texture2D" uid="uid://dwvy0d8wtcdx4" path="res://art/enemy/GoombaLeft.png" id="1_6umh6"]
-[ext_resource type="Script" path="res://goomba.gd" id="1_r2n73"]
+[ext_resource type="Script" path="res://code/goomba.gd" id="1_r2n73"]
 [ext_resource type="Texture2D" uid="uid://dedl6lp8qcu37" path="res://art/enemy/GoombaSquash.png" id="2_f50hc"]
 [ext_resource type="Texture2D" uid="uid://0wh4nhfkhmem" path="res://art/enemy/GoombaRight.png" id="2_nv2n8"]
 [ext_resource type="AudioStream" uid="uid://e8xkti6rbikw" path="res://audio/jump-soundeffect.wav" id="5_7l7wd"]
