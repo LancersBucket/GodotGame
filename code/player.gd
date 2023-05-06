@@ -3,18 +3,18 @@ extends CharacterBody2D
 @onready var camera = $"../Camera"
 
 @export var walk_speed = 100
-@export var sneak_speed = walk_speed/2
+@export var sneak_speed = walk_speed/2.0
 @export var jump_speed = -350.0
 
 enum States {PLAYER_CONTROL}
-enum MovementStates {NORMAL, WALL_JUMP}
+enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB}
 const NORMAL = Vector2(0,-1)
 const RIGHT = 1
 const LEFT = -1
 
 var screen_size
 var gravity = 980
-var wallSlideGravity = gravity/8
+var wallSlideGravity = gravity/8.0
 var graceTimer = 7
 var lives = 3
 var playerState = States.PLAYER_CONTROL
