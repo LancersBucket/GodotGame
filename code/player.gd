@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var jump_speed = -350.0
 
 enum States {PLAYER_CONTROL}
+enum MovementStates {NORMAL, WALL_JUMP}
 const NORMAL = Vector2(0,-1)
 const RIGHT = 1
 const LEFT = -1
@@ -14,13 +15,14 @@ var screen_size
 var gravity = 980
 var graceTimer = 7
 var lives = 3
-var state = States.PLAYER_CONTROL
+var playerState = States.PLAYER_CONTROL
+var movementState = MovementStates.NORMAL
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	
 func _physics_process(delta):
-	if (state == States.PLAYER_CONTROL):
+	if (playerState == States.PLAYER_CONTROL):
 		# Gravity
 		velocity.y += gravity * delta
 		
@@ -32,14 +34,23 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
 			velocity.y = jump_speed
 			#$"JumpSFX".play()
-		
+		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
+			velocity.y = jump_speed
+			velocity.x = -walk_speed
+			movementState = MovementStates.WALL_JUMP
+			
 		# Get the input direction
 		var direction = Input.get_axis("move_left", "move_right")
-		
+			
 		# Movement speed
-		velocity.x = walk_speed*direction
+		if (movementState == MovementStates.NORMAL):
+			velocity.x = walk_speed*direction
+		elif (movementState == MovementStates.WALL_JUMP):
+			if (is_on_floor()):
+				movementState = MovementStates.NORMAL
 		
 		move_and_slide()
+		
 		
 		# Clamps player position to stay on screen
 		position.x = maxf(position.x, camera.position.x-(screen_size.x/2)-24)
