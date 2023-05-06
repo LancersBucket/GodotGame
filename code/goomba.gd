@@ -53,7 +53,7 @@ func _on_area_2d_body_entered(body):
 		if player.velocity.y > 0:
 			die()
 			player.velocity.y = -200
-			$"boing-boing".play()
+			$"JumpSFX".play()
 		else:
 			player.die()
 

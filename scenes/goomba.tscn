@@ -58,7 +58,7 @@ collision_layer = 2
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_l7d6p")
 
-[node name="boing-boing" type="AudioStreamPlayer" parent="."]
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_7l7wd")
 volume_db = -18.795
 

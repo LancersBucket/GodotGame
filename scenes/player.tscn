@@ -116,6 +116,6 @@ animation = &"walk"
 position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_gyhv5")
 
-[node name="boing-boing" type="AudioStreamPlayer" parent="."]
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_algey")
 volume_db = -18.795

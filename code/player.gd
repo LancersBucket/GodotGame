@@ -31,7 +31,7 @@ func _physics_process(delta):
 		# Handle jump
 		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
 			velocity.y = jump_speed
-			$"boing-boing".play()
+			$"JumpSFX".play()
 		
 		# Get the input direction
 		var direction = Input.get_axis("move_left", "move_right")
