@@ -1,26 +1,19 @@
 extends CharacterBody2D
 
-@export var walk_speed = 100
-@export var jump_speed = -350.0
-
-var screen_size # Size of the game window
-var gravity = 980
-
 @onready var camera = $"../Camera"
 
-var timer = 7
-var facing = 1
-var acceleration = 3
-var friction = 0.1
-var lives = 3
-var playerControl = true
-var flagControl = false
-var lock = false
-var temp = 0
+@export var walk_speed = 100
+@export var jump_speed = -350.0
 
 const NORMAL = Vector2(0,-1)
 const RIGHT = 1
 const LEFT = -1
+
+var screen_size
+var gravity = 980
+var timer = 7
+var lives = 3
+var playerControl = true
 
 func _ready():
 	screen_size = get_viewport_rect().size
