@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://brbgsbaqikib0"]
+[gd_scene load_steps=11 format=3 uid="uid://brbgsbaqikib0"]
 
 [ext_resource type="Script" path="res://code/Main.gd" id="1_jqjkx"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="2_cqge2"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d0jpvque2mrhg" path="res://scenes/goomba.tscn" id="4_u076j"]
 [ext_resource type="PackedScene" uid="uid://bmfkmju6k4r3f" path="res://scenes/kill.tscn" id="5_essnr"]
 [ext_resource type="PackedScene" uid="uid://bhvbl5b3tctc" path="res://scenes/coin.tscn" id="6_jew0e"]
-[ext_resource type="PackedScene" uid="uid://0n6kq2mm4kks" path="res://scenes/q_block.tscn" id="7_ie184"]
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="8_royuk"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
@@ -233,46 +232,5 @@ position = Vector2(3240, 56)
 
 [node name="Coin19" parent="Full 1-1/Coins" instance=ExtResource("6_jew0e")]
 position = Vector2(3336, 56)
-
-[node name="Blocks" type="Node" parent="Full 1-1"]
-
-[node name="Q Block" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(104, 56)
-
-[node name="Q Block2" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(184, 56)
-
-[node name="Q Block3" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(216, 56)
-
-[node name="Q Block4" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(200, -8)
-
-[node name="Q Block5" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(1096, 56)
-
-[node name="Q Block6" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(1352, -8)
-
-[node name="Q Block7" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(1544, 56)
-
-[node name="Q Block8" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(1592, 56)
-
-[node name="Q Block9" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(1640, 56)
-
-[node name="Q Block10" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(1592, -8)
-
-[node name="Q Block11" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(1912, -8)
-
-[node name="Q Block12" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(1929, -8)
-
-[node name="Q Block13" parent="Full 1-1/Blocks" instance=ExtResource("7_ie184")]
-position = Vector2(2568, 56)
 
 [node name="HUD" parent="." instance=ExtResource("8_royuk")]
