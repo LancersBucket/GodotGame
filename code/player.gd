@@ -66,13 +66,6 @@ func _physics_process(delta):
 	#if (position.x > camera.position.x):
 	camera.position.x = position.x
 	camera.position.y = position.y
-		
-	
-func start(pos):
-	position = pos
-	
-func clampNum(_num, _min, _max):
-	_num = minf(maxf(_num, _min), _max)
 	
 func die():
 	lives -= 1
