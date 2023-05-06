@@ -153,8 +153,9 @@ func _physics_process(delta):
 		
 		
 	# Camera position code. Sets camera to player x except when player is behind camera x
-	if (position.x > camera.position.x):
-		camera.position.x = position.x
+	#if (position.x > camera.position.x):
+	camera.position.x = position.x
+	camera.position.y = position.y
 		
 	
 func start(pos):
