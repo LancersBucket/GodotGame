@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var camera = $"../Camera"
 
 @export var walk_speed = 100
+@export var sneak_speed = walk_speed/2
 @export var jump_speed = -350.0
 
 enum States {PLAYER_CONTROL}
@@ -47,7 +48,10 @@ func _physics_process(delta):
 		if (movementState == MovementStates.NORMAL):
 			if (is_on_wall_only()):
 				velocity.y = min(wallSlideGravity, velocity.y)
-			velocity.x = walk_speed*direction
+			if (!Input.is_action_pressed("run")):
+				velocity.x = walk_speed*direction
+			else:
+				velocity.x = sneak_speed*direction
 		elif (movementState == MovementStates.WALL_JUMP):
 			if (is_on_floor()):
 				movementState = MovementStates.NORMAL
