@@ -1,14 +1,14 @@
 extends CanvasLayer
 
-var time = 401
+var time = 400
 var score = 0
 var coins = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	while time > 0:
-		time -= 1
 		$Time.text = "TIME\n " + str(time)
+		time -= 1
 		await get_tree().create_timer(.5).timeout
 	get_tree().reload_current_scene()
 
