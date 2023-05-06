@@ -13,6 +13,7 @@ const LEFT = -1
 
 var screen_size
 var gravity = 980
+var wallSlideGravity = gravity/8
 var graceTimer = 7
 var lives = 3
 var playerState = States.PLAYER_CONTROL
@@ -44,6 +45,8 @@ func _physics_process(delta):
 			
 		# Movement speed
 		if (movementState == MovementStates.NORMAL):
+			if (is_on_wall_only()):
+				velocity.y = min(wallSlideGravity, velocity.y)
 			velocity.x = walk_speed*direction
 		elif (movementState == MovementStates.WALL_JUMP):
 			if (is_on_floor()):
