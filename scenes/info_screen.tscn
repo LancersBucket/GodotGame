@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://dyore245ejqw6"]
 
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="1_24vey"]
 [ext_resource type="Script" path="res://code/info_screen.gd" id="1_uh2md"]
