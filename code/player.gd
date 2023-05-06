@@ -46,20 +46,18 @@ func _physics_process(delta):
 		
 		# Animation
 		if velocity.y < 0:
+			$AnimatedSprite2D.flip_v = false
+			$AnimatedSprite2D.flip_h = velocity.x < 0
 			$AnimatedSprite2D.animation = "up"
-			$AnimatedSprite2D.flip_v = false
-			$AnimatedSprite2D.flip_h = velocity.x < 0
 		elif velocity.y > 0:
-			$AnimatedSprite2D.animation = "down"
 			$AnimatedSprite2D.flip_v = false
 			$AnimatedSprite2D.flip_h = velocity.x < 0
+			$AnimatedSprite2D.animation = "down"
 		elif velocity.x != 0:
-			$AnimatedSprite2D.animation = "walk"
 			$AnimatedSprite2D.flip_v = false
 			$AnimatedSprite2D.flip_h = velocity.x < 0
 			$AnimatedSprite2D.play("walk") 
 		else:
-			$AnimatedSprite2D.animation = "idle"
 			$AnimatedSprite2D.flip_v = false
 			$AnimatedSprite2D.play("idle")
 		
