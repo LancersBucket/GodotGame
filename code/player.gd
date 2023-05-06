@@ -12,7 +12,7 @@ const LEFT = -1
 
 var screen_size
 var gravity = 980
-var timer = 7
+var graceTimer = 7
 var lives = 3
 var state = States.PLAYER_CONTROL
 
@@ -25,11 +25,11 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		
 		# Player jump grace period
-		if !is_on_floor(): timer -= 1
-		else: timer = 7
+		if !is_on_floor(): graceTimer -= 1
+		else: graceTimer = 7
 		
 		# Handle jump
-		if Input.is_action_just_pressed("move_up") and timer >= 0:
+		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
 			velocity.y = jump_speed
 			$"boing-boing".play()
 		
