@@ -48,6 +48,14 @@ func _physics_process(delta):
 		var direction = Input.get_axis("move_left", "move_right")
 			
 		# Movement speed
+		if ($Sight.is_colliding() == false and $Touch.is_colliding() == true):
+			if facing == RIGHT:
+				position.y -= 10
+				position.x += 10
+			if facing == LEFT:
+				position.y -= 10
+				position.x -= 10
+		
 		if (movementState == MovementStates.NORMAL):
 			if (is_on_wall_only()):
 				velocity.y = min(wallSlideGravity, velocity.y)
@@ -61,8 +69,18 @@ func _physics_process(delta):
 		
 		if direction == RIGHT:
 			facing = RIGHT
+			$Sight.target_position.x = 16
+			$Sight.position.y = -15
+			
+			$Touch.target_position.x = 16
+			$Touch.position.y = -5
 		elif direction == LEFT:
 			facing = LEFT
+			$Sight.target_position.x = -16
+			$Sight.position.y = -15
+			
+			$Touch.target_position.x = -16
+			$Touch.position.y = -4
 		
 		move_and_slide()
 		

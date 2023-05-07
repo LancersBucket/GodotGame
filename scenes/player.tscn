@@ -110,7 +110,7 @@ script = ExtResource("1_08dyy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -10)
 sprite_frames = SubResource("SpriteFrames_dpxjh")
-animation = &"walk"
+animation = &"up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
@@ -119,3 +119,11 @@ shape = SubResource("RectangleShape2D_gyhv5")
 [node name="JumpSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_algey")
 volume_db = -18.795
+
+[node name="Sight" type="RayCast2D" parent="."]
+position = Vector2(3, -15)
+target_position = Vector2(16, 0)
+
+[node name="Touch" type="RayCast2D" parent="."]
+position = Vector2(3, -5)
+target_position = Vector2(16, 0)

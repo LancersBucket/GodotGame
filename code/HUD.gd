@@ -8,14 +8,6 @@ var running = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-<<<<<<< HEAD:HUD.gd
-	while time > 0:
-		if running == 1:
-			time -= 1
-			$Time.text = "TIME\n " + str(time)
-			await get_tree().create_timer(.5).timeout
-		await get_tree().create_timer(.01).timeout
-=======
 	while sec >= 0 && min > 0:
 		$Time.text = "TIME\n " + str(min) + ":" + str("%02d" % sec)
 		if (sec > 0):
@@ -24,7 +16,6 @@ func _ready():
 			sec = 59
 			min -= 1
 		await get_tree().create_timer(1).timeout
->>>>>>> 34bd293dbb81a856809c29099071f36c62484d7f:code/HUD.gd
 	get_tree().reload_current_scene()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
