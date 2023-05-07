@@ -22,6 +22,7 @@ var movementState = MovementStates.NORMAL
 var stunTimerLength = 200
 var stunTimer = stunTimerLength
 var facing = RIGHT
+var canWallGrab = false
 
 
 func _ready():
@@ -49,10 +50,15 @@ func _physics_process(delta):
 				$"Jump2SFX".play()
 			elif jumpChoice == 3:
 				$"Jump3SFX".play()
+				
 		# Handle wall jump
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
 			velocity.y = jumpSpeed
 			velocity.x = walkSpeed*-facing
+			facing = -facing
+			$AnimatedSprite2D.flip_h = -min(0,facing)
+			
+			
 			# Transitions to WALL_JUMP state and locks movement until player hits the floor
 			#randomizes jump sound
 			var jumpChoice = randi_range(1,3)
@@ -66,11 +72,6 @@ func _physics_process(delta):
 			
 		# Get the input direction
 		var direction = Input.get_axis("move_left", "move_right")
-
-		# Movement speed
-		if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
-			movementState = MovementStates.WALL_GRAB
-			velocity = Vector2(0,0)
 		
 		# Movement
 		if (movementState == MovementStates.NORMAL):
@@ -83,6 +84,13 @@ func _physics_process(delta):
 			# Normal speed
 			else:
 				velocity.x = sneakSpeed*direction
+				
+			# Movement speed
+			if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
+				movementState = MovementStates.WALL_GRAB
+				$Sight.set_deferred("disabled",true)
+				$Touch.set_deferred("disabled",true)
+				velocity = Vector2(0,0)
 		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
 			# Blocks movement until player hits the floor again
@@ -91,29 +99,27 @@ func _physics_process(delta):
 				$Touch.set_deferred("disabled",false)
 				movementState = MovementStates.NORMAL
 		elif (movementState == MovementStates.WALL_GRAB):
-			if (Input.is_action_just_pressed("move_up")):
+			velocity.y = 0
+			if (Input.is_action_pressed("move_up")):
 				$Sight.set_deferred("disabled",true)
 				$Touch.set_deferred("disabled",true)
 				velocity.y = jumpSpeed
 				velocity.x = walkSpeed*-facing
 				movementState = MovementStates.WALL_JUMP
+			elif (Input.is_action_pressed("move_left") || Input.is_action_pressed("move_right") || Input.is_action_pressed("move_down")):
+				movementState = MovementStates.NORMAL
 			
 		
 		# Some code for wall jump movement and direction detection so it doesn't fall to 0 breaking code
-		if direction == RIGHT:
-			facing = RIGHT
-			$Sight.target_position.x = 16
-			#$Sight.position.y = -15
-			
-			$Touch.target_position.x = 16
-			#$Touch.position.y = -5
-		elif direction == LEFT:
-			facing = LEFT
-			$Sight.target_position.x = -16
-			#$Sight.position.y = -15
-			
-			$Touch.target_position.x = -16
-			#$Touch.position.y = -4
+		if (movementState != MovementStates.WALL_JUMP):
+			if direction == RIGHT:
+				facing = RIGHT
+				$Sight.target_position.x = 16
+				$Touch.target_position.x = 16
+			elif direction == LEFT:
+				facing = LEFT
+				$Sight.target_position.x = -16
+				$Touch.target_position.x = -16
 		
 		move_and_slide()
 		
