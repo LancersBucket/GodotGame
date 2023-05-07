@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=24 format=3 uid="uid://n0728fqusc3t"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_08dyy"]
 [ext_resource type="Texture2D" uid="uid://n5vmjkvxaude" path="res://art/player/sidle32x50_6fps.png" id="2_lafkw"]
@@ -123,7 +123,7 @@ position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_gyhv5")
 
 [node name="Sight" type="RayCast2D" parent="."]
-position = Vector2(3, -22)
+position = Vector2(3, -23)
 target_position = Vector2(6, 0)
 
 [node name="Touch" type="RayCast2D" parent="."]
