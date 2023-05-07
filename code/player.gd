@@ -42,15 +42,10 @@ func _physics_process(delta):
 		# Handle jump
 		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
 			velocity.y = jumpSpeed
-			var jumpChoice = randi_range(1,3)
+			
 			#randomizes jump sound
-			if jumpChoice == 1:
-				$"JumpSFX".play()
-			elif jumpChoice == 2:
-				$"Jump2SFX".play()
-			elif jumpChoice == 3:
-				$"Jump3SFX".play()
-				
+			get_node("Jump"+str(randi_range(1,3))+"SFX").play()
+			
 		# Handle wall jump
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
 			velocity.y = jumpSpeed
@@ -58,16 +53,10 @@ func _physics_process(delta):
 			facing = -facing
 			$AnimatedSprite2D.flip_h = -min(0,facing)
 			
+			#randomizes jump sound
+			get_node("Jump"+str(randi_range(1,3))+"SFX").play()
 			
 			# Transitions to WALL_JUMP state and locks movement until player hits the floor
-			#randomizes jump sound
-			var jumpChoice = randi_range(1,3)
-			if jumpChoice == 1:
-				$"JumpSFX".play()
-			elif jumpChoice == 2:
-				$"Jump2SFX".play()
-			elif jumpChoice == 3:
-				$"Jump3SFX".play()
 			movementState = MovementStates.WALL_JUMP
 			
 		# Get the input direction
@@ -142,21 +131,21 @@ func _physics_process(delta):
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
 				$AnimatedSprite2D.animation = "up"
-				$"ScamperingSFX".stop()
+				$"Scampering1SFX".stop()
 				$"Scampering2SFX".stop()
 				$"Scampering3SFX".stop()
 			elif velocity.y > 0:
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
 				$AnimatedSprite2D.animation = "down"
-				$"ScamperingSFX".stop()
+				$"Scampering1SFX".stop()
 				$"Scampering2SFX".stop()
 				$"Scampering3SFX".stop()
 			elif velocity.x != 0:
-				if !$"ScamperingSFX".playing:
+				if !$"Scampering1SFX".playing:
 					var walkChoice = randi_range(1,3)
 					if walkChoice == 1:
-						$"ScamperingSFX".play()
+						$"Scampering1SFX".play()
 					elif walkChoice == 2:
 						$"Scampering2SFX".play()
 					elif walkChoice == 3:
@@ -167,7 +156,7 @@ func _physics_process(delta):
 			else:
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.play("idle")
-				$"ScamperingSFX".stop()
+				$"Scampering1SFX".stop()
 				$"Scampering2SFX".stop()
 				$"Scampering3SFX".stop()
 	
