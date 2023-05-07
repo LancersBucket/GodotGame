@@ -66,6 +66,8 @@ func _physics_process(delta):
 		if (movementState == MovementStates.NORMAL):
 			# Checks for wall slide
 			if (is_on_wall_only()):
+				if !$"SlidingSFX".playing:
+					$"SlidingSFX".play()
 				velocity.y = min(wallSlideGravity, velocity.y)
 			# Sneaking
 			if (!Input.is_action_pressed("run")):
@@ -73,6 +75,8 @@ func _physics_process(delta):
 			# Normal speed
 			else:
 				velocity.x = sneakSpeed*direction
+				if $"SlidingSFX".playing:
+					$"SlidingSFX".stop()
 				
 			# Movement speed
 			if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
