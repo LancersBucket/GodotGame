@@ -127,17 +127,22 @@ func _physics_process(delta):
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
 				$AnimatedSprite2D.animation = "up"
+				$"ScamperingSFX".stop()
 			elif velocity.y > 0:
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
 				$AnimatedSprite2D.animation = "down"
+				$"ScamperingSFX".stop()
 			elif velocity.x != 0:
+				if !$"ScamperingSFX".playing:
+					$"ScamperingSFX".play()
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
 				$AnimatedSprite2D.play("walk") 
 			else:
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.play("idle")
+				$"ScamperingSFX".stop()
 	
 	# Stun state
 	elif (playerState == States.STUN):

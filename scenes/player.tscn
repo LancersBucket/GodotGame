@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://n0728fqusc3t"]
+[gd_scene load_steps=22 format=3 uid="uid://n0728fqusc3t"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_08dyy"]
 [ext_resource type="Texture2D" uid="uid://n5vmjkvxaude" path="res://art/player/sidle32x50_6fps.png" id="2_lafkw"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cuujjwavutqwd" path="res://audio/jump-sound-effect.wav" id="8_ch26s"]
 [ext_resource type="AudioStream" uid="uid://cn8m6hdow0gaa" path="res://audio/jump-sound-effect2.wav" id="9_vfvem"]
 [ext_resource type="AudioStream" uid="uid://cjks7ls8w7enc" path="res://audio/jump-sound-effect3.wav" id="10_xiwsh"]
+[ext_resource type="AudioStream" uid="uid://cdqya4kxn6aos" path="res://audio/scampering.wav" id="11_rchkb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rj60w"]
 atlas = ExtResource("2_lafkw")
@@ -142,3 +143,8 @@ volume_db = -24.0
 stream = ExtResource("10_xiwsh")
 volume_db = -24.0
 pitch_scale = 0.66
+
+[node name="ScamperingSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_rchkb")
+volume_db = -15.533
+pitch_scale = 1.34
