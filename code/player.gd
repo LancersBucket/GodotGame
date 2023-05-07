@@ -100,7 +100,6 @@ func _physics_process(delta):
 			playerState = States.PLAYER_CONTROL
 		
 		velocity.y += gravity * delta
-		print(stunTimer)
 		move_and_slide()
 		
 		
