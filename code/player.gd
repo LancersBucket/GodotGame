@@ -1,19 +1,20 @@
 extends CharacterBody2D
 
-@onready var camera = $"../Camera"
+@onready var camera = $"/root/Main/Camera"
 
-@export var walk_speed = 100
-@export var sneak_speed = walk_speed/2.0
-@export var jump_speed = -350.0
+@export var walkSpeed = 100
+@export var jumpSpeed = -350.0
 
 enum States {PLAYER_CONTROL, STUN}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB}
+
 const NORMAL = Vector2(0,-1)
 const RIGHT = 1
 const LEFT = -1
 
-var screen_size
+var screenSize
 var gravity = 980
+var sneakSpeed = walkSpeed/2.0
 var wallSlideGravity = gravity/8.0
 var graceTimer = 7
 var playerState = States.PLAYER_CONTROL
@@ -24,9 +25,11 @@ var facing = RIGHT
 
 
 func _ready():
-	screen_size = get_viewport_rect().size
+	# Gets screen size
+	screenSize = get_viewport_rect().size
 	
 func _physics_process(delta):
+	# Checks if the current state is PLAYER_CONTROL
 	if (playerState == States.PLAYER_CONTROL):
 		# Gravity
 		velocity.y += gravity * delta
@@ -37,16 +40,20 @@ func _physics_process(delta):
 		
 		# Handle jump
 		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
-			velocity.y = jump_speed
-			#$"JumpSFX".play()
+			velocity.y = jumpSpeed
+			$"JumpSFX".play()
+		# Handle wall jump
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
-			velocity.y = jump_speed
-			velocity.x = walk_speed*-facing
+			velocity.y = jumpSpeed
+			velocity.x = walkSpeed*-facing
+			# Transitions to WALL_JUMP state and locks movement until player hits the floor
+			$"JumpSFX".play()
 			movementState = MovementStates.WALL_JUMP
 			
 		# Get the input direction
 		var direction = Input.get_axis("move_left", "move_right")
 			
+<<<<<<< HEAD
 		# Movement speed
 		if ($Sight.is_colliding() == false and $Touch.is_colliding() == true):
 			if facing == RIGHT:
@@ -56,17 +63,26 @@ func _physics_process(delta):
 				position.y -= 10
 				position.x -= 10
 		
+=======
+		# Movement
+>>>>>>> 4cb467a3987e3da078132ed59128918b02e074a7
 		if (movementState == MovementStates.NORMAL):
+			# Checks for wall slide
 			if (is_on_wall_only()):
 				velocity.y = min(wallSlideGravity, velocity.y)
+			# Sneaking
 			if (!Input.is_action_pressed("run")):
-				velocity.x = walk_speed*direction
+				velocity.x = walkSpeed*direction
+			# Normal speed
 			else:
-				velocity.x = sneak_speed*direction
+				velocity.x = sneakSpeed*direction
+		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
+			# Blocks movement until player hits the floor again
 			if (is_on_floor()):
 				movementState = MovementStates.NORMAL
 		
+		# Some code for wall jump movement and direction detection so it doesn't fall to 0 breaking code
 		if direction == RIGHT:
 			facing = RIGHT
 			$Sight.target_position.x = 16
@@ -86,7 +102,7 @@ func _physics_process(delta):
 		
 		
 		# Clamps player position to stay on screen
-		position.x = maxf(position.x, camera.position.x-(screen_size.x/2)-24)
+		position.x = maxf(position.x, camera.position.x-(screenSize.x/2)-24)
 		
 		# Animation
 		if velocity.y < 0:
@@ -104,25 +120,30 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite2D.flip_v = false
 			$AnimatedSprite2D.play("idle")
-			
-	if (playerState == States.STUN):
+	
+	# Stun state
+	elif (playerState == States.STUN):
+		# Checks if on floor and if is set velocity.x to 0 and start decreasing stun timer
 		if (is_on_floor() && stunTimer <= stunTimerLength-1):
 			velocity.x = 0
 			stunTimer -= 1
+		# Initial stun momentum
 		if (stunTimer == stunTimerLength):
-			velocity.y = jump_speed
-			velocity.x = walk_speed*-facing
+			$"HurtSFX".play()
+			velocity.y = jumpSpeed
+			velocity.x = walkSpeed*-facing
 			stunTimer -= 1
+		# If stun timer is 0 reset stun timer
 		elif (stunTimer <= 0):
 			stunTimer = stunTimerLength
 			playerState = States.PLAYER_CONTROL
 		
+		# Normal gravity and movement
 		velocity.y += gravity * delta
 		move_and_slide()
 		
 		
 	# Camera position code. Sets camera to player x except when player is behind camera x
-	#if (position.x > camera.position.x):
 	camera.position.x = position.x
 	camera.position.y = position.y
 	
