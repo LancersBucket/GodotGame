@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=21 format=3 uid="uid://n0728fqusc3t"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_08dyy"]
 [ext_resource type="Texture2D" uid="uid://n5vmjkvxaude" path="res://art/player/sidle32x50_6fps.png" id="2_lafkw"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://barqd2rmcglvy" path="res://art/player/srun32x50_12fps.png" id="4_aibxu"]
 [ext_resource type="Texture2D" uid="uid://cli1mgplwes0o" path="res://art/player/sslide32x50-export.png" id="4_vgrl6"]
 [ext_resource type="AudioStream" uid="uid://dw4bg12mjkrnr" path="res://audio/hurt.wav" id="8_7ac8v"]
+[ext_resource type="AudioStream" uid="uid://cuujjwavutqwd" path="res://audio/jump-sound-effect.wav" id="8_ch26s"]
+[ext_resource type="AudioStream" uid="uid://cn8m6hdow0gaa" path="res://audio/jump-sound-effect2.wav" id="9_vfvem"]
+[ext_resource type="AudioStream" uid="uid://cjks7ls8w7enc" path="res://audio/jump-sound-effect3.wav" id="10_xiwsh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rj60w"]
 atlas = ExtResource("2_lafkw")
@@ -126,3 +129,16 @@ target_position = Vector2(16, 0)
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_7ac8v")
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ch26s")
+volume_db = -24.0
+
+[node name="Jump2SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_vfvem")
+volume_db = -24.0
+
+[node name="Jump3SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_xiwsh")
+volume_db = -24.0
+pitch_scale = 0.66

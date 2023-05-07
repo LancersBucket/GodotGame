@@ -41,13 +41,27 @@ func _physics_process(delta):
 		# Handle jump
 		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
 			velocity.y = jumpSpeed
-			#$"JumpSFX".play()
+			var jumpChoice = randi_range(1,3)
+			#randomizes jump sound
+			if jumpChoice == 1:
+				$"JumpSFX".play()
+			elif jumpChoice == 2:
+				$"Jump2SFX".play()
+			elif jumpChoice == 3:
+				$"Jump3SFX".play()
 		# Handle wall jump
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
 			velocity.y = jumpSpeed
 			velocity.x = walkSpeed*-facing
 			# Transitions to WALL_JUMP state and locks movement until player hits the floor
-			#$"JumpSFX".play()
+			#randomizes jump sound
+			var jumpChoice = randi_range(1,3)
+			if jumpChoice == 1:
+				$"JumpSFX".play()
+			elif jumpChoice == 2:
+				$"Jump2SFX".play()
+			elif jumpChoice == 3:
+				$"Jump3SFX".play()
 			movementState = MovementStates.WALL_JUMP
 			
 		# Get the input direction
