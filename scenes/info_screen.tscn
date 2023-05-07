@@ -21,20 +21,3 @@ offset_bottom = 79.0
 text = "WORLD 1-1"
 
 [node name="HUD" parent="." instance=ExtResource("1_24vey")]
-
-[node name="x" type="Label" parent="."]
-layout_mode = 0
-offset_left = 88.0
-offset_top = 85.0
-offset_right = 128.0
-offset_bottom = 111.0
-text = "x"
-
-[node name="Lives" type="Label" parent="."]
-layout_mode = 0
-offset_left = 120.0
-offset_top = 85.0
-offset_right = 160.0
-offset_bottom = 111.0
-text = "3
-"

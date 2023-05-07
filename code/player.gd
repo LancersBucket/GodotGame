@@ -16,7 +16,6 @@ var screen_size
 var gravity = 980
 var wallSlideGravity = gravity/8.0
 var graceTimer = 7
-var lives = 3
 var playerState = States.PLAYER_CONTROL
 var movementState = MovementStates.NORMAL
 var stunTimerLength = 200
@@ -111,5 +110,4 @@ func _physics_process(delta):
 	camera.position.y = position.y
 	
 func die():
-	lives -= 1
 	get_tree().change_scene_to_file("res://scenes/info_screen.tscn")
