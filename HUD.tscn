@@ -39,5 +39,4 @@ offset_top = 8.0
 offset_right = 192.0
 offset_bottom = 59.28
 theme_override_font_sizes/font_size = 7
-text = "TIME
-  400"
+text = "TIME"

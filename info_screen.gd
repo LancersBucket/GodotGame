@@ -1,10 +1,13 @@
 extends Control
 
+var lives = 3;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Lives.text = "3"
+	$Lives.text = str(lives)
 	await get_tree().create_timer(2).timeout
 	get_tree().change_scene_to_file("res://main.tscn")
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
