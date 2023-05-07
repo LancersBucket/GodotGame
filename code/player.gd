@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
-@onready var camera = $"../Camera"
+@onready var camera = $"/root/Main/Camera"
 
 @export var walk_speed = 100
 @export var jump_speed = -350.0
 
 enum States {PLAYER_CONTROL, STUN}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB}
+
 const NORMAL = Vector2(0,-1)
 const RIGHT = 1
 const LEFT = -1

@@ -1,4 +1,5 @@
 extends CharacterBody2D
+
 @onready var player = $"/root/Main/Player"
 
 const SPEED = 30.0
