@@ -62,12 +62,18 @@ func _physics_process(delta):
 		# Get the input direction
 		var direction = Input.get_axis("move_left", "move_right")
 		
+		
+		#Condition checks for wall slide, would not work in condition below
+		if (is_on_wall_only()):
+			if !$"SlidingSFX".playing && velocity.y > 0 && movementState != MovementStates.WALL_GRAB:
+				$"SlidingSFX".play()
+		else:
+			$"SlidingSFX".stop()
 		# Movement
 		if (movementState == MovementStates.NORMAL):
 			# Checks for wall slide
 			if (is_on_wall_only()):
-				if !$"SlidingSFX".playing:
-					$"SlidingSFX".play()
+
 				velocity.y = min(wallSlideGravity, velocity.y)
 			# Sneaking
 			if (!Input.is_action_pressed("run")):
@@ -75,12 +81,13 @@ func _physics_process(delta):
 			# Normal speed
 			else:
 				velocity.x = sneakSpeed*direction
-				if $"SlidingSFX".playing:
-					$"SlidingSFX".stop()
+
 				
 			# Movement speed
 			if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
+				$"SlidingSFX".stop()
 				movementState = MovementStates.WALL_GRAB
+
 				$Sight.set_deferred("disabled",true)
 				$Touch.set_deferred("disabled",true)
 				velocity = Vector2(0,0)
