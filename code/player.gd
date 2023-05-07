@@ -3,7 +3,6 @@ extends CharacterBody2D
 @onready var camera = $"../Camera"
 
 @export var walk_speed = 100
-@export var sneak_speed = walk_speed/2.0
 @export var jump_speed = -350.0
 
 enum States {PLAYER_CONTROL, STUN}
@@ -14,6 +13,7 @@ const LEFT = -1
 
 var screen_size
 var gravity = 980
+var sneak_speed = walk_speed/2.0
 var wallSlideGravity = gravity/8.0
 var graceTimer = 7
 var playerState = States.PLAYER_CONTROL
@@ -104,7 +104,6 @@ func _physics_process(delta):
 		
 		
 	# Camera position code. Sets camera to player x except when player is behind camera x
-	#if (position.x > camera.position.x):
 	camera.position.x = position.x
 	camera.position.y = position.y
 	
