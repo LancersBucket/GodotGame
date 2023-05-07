@@ -135,7 +135,13 @@ func _physics_process(delta):
 				$"ScamperingSFX".stop()
 			elif velocity.x != 0:
 				if !$"ScamperingSFX".playing:
-					$"ScamperingSFX".play()
+					var walkChoice = randi_range(1,3)
+					if walkChoice == 1:
+						$"ScamperingSFX".play()
+					elif walkChoice == 2:
+						$"Scampering2SFX".play()
+					elif walkChoice == 3:
+						$"Scampering3SFX".play()
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
 				$AnimatedSprite2D.play("walk") 
