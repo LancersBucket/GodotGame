@@ -41,19 +41,18 @@ func _physics_process(delta):
 		# Handle jump
 		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
 			velocity.y = jumpSpeed
-			$"JumpSFX".play()
+			#$"JumpSFX".play()
 		# Handle wall jump
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
 			velocity.y = jumpSpeed
 			velocity.x = walkSpeed*-facing
 			# Transitions to WALL_JUMP state and locks movement until player hits the floor
-			$"JumpSFX".play()
+			#$"JumpSFX".play()
 			movementState = MovementStates.WALL_JUMP
 			
 		# Get the input direction
 		var direction = Input.get_axis("move_left", "move_right")
-			
-<<<<<<< HEAD
+
 		# Movement speed
 		if ($Sight.is_colliding() == false and $Touch.is_colliding() == true):
 			if facing == RIGHT:
@@ -62,10 +61,8 @@ func _physics_process(delta):
 			if facing == LEFT:
 				position.y -= 10
 				position.x -= 10
-		
-=======
+
 		# Movement
->>>>>>> 4cb467a3987e3da078132ed59128918b02e074a7
 		if (movementState == MovementStates.NORMAL):
 			# Checks for wall slide
 			if (is_on_wall_only()):
