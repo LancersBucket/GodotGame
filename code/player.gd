@@ -41,12 +41,13 @@ func _physics_process(delta):
 		# Handle jump
 		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
 			velocity.y = jump_speed
-			#$"JumpSFX".play()
+			$"JumpSFX".play()
 		# Handle wall jump
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
 			velocity.y = jump_speed
 			velocity.x = walk_speed*-facing
 			# Transitions to WALL_JUMP state and locks movement until player hits the floor
+			$"JumpSFX".play()
 			movementState = MovementStates.WALL_JUMP
 			
 		# Get the input direction
@@ -106,6 +107,7 @@ func _physics_process(delta):
 			stunTimer -= 1
 		# Initial stun momentum
 		if (stunTimer == stunTimerLength):
+			$"HurtSFX".play()
 			velocity.y = jump_speed
 			velocity.x = walk_speed*-facing
 			stunTimer -= 1
