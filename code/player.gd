@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var walkSpeed = 100
 @export var jumpSpeed = -350.0
 
-enum States {PLAYER_CONTROL, STUN}
+enum States {PLAYER_CONTROL, STUN, DELAY}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB}
 
 const NORMAL = Vector2(0,-1)
@@ -54,14 +54,10 @@ func _physics_process(delta):
 		var direction = Input.get_axis("move_left", "move_right")
 
 		# Movement speed
-		if ($Sight.is_colliding() == false and $Touch.is_colliding() == true):
-			if facing == RIGHT:
-				position.y -= 10
-				position.x += 10
-			if facing == LEFT:
-				position.y -= 10
-				position.x -= 10
-
+		if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
+			movementState = MovementStates.WALL_GRAB
+			velocity = Vector2(0,0)
+		
 		# Movement
 		if (movementState == MovementStates.NORMAL):
 			# Checks for wall slide
@@ -77,23 +73,33 @@ func _physics_process(delta):
 		elif (movementState == MovementStates.WALL_JUMP):
 			# Blocks movement until player hits the floor again
 			if (is_on_floor()):
+				$Sight.set_deferred("disabled",false)
+				$Touch.set_deferred("disabled",false)
 				movementState = MovementStates.NORMAL
+		elif (movementState == MovementStates.WALL_GRAB):
+			if (Input.is_action_just_pressed("move_up")):
+				$Sight.set_deferred("disabled",true)
+				$Touch.set_deferred("disabled",true)
+				velocity.y = jumpSpeed
+				velocity.x = walkSpeed*-facing
+				movementState = MovementStates.WALL_JUMP
+			
 		
 		# Some code for wall jump movement and direction detection so it doesn't fall to 0 breaking code
 		if direction == RIGHT:
 			facing = RIGHT
 			$Sight.target_position.x = 16
-			$Sight.position.y = -15
+			#$Sight.position.y = -15
 			
 			$Touch.target_position.x = 16
-			$Touch.position.y = -5
+			#$Touch.position.y = -5
 		elif direction == LEFT:
 			facing = LEFT
 			$Sight.target_position.x = -16
-			$Sight.position.y = -15
+			#$Sight.position.y = -15
 			
 			$Touch.target_position.x = -16
-			$Touch.position.y = -4
+			#$Touch.position.y = -4
 		
 		move_and_slide()
 		
@@ -102,21 +108,22 @@ func _physics_process(delta):
 		position.x = maxf(position.x, camera.position.x-(screenSize.x/2)-24)
 		
 		# Animation
-		if velocity.y < 0:
-			$AnimatedSprite2D.flip_v = false
-			$AnimatedSprite2D.flip_h = -min(0,facing)
-			$AnimatedSprite2D.animation = "up"
-		elif velocity.y > 0:
-			$AnimatedSprite2D.flip_v = false
-			$AnimatedSprite2D.flip_h = -min(0,facing)
-			$AnimatedSprite2D.animation = "down"
-		elif velocity.x != 0:
-			$AnimatedSprite2D.flip_v = false
-			$AnimatedSprite2D.flip_h = -min(0,facing)
-			$AnimatedSprite2D.play("walk") 
-		else:
-			$AnimatedSprite2D.flip_v = false
-			$AnimatedSprite2D.play("idle")
+		if (movementState == MovementStates.NORMAL):
+			if velocity.y < 0:
+				$AnimatedSprite2D.flip_v = false
+				$AnimatedSprite2D.flip_h = -min(0,facing)
+				$AnimatedSprite2D.animation = "up"
+			elif velocity.y > 0:
+				$AnimatedSprite2D.flip_v = false
+				$AnimatedSprite2D.flip_h = -min(0,facing)
+				$AnimatedSprite2D.animation = "down"
+			elif velocity.x != 0:
+				$AnimatedSprite2D.flip_v = false
+				$AnimatedSprite2D.flip_h = -min(0,facing)
+				$AnimatedSprite2D.play("walk") 
+			else:
+				$AnimatedSprite2D.flip_v = false
+				$AnimatedSprite2D.play("idle")
 	
 	# Stun state
 	elif (playerState == States.STUN):
@@ -138,7 +145,6 @@ func _physics_process(delta):
 		# Normal gravity and movement
 		velocity.y += gravity * delta
 		move_and_slide()
-		
 		
 	# Camera position code. Sets camera to player x except when player is behind camera x
 	camera.position.x = position.x

@@ -117,12 +117,12 @@ position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_gyhv5")
 
 [node name="Sight" type="RayCast2D" parent="."]
-position = Vector2(3, -15)
-target_position = Vector2(16, 0)
+position = Vector2(3, -23)
+target_position = Vector2(6, 0)
 
 [node name="Touch" type="RayCast2D" parent="."]
-position = Vector2(3, -5)
-target_position = Vector2(16, 0)
+position = Vector2(3, -18)
+target_position = Vector2(6, 0)
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_7ac8v")
