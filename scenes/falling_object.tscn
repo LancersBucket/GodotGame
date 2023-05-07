@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfrv3mmcu1gsc"]
+
+[ext_resource type="Script" path="res://code/falling_object.gd" id="1_4qx3m"]
+[ext_resource type="Texture2D" uid="uid://buf720csaneuc" path="res://art/spike.png" id="1_krhmc"]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_rmvce"]
+length = 200.0
+
+[node name="FallingObject" type="RigidBody2D"]
+rotation = -3.14159
+collision_layer = 0
+gravity_scale = 0.0
+max_contacts_reported = 2
+contact_monitor = true
+can_sleep = false
+script = ExtResource("1_4qx3m")
+
+[node name="Spike" type="Sprite2D" parent="."]
+texture = ExtResource("1_krhmc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, -8, -8, 8, 8, 8, 1, -8)
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = -3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SeparationRayShape2D_rmvce")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
