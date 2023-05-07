@@ -24,9 +24,11 @@ var facing = RIGHT
 
 
 func _ready():
+	# Gets screen size
 	screen_size = get_viewport_rect().size
 	
 func _physics_process(delta):
+	# Checks if the current state is PLAYER_CONTROL
 	if (playerState == States.PLAYER_CONTROL):
 		# Gravity
 		velocity.y += gravity * delta
@@ -39,26 +41,34 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
 			velocity.y = jump_speed
 			#$"JumpSFX".play()
+		# Handle wall jump
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
 			velocity.y = jump_speed
 			velocity.x = walk_speed*-facing
+			# Transitions to WALL_JUMP state and locks movement until player hits the floor
 			movementState = MovementStates.WALL_JUMP
 			
 		# Get the input direction
 		var direction = Input.get_axis("move_left", "move_right")
 			
-		# Movement speed
+		# Movement
 		if (movementState == MovementStates.NORMAL):
+			# Checks for wall slide
 			if (is_on_wall_only()):
 				velocity.y = min(wallSlideGravity, velocity.y)
+			# Sneaking
 			if (!Input.is_action_pressed("run")):
 				velocity.x = walk_speed*direction
+			# Normal speed
 			else:
 				velocity.x = sneak_speed*direction
+		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
+			# Blocks movement until player hits the floor again
 			if (is_on_floor()):
 				movementState = MovementStates.NORMAL
 		
+		# Some code for wall jump movement and direction detection so it doesn't fall to 0 breaking code
 		if direction == RIGHT:
 			facing = RIGHT
 		elif direction == LEFT:
@@ -86,19 +96,24 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite2D.flip_v = false
 			$AnimatedSprite2D.play("idle")
-			
-	if (playerState == States.STUN):
+	
+	# Stun state
+	elif (playerState == States.STUN):
+		# Checks if on floor and if is set velocity.x to 0 and start decreasing stun timer
 		if (is_on_floor() && stunTimer <= stunTimerLength-1):
 			velocity.x = 0
 			stunTimer -= 1
+		# Initial stun momentum
 		if (stunTimer == stunTimerLength):
 			velocity.y = jump_speed
 			velocity.x = walk_speed*-facing
 			stunTimer -= 1
+		# If stun timer is 0 reset stun timer
 		elif (stunTimer <= 0):
 			stunTimer = stunTimerLength
 			playerState = States.PLAYER_CONTROL
 		
+		# Normal gravity and movement
 		velocity.y += gravity * delta
 		move_and_slide()
 		
