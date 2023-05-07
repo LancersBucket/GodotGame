@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @onready var camera = $"/root/Main/Camera"
 
-@export var walk_speed = 100
-@export var jump_speed = -350.0
+@export var walkSpeed = 100
+@export var jumpSpeed = -350.0
 
 enum States {PLAYER_CONTROL, STUN}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB}
@@ -12,9 +12,9 @@ const NORMAL = Vector2(0,-1)
 const RIGHT = 1
 const LEFT = -1
 
-var screen_size
+var screenSize
 var gravity = 980
-var sneak_speed = walk_speed/2.0
+var sneakSpeed = walkSpeed/2.0
 var wallSlideGravity = gravity/8.0
 var graceTimer = 7
 var playerState = States.PLAYER_CONTROL
@@ -26,7 +26,7 @@ var facing = RIGHT
 
 func _ready():
 	# Gets screen size
-	screen_size = get_viewport_rect().size
+	screenSize = get_viewport_rect().size
 	
 func _physics_process(delta):
 	# Checks if the current state is PLAYER_CONTROL
@@ -40,12 +40,12 @@ func _physics_process(delta):
 		
 		# Handle jump
 		if Input.is_action_just_pressed("move_up") and graceTimer >= 0:
-			velocity.y = jump_speed
+			velocity.y = jumpSpeed
 			$"JumpSFX".play()
 		# Handle wall jump
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
-			velocity.y = jump_speed
-			velocity.x = walk_speed*-facing
+			velocity.y = jumpSpeed
+			velocity.x = walkSpeed*-facing
 			# Transitions to WALL_JUMP state and locks movement until player hits the floor
 			$"JumpSFX".play()
 			movementState = MovementStates.WALL_JUMP
@@ -60,10 +60,10 @@ func _physics_process(delta):
 				velocity.y = min(wallSlideGravity, velocity.y)
 			# Sneaking
 			if (!Input.is_action_pressed("run")):
-				velocity.x = walk_speed*direction
+				velocity.x = walkSpeed*direction
 			# Normal speed
 			else:
-				velocity.x = sneak_speed*direction
+				velocity.x = sneakSpeed*direction
 		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
 			# Blocks movement until player hits the floor again
@@ -80,7 +80,7 @@ func _physics_process(delta):
 		
 		
 		# Clamps player position to stay on screen
-		position.x = maxf(position.x, camera.position.x-(screen_size.x/2)-24)
+		position.x = maxf(position.x, camera.position.x-(screenSize.x/2)-24)
 		
 		# Animation
 		if velocity.y < 0:
@@ -108,8 +108,8 @@ func _physics_process(delta):
 		# Initial stun momentum
 		if (stunTimer == stunTimerLength):
 			$"HurtSFX".play()
-			velocity.y = jump_speed
-			velocity.x = walk_speed*-facing
+			velocity.y = jumpSpeed
+			velocity.x = walkSpeed*-facing
 			stunTimer -= 1
 		# If stun timer is 0 reset stun timer
 		elif (stunTimer <= 0):
