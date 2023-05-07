@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brbgsbaqikib0"]
+[gd_scene load_steps=12 format=3 uid="uid://brbgsbaqikib0"]
 
 [ext_resource type="Script" path="res://code/Main.gd" id="1_jqjkx"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="2_cqge2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d0jpvque2mrhg" path="res://scenes/goomba.tscn" id="4_u076j"]
 [ext_resource type="PackedScene" uid="uid://bmfkmju6k4r3f" path="res://scenes/kill.tscn" id="5_essnr"]
 [ext_resource type="PackedScene" uid="uid://bhvbl5b3tctc" path="res://scenes/coin.tscn" id="6_jew0e"]
+[ext_resource type="PackedScene" uid="uid://b2ytxtyv8g1d4" path="res://scenes/spike.tscn" id="8_hwmli"]
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="8_royuk"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
@@ -232,3 +233,9 @@ position = Vector2(3240, 56)
 position = Vector2(3336, 56)
 
 [node name="HUD" parent="." instance=ExtResource("8_royuk")]
+
+[node name="Spike" parent="." instance=ExtResource("8_hwmli")]
+position = Vector2(80, 104)
+
+[node name="Spike2" parent="." instance=ExtResource("8_hwmli")]
+position = Vector2(-16, 104)
