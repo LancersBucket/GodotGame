@@ -111,20 +111,15 @@ func _physics_process(delta):
 			
 		
 		# Some code for wall jump movement and direction detection so it doesn't fall to 0 breaking code
-		if direction == RIGHT:
-			facing = RIGHT
-			$Sight.target_position.x = 16
-			#$Sight.position.y = -15
-			
-			$Touch.target_position.x = 16
-			#$Touch.position.y = -5
-		elif direction == LEFT:
-			facing = LEFT
-			$Sight.target_position.x = -16
-			#$Sight.position.y = -15
-			
-			$Touch.target_position.x = -16
-			#$Touch.position.y = -4
+		if (movementState != MovementStates.WALL_JUMP):
+			if direction == RIGHT:
+				facing = RIGHT
+				$Sight.target_position.x = 16
+				$Touch.target_position.x = 16
+			elif direction == LEFT:
+				facing = LEFT
+				$Sight.target_position.x = -16
+				$Touch.target_position.x = -16
 		
 		move_and_slide()
 		
