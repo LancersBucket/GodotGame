@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckv40lqurru3g"
-path="res://.godot/imported/Mario Sprites2.png-53984e1ce77f9347ccd9483fe28e3c0f.ctex"
+uid="uid://buf720csaneuc"
+path="res://.godot/imported/spike.png-707026916d5a11e2dd46d7a51989fda9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Mario Sprites2.png"
-dest_files=["res://.godot/imported/Mario Sprites2.png-53984e1ce77f9347ccd9483fe28e3c0f.ctex"]
+source_file="res://art/spike.png"
+dest_files=["res://.godot/imported/spike.png-707026916d5a11e2dd46d7a51989fda9.ctex"]
 
 [params]
 

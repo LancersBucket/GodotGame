@@ -25,7 +25,6 @@ func _physics_process(delta):
 			cooldown -= 1
 			
 		velocity.x = direction * SPEED
-		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.play("walk")
 
 		move_and_slide()
@@ -34,8 +33,8 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 	isOnScreen = 1
 
 func die():
-	$AnimatedSprite2D.animation = "die"
 	$AnimatedSprite2D.play("die")
+	
 	get_node("CollisionShape2D").set_deferred("disabled",true)
 	get_node("Area2D/CollisionShape2D2").set_deferred("disabled",true)
 	
@@ -52,6 +51,7 @@ func _on_area_2d_body_entered(body):
 		if player.velocity.y > 0:
 			die()
 			player.velocity.y = -200
+			#$"JumpSFX".play()
 		else:
 			player.die()
 

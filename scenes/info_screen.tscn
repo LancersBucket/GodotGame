@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyore245ejqw6"]
+
+[ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="1_24vey"]
+[ext_resource type="Script" path="res://code/info_screen.gd" id="1_uh2md"]
+
+[node name="InfoScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uh2md")
+
+[node name="World" type="Label" parent="."]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 53.0
+offset_right = 139.0
+offset_bottom = 79.0
+text = "WORLD 1-1"
+
+[node name="HUD" parent="." instance=ExtResource("1_24vey")]

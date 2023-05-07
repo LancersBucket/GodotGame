@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=18 format=3 uid="uid://ctjl5c6tui2ke"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_08dyy"]
+[ext_resource type="Script" path="res://code/player.gd" id="1_08dyy"]
 [ext_resource type="Texture2D" uid="uid://n5vmjkvxaude" path="res://art/player/sidle32x50_6fps.png" id="2_lafkw"]
 [ext_resource type="Texture2D" uid="uid://d4duw6le0i5vj" path="res://art/player/sup32x50.png" id="3_pncdw"]
 [ext_resource type="Texture2D" uid="uid://ip2yrlr7i2nq" path="res://art/player/sdown32x50.png" id="3_qr2bn"]
 [ext_resource type="Texture2D" uid="uid://barqd2rmcglvy" path="res://art/player/srun32x50_12fps.png" id="4_aibxu"]
+[ext_resource type="Texture2D" uid="uid://cli1mgplwes0o" path="res://art/player/sslide32x50-export.png" id="4_vgrl6"]
+[ext_resource type="AudioStream" uid="uid://e8xkti6rbikw" path="res://audio/jump-soundeffect.wav" id="7_algey"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rj60w"]
 atlas = ExtResource("2_lafkw")
@@ -67,6 +69,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_vgrl6")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_pncdw")
 }],
 "loop": true,
@@ -100,9 +110,12 @@ script = ExtResource("1_08dyy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -10)
 sprite_frames = SubResource("SpriteFrames_dpxjh")
-animation = &"idle"
-frame_progress = 0.484391
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_gyhv5")
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_algey")
+volume_db = -18.795
