@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var walkSpeed = 100
 @export var jumpSpeed = -350.0
 
-enum States {PLAYER_CONTROL, STUN, DELAY}
+enum States {PLAYER_CONTROL, STUN, CLIMB}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB}
 
 const NORMAL = Vector2(0,-1)
@@ -19,7 +19,7 @@ var wallSlideGravity = gravity/8.0
 var graceTimer = 7
 var playerState = States.PLAYER_CONTROL
 var movementState = MovementStates.NORMAL
-var stunTimerLength = 200
+var stunTimerLength = 50
 var stunTimer = stunTimerLength
 var facing = RIGHT
 var canWallGrab = false
@@ -106,9 +106,18 @@ func _physics_process(delta):
 				velocity.y = jumpSpeed
 				velocity.x = walkSpeed*-facing
 				movementState = MovementStates.WALL_JUMP
-			elif (Input.is_action_pressed("move_left") || Input.is_action_pressed("move_right") || Input.is_action_pressed("move_down")):
+			elif Input.is_action_pressed("move_down"):
 				movementState = MovementStates.NORMAL
-			
+			elif (Input.is_action_pressed("move_left")):
+				if (facing == LEFT):
+					playerState = States.CLIMB
+				else:
+					movementState = MovementStates.NORMAL
+			elif (Input.is_action_pressed("move_right")):
+				if (facing == RIGHT):
+					playerState = States.CLIMB
+				else:
+					movementState = MovementStates.NORMAL
 		
 		# Some code for wall jump movement and direction detection so it doesn't fall to 0 breaking code
 		if (movementState != MovementStates.WALL_JUMP):
@@ -183,6 +192,17 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		move_and_slide()
 		
+	elif (playerState == States.CLIMB):
+		if (facing == RIGHT):
+			position.x += 16*facing
+			position.y -= 32
+			playerState = States.PLAYER_CONTROL
+			movementState = MovementStates.NORMAL
+		elif (facing == LEFT):
+			position.x += 16*facing
+			position.y -= 32
+			playerState = States.PLAYER_CONTROL
+			movementState = MovementStates.NORMAL
 	# Camera position code. Sets camera to player x except when player is behind camera x
 	camera.position.x = position.x
 	camera.position.y = position.y
