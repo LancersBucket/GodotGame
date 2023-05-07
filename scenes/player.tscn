@@ -120,7 +120,7 @@ position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_gyhv5")
 
 [node name="Sight" type="RayCast2D" parent="."]
-position = Vector2(3, -23)
+position = Vector2(3, -22)
 target_position = Vector2(6, 0)
 
 [node name="Touch" type="RayCast2D" parent="."]
