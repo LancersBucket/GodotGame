@@ -41,7 +41,7 @@ func _physics_process(delta):
 			#$"JumpSFX".play()
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
 			velocity.y = jump_speed
-			velocity.x = walk_speed*facing
+			velocity.x = walk_speed*-facing
 			movementState = MovementStates.WALL_JUMP
 			
 		# Get the input direction
