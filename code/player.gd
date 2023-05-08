@@ -87,7 +87,7 @@ func _physics_process(delta):
 			if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
 				$"SlidingSFX".stop()
 				movementState = MovementStates.WALL_GRAB
-
+				
 				$Sight.set_deferred("disabled",true)
 				$Touch.set_deferred("disabled",true)
 				velocity = Vector2(0,0)
@@ -101,6 +101,7 @@ func _physics_process(delta):
 		elif (movementState == MovementStates.WALL_GRAB):
 			velocity.y = 0
 			if (Input.is_action_pressed("move_up")):
+				get_node("Jump"+str(randi_range(1,3))+"SFX").play()
 				$Sight.set_deferred("disabled",true)
 				$Touch.set_deferred("disabled",true)
 				velocity.y = jumpSpeed
