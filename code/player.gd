@@ -49,8 +49,8 @@ func _physics_process(delta):
 			
 		# Handle wall jump
 		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
-			velocity.y = jumpSpeed
 			velocity.x = walkSpeed*-facing
+			velocity.y = jumpSpeed
 			facing = -facing
 			$AnimatedSprite2D.flip_h = -min(0,facing)
 			$AnimatedSprite2D.animation = "up"
@@ -66,7 +66,7 @@ func _physics_process(delta):
 		
 		#Condition checks for wall slide, would not work in condition below
 		if (is_on_wall_only()):
-			if !$"SlidingSFX".playing && velocity.y > 0 && movementState != MovementStates.WALL_GRAB:
+			if (!$"SlidingSFX".playing && velocity.y > 0 && movementState != MovementStates.WALL_GRAB):
 				$"SlidingSFX".play()
 		else:
 			$"SlidingSFX".stop()
@@ -92,11 +92,11 @@ func _physics_process(delta):
 				velocity = Vector2(0,0)
 		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
-			# Blocks movement until player hits the floor again
-			if (is_on_floor()):
+			if (is_on_floor() || is_on_wall_only()):
 				$Sight.set_deferred("disabled",false)
 				$Touch.set_deferred("disabled",false)
 				movementState = MovementStates.NORMAL
+			
 		elif (movementState == MovementStates.WALL_GRAB):
 			velocity.y = 0
 			if (Input.is_action_pressed("move_up")):
@@ -123,12 +123,10 @@ func _physics_process(delta):
 		if (movementState != MovementStates.WALL_JUMP):
 			if direction == RIGHT:
 				facing = RIGHT
-				$Sight.target_position.x = 16
-				$Touch.target_position.x = 16
 			elif direction == LEFT:
 				facing = LEFT
-				$Sight.target_position.x = -16
-				$Touch.target_position.x = -16
+			$Sight.target_position.x = 16*facing
+			$Touch.target_position.x = 16*facing
 		
 		move_and_slide()
 		
