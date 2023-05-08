@@ -53,7 +53,7 @@ func _physics_process(delta):
 			velocity.x = walkSpeed*-facing
 			facing = -facing
 			$AnimatedSprite2D.flip_h = -min(0,facing)
-			
+			$AnimatedSprite2D.animation = "up"
 			#randomizes jump sound
 			get_node("Jump"+str(randi_range(1,3))+"SFX").play()
 			
@@ -74,7 +74,6 @@ func _physics_process(delta):
 		if (movementState == MovementStates.NORMAL):
 			# Checks for wall slide
 			if (is_on_wall_only()):
-				$AnimatedSprite2D.animation = "wall grab"
 				velocity.y = min(wallSlideGravity, velocity.y)
 			# Sneaking
 			if (!Input.is_action_pressed("run")):
@@ -88,21 +87,18 @@ func _physics_process(delta):
 			if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
 				$"SlidingSFX".stop()
 				movementState = MovementStates.WALL_GRAB
-				
 				$Sight.set_deferred("disabled",true)
 				$Touch.set_deferred("disabled",true)
 				velocity = Vector2(0,0)
 		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
 			# Blocks movement until player hits the floor again
-			$AnimatedSprite2D.animation = "up"
 			if (is_on_floor()):
 				$Sight.set_deferred("disabled",false)
 				$Touch.set_deferred("disabled",false)
 				movementState = MovementStates.NORMAL
 		elif (movementState == MovementStates.WALL_GRAB):
 			velocity.y = 0
-			$AnimatedSprite2D.animation = "wall grab"
 			if (Input.is_action_pressed("move_up")):
 				get_node("Jump"+str(randi_range(1,3))+"SFX").play()
 				$Sight.set_deferred("disabled",true)
@@ -152,7 +148,10 @@ func _physics_process(delta):
 			elif velocity.y > 0:
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
-				$AnimatedSprite2D.animation = "down"
+				if (is_on_wall_only()):
+					$AnimatedSprite2D.animation = "wall grab"
+				else:
+					$AnimatedSprite2D.animation = "down"
 				$"Scampering1SFX".stop()
 				$"Scampering2SFX".stop()
 				$"Scampering3SFX".stop()
