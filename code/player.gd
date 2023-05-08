@@ -82,7 +82,7 @@ func _physics_process(delta):
 				$Touch.set_deferred("disabled",true)
 				velocity = Vector2(0,0)
 		elif (movementState == MovementStates.WALL_SLIDE):
-			#if (is_on_wall_only()):
+			print("wall_slide")
 			velocity.y = min(wallSlideGravity, velocity.y)
 			
 			if (Input.is_action_just_pressed("move_up")):
@@ -103,13 +103,17 @@ func _physics_process(delta):
 			
 			if (is_on_floor()):
 				movementState = MovementStates.NORMAL
+			if(!$Sight.is_colliding() and !$Touch.is_colliding()):
+				movementState = MovementStates.NORMAL
 			
 					
 		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
-			if (is_on_floor() || is_on_wall_only()):
+			if (is_on_floor()):
 				$Sight.set_deferred("disabled",false)
 				$Touch.set_deferred("disabled",false)
+				movementState = MovementStates.NORMAL
+			if (is_on_wall_only()):
 				movementState = MovementStates.WALL_SLIDE
 			
 		elif (movementState == MovementStates.WALL_GRAB):
@@ -161,9 +165,6 @@ func _physics_process(delta):
 			elif velocity.y > 0:
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
-				#if (is_on_wall_only()):
-				#	$AnimatedSprite2D.animation = "wall grab"
-				#else:
 				$AnimatedSprite2D.animation = "down"
 					
 				$"Scampering1SFX".stop()
