@@ -23,6 +23,7 @@ var stunTimerLength = 50
 var stunTimer = stunTimerLength
 var facing = RIGHT
 var canWallGrab = false
+var cameraOffsety = 30
 
 
 func _ready():
@@ -73,7 +74,7 @@ func _physics_process(delta):
 		if (movementState == MovementStates.NORMAL):
 			# Checks for wall slide
 			if (is_on_wall_only()):
-
+				$AnimatedSprite2D.animation = "wall grab"
 				velocity.y = min(wallSlideGravity, velocity.y)
 			# Sneaking
 			if (!Input.is_action_pressed("run")):
@@ -94,12 +95,14 @@ func _physics_process(delta):
 		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
 			# Blocks movement until player hits the floor again
+			$AnimatedSprite2D.animation = "up"
 			if (is_on_floor()):
 				$Sight.set_deferred("disabled",false)
 				$Touch.set_deferred("disabled",false)
 				movementState = MovementStates.NORMAL
 		elif (movementState == MovementStates.WALL_GRAB):
 			velocity.y = 0
+			$AnimatedSprite2D.animation = "wall grab"
 			if (Input.is_action_pressed("move_up")):
 				get_node("Jump"+str(randi_range(1,3))+"SFX").play()
 				$Sight.set_deferred("disabled",true)
@@ -169,7 +172,9 @@ func _physics_process(delta):
 	# Stun state
 	elif (playerState == States.STUN):
 		# Checks if on floor and if is set velocity.x to 0 and start decreasing stun timer
+		$AnimatedSprite2D.animation = "stun"
 		if (is_on_floor() && stunTimer <= stunTimerLength-1):
+			$AnimatedSprite2D.animation = "stun grounded"
 			velocity.x = 0
 			stunTimer -= 1
 		# Initial stun momentum
@@ -188,6 +193,17 @@ func _physics_process(delta):
 		move_and_slide()
 		
 	elif (playerState == States.CLIMB):
+		$AnimatedSprite2D.play("ledge jump up")
+	# Camera position code. Sets camera to player x except when player is behind camera x
+	camera.position.x = position.x
+	camera.position.y = position.y - cameraOffsety
+	
+func die():
+	get_tree().change_scene_to_file("res://scenes/info_screen.tscn")
+
+func _on_animated_sprite_2d_animation_finished():
+	#climb playerstate
+	if $AnimatedSprite2D.animation == "ledge jump up":
 		if (facing == RIGHT):
 			position.x += 16*facing
 			position.y -= 32
@@ -198,9 +214,3 @@ func _physics_process(delta):
 			position.y -= 32
 			playerState = States.PLAYER_CONTROL
 			movementState = MovementStates.NORMAL
-	# Camera position code. Sets camera to player x except when player is behind camera x
-	camera.position.x = position.x
-	camera.position.y = position.y
-	
-func die():
-	get_tree().change_scene_to_file("res://scenes/info_screen.tscn")
