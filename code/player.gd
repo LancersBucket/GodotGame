@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var cameraOffsety = 30
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
-enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB}
+enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB, WALL_SLIDE}
 
 const NORMAL = Vector2(0,-1)
 const RIGHT = 1
@@ -57,27 +57,12 @@ func _physics_process(delta):
 		if (is_on_wall_only()):
 			if (!$"SlidingSFX".playing && velocity.y > 0 && movementState != MovementStates.WALL_GRAB):
 				$"SlidingSFX".play()
+				movementState = MovementStates.WALL_SLIDE
 		else:
 			$"SlidingSFX".stop()
 			
 		# Movement
 		if (movementState == MovementStates.NORMAL):
-			# Checks for wall slide
-			if (is_on_wall_only()):
-				velocity.y = min(wallSlideGravity, velocity.y)
-				
-				if (Input.is_action_just_pressed("move_up")):
-					velocity.x = walkSpeed*-facing
-					velocity.y = jumpSpeed
-					facing = -facing
-					$AnimatedSprite2D.flip_h = -min(0,facing)
-					$AnimatedSprite2D.animation = "up"
-					#randomizes jump sound
-					get_node("Jump"+str(randi_range(1,3))+"SFX").play()
-					
-					# Transitions to WALL_JUMP state and locks movement until player hits the floor
-					movementState = MovementStates.WALL_JUMP
-					
 			# Sneaking
 			if (!Input.is_action_pressed("run")):
 				velocity.x = walkSpeed*direction
@@ -92,13 +77,36 @@ func _physics_process(delta):
 				$Sight.set_deferred("disabled",true)
 				$Touch.set_deferred("disabled",true)
 				velocity = Vector2(0,0)
-
+		elif (movementState == MovementStates.WALL_SLIDE):
+			#if (is_on_wall_only()):
+			velocity.y = min(wallSlideGravity, velocity.y)
+			
+			if (Input.is_action_just_pressed("move_up")):
+				velocity.x = walkSpeed*-facing
+				velocity.y = jumpSpeed
+				facing = -facing
+				$AnimatedSprite2D.flip_h = -min(0,facing)
+				$AnimatedSprite2D.animation = "up"
+				#randomizes jump sound
+				get_node("Jump"+str(randi_range(1,3))+"SFX").play()
+				
+				# Transitions to WALL_JUMP state and locks movement until player hits the floor
+				movementState = MovementStates.WALL_JUMP
+			elif (facing == LEFT && Input.is_action_just_pressed("move_right")):
+				movementState = MovementStates.NORMAL
+			elif (facing == RIGHT && Input.is_action_just_pressed("move_left")):
+				movementState = MovementStates.NORMAL
+			
+			if (is_on_floor()):
+				movementState = MovementStates.NORMAL
+			
+					
 		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
 			if (is_on_floor() || is_on_wall_only()):
 				$Sight.set_deferred("disabled",false)
 				$Touch.set_deferred("disabled",false)
-				movementState = MovementStates.NORMAL
+				movementState = MovementStates.WALL_SLIDE
 			
 		elif (movementState == MovementStates.WALL_GRAB):
 			velocity.y = 0
@@ -149,10 +157,11 @@ func _physics_process(delta):
 			elif velocity.y > 0:
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
-				if (is_on_wall_only()):
-					$AnimatedSprite2D.animation = "wall grab"
-				else:
-					$AnimatedSprite2D.animation = "down"
+				#if (is_on_wall_only()):
+				#	$AnimatedSprite2D.animation = "wall grab"
+				#else:
+				$AnimatedSprite2D.animation = "down"
+					
 				$"Scampering1SFX".stop()
 				$"Scampering2SFX".stop()
 				$"Scampering3SFX".stop()
@@ -168,6 +177,8 @@ func _physics_process(delta):
 				$"Scampering1SFX".stop()
 				$"Scampering2SFX".stop()
 				$"Scampering3SFX".stop()
+		if (movementState == MovementStates.WALL_SLIDE):
+			$AnimatedSprite2D.animation = "wall grab"
 	
 	# Stun state
 	elif (playerState == States.STUN):
