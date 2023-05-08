@@ -47,18 +47,6 @@ func _physics_process(delta):
 			#randomizes jump sound
 			get_node("Jump"+str(randi_range(1,3))+"SFX").play()
 			
-		# Handle wall jump
-		elif Input.is_action_just_pressed("move_up") and is_on_wall_only():
-			velocity.x = walkSpeed*-facing
-			velocity.y = jumpSpeed
-			facing = -facing
-			$AnimatedSprite2D.flip_h = -min(0,facing)
-			$AnimatedSprite2D.animation = "up"
-			#randomizes jump sound
-			get_node("Jump"+str(randi_range(1,3))+"SFX").play()
-			
-			# Transitions to WALL_JUMP state and locks movement until player hits the floor
-			movementState = MovementStates.WALL_JUMP
 			
 		# Get the input direction
 		var direction = Input.get_axis("move_left", "move_right")
@@ -70,11 +58,23 @@ func _physics_process(delta):
 				$"SlidingSFX".play()
 		else:
 			$"SlidingSFX".stop()
+			
 		# Movement
 		if (movementState == MovementStates.NORMAL):
 			# Checks for wall slide
 			if (is_on_wall_only()):
 				velocity.y = min(wallSlideGravity, velocity.y)
+				if (Input.is_action_just_pressed("move_up")):
+					velocity.x = walkSpeed*-facing
+					velocity.y = jumpSpeed
+					facing = -facing
+					$AnimatedSprite2D.flip_h = -min(0,facing)
+					$AnimatedSprite2D.animation = "up"
+					#randomizes jump sound
+					get_node("Jump"+str(randi_range(1,3))+"SFX").play()
+					
+					# Transitions to WALL_JUMP state and locks movement until player hits the floor
+					movementState = MovementStates.WALL_JUMP
 			# Sneaking
 			if (!Input.is_action_pressed("run")):
 				velocity.x = walkSpeed*direction
