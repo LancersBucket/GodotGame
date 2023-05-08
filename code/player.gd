@@ -23,7 +23,9 @@ var movementState = MovementStates.NORMAL
 var stunTimerLength = 50
 var stunTimer = stunTimerLength
 var facing = RIGHT
-var canWallGrab = false
+var wallJumpGraceLength = 5
+var wallJumpGrace = wallJumpGraceLength
+
 
 
 
@@ -82,10 +84,11 @@ func _physics_process(delta):
 				$Touch.set_deferred("disabled",true)
 				velocity = Vector2(0,0)
 		elif (movementState == MovementStates.WALL_SLIDE):
-			print("wall_slide")
 			velocity.y = min(wallSlideGravity, velocity.y)
 			
-			if (Input.is_action_just_pressed("move_up")):
+			wallJumpGrace -= 1
+			
+			if (Input.is_action_just_pressed("move_up")):# && wallJumpGrace < 0):
 				velocity.x = walkSpeed*-facing
 				velocity.y = jumpSpeed
 				facing = -facing
@@ -96,15 +99,21 @@ func _physics_process(delta):
 				
 				# Transitions to WALL_JUMP state and locks movement until player hits the floor
 				movementState = MovementStates.WALL_JUMP
-			elif (facing == LEFT && Input.is_action_just_pressed("move_right")):
+				wallJumpGrace = wallJumpGraceLength
+			elif (facing == LEFT && Input.is_action_just_pressed("move_right") && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
-			elif (facing == RIGHT && Input.is_action_just_pressed("move_left")):
+				wallJumpGrace = wallJumpGraceLength
+			elif (facing == RIGHT && Input.is_action_just_pressed("move_left") && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
+				wallJumpGrace = wallJumpGraceLength
 			
 			if (is_on_floor()):
 				movementState = MovementStates.NORMAL
-			if(!$Sight.is_colliding() and !$Touch.is_colliding()):
+				wallJumpGrace = wallJumpGraceLength
+			if(!$Sight.is_colliding() and !$Touch.is_colliding() && wallJumpGrace < 0):
+				print("here")
 				movementState = MovementStates.NORMAL
+				wallJumpGrace = wallJumpGraceLength
 			
 					
 		# Wall jump "movement"
@@ -183,7 +192,8 @@ func _physics_process(delta):
 				$"Scampering2SFX".stop()
 				$"Scampering3SFX".stop()
 		if (movementState == MovementStates.WALL_SLIDE):
-			$AnimatedSprite2D.animation = "wall grab"
+			if (velocity.y > 0 && wallJumpGrace < 0):
+				$AnimatedSprite2D.animation = "wall grab"
 	
 	# Stun state
 	elif (playerState == States.STUN):
