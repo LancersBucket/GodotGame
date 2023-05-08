@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=25 format=3 uid="uid://ctjl5c6tui2ke"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_08dyy"]
 [ext_resource type="Texture2D" uid="uid://n5vmjkvxaude" path="res://art/player/sidle32x50_6fps.png" id="2_lafkw"]
