@@ -86,6 +86,9 @@ func _physics_process(delta):
 		elif (movementState == MovementStates.WALL_SLIDE):
 			velocity.y = min(wallSlideGravity, velocity.y)
 			
+			if (!$"SlidingSFX".playing):
+				$"SlidingSFX".play()
+			
 			wallJumpGrace -= 1
 			
 			if (Input.is_action_just_pressed("move_up")):# && wallJumpGrace < 0):
