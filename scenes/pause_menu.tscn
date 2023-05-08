@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dfxmo6gab6rnw"]
 
-[ext_resource type="Script" path="res://pause_menu.gd" id="1_1sjmb"]
+[ext_resource type="Script" path="res://code/pause_menu.gd" id="2_xt770"]
 [ext_resource type="Shader" path="res://code/blur.gdshader" id="3_t1h36"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dfosi"]
@@ -147,7 +147,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1sjmb")
+script = ExtResource("2_xt770")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
