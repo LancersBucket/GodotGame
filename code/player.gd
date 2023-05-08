@@ -168,36 +168,30 @@ func _physics_process(delta):
 		# Animation
 		if (movementState == MovementStates.NORMAL):
 			if velocity.y < 0:
+				$"ScamperingSFX".stop()
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
 				$AnimatedSprite2D.animation = "up"
-				$"Scampering1SFX".stop()
-				$"Scampering2SFX".stop()
-				$"Scampering3SFX".stop()
 			elif velocity.y > 0:
+				$"ScamperingSFX".stop()
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
 				$AnimatedSprite2D.animation = "down"
 					
-				$"Scampering1SFX".stop()
-				$"Scampering2SFX".stop()
-				$"Scampering3SFX".stop()
 			elif velocity.x != 0:
-				if !$"Scampering1SFX".playing && !$"Scampering2SFX".playing && !$"Scampering3SFX".playing:
-					get_node("Scampering"+str(randi_range(1,3))+"SFX").play()
+				if (!$"ScamperingSFX".playing):
+					$"ScamperingSFX".play()
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.flip_h = -min(0,facing)
 				$AnimatedSprite2D.play("walk") 
 			else:
+				$"ScamperingSFX".stop()
 				$AnimatedSprite2D.flip_v = false
 				$AnimatedSprite2D.play("idle")
-				$"Scampering1SFX".stop()
-				$"Scampering2SFX".stop()
-				$"Scampering3SFX".stop()
 		if (movementState == MovementStates.WALL_SLIDE):
 			if (velocity.y > 0 && wallJumpGrace < 0):
 				$AnimatedSprite2D.animation = "wall grab"
-	
+				
 	# Stun state
 	elif (playerState == States.STUN):
 		# Checks if on floor and if is set velocity.x to 0 and start decreasing stun timer
