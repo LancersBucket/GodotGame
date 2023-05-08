@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var walkSpeed = 100
 @export var jumpSpeed = -350.0
 @export var cameraOffsety = 30
+@export var cameraOffsetx = 0
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB, WALL_SLIDE}
@@ -217,7 +218,7 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play("ledge jump up")
 	
 	# Camera position code.
-	camera.position.x = position.x
+	camera.position.x = position.x - cameraOffsetx
 	camera.position.y = position.y - cameraOffsety
 	
 func die():

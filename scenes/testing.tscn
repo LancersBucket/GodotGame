@@ -69,7 +69,7 @@ position = Vector2(-285, 88)
 zoom = Vector2(0.75, 0.75)
 editor_draw_drag_margin = true
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["static"]]
 light_mask = 2
 tile_set = SubResource("TileSet_mach0")
 format = 2
