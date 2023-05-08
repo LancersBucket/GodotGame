@@ -193,7 +193,8 @@ func _physics_process(delta):
 		
 	elif (playerState == States.CLIMB):
 		$AnimatedSprite2D.play("ledge jump up")
-	# Camera position code. Sets camera to player x except when player is behind camera x
+	
+	# Camera position code.
 	camera.position.x = position.x
 	camera.position.y = position.y - cameraOffsety
 	
