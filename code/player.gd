@@ -58,12 +58,8 @@ func _physics_process(delta):
 		
 		
 		#Condition checks for wall slide, would not work in condition below
-		if (is_on_wall_only()):
-			if (!$"SlidingSFX".playing && velocity.y > 0 && movementState != MovementStates.WALL_GRAB):
-				$"SlidingSFX".play()
+		if (is_on_wall_only() && velocity.y > 0 && movementState != MovementStates.WALL_GRAB):
 				movementState = MovementStates.WALL_SLIDE
-		else:
-			$"SlidingSFX".stop()
 			
 		# Movement
 		if (movementState == MovementStates.NORMAL):
@@ -101,19 +97,24 @@ func _physics_process(delta):
 				# Transitions to WALL_JUMP state and locks movement until player hits the floor
 				movementState = MovementStates.WALL_JUMP
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			elif (facing == LEFT && Input.is_action_just_pressed("move_right") && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			elif (facing == RIGHT && Input.is_action_just_pressed("move_left") && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			
 			if (is_on_floor()):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			if (!$Sight.is_colliding() and !$Touch.is_colliding() && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			
 					
 		# Wall jump "movement"
