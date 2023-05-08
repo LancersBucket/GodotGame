@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export var walkSpeed = 100
 @export var jumpSpeed = -350.0
+@export var cameraOffsety = 30
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB}
@@ -23,7 +24,7 @@ var stunTimerLength = 50
 var stunTimer = stunTimerLength
 var facing = RIGHT
 var canWallGrab = false
-var cameraOffsety = 30
+
 
 
 func _ready():
@@ -64,6 +65,7 @@ func _physics_process(delta):
 			# Checks for wall slide
 			if (is_on_wall_only()):
 				velocity.y = min(wallSlideGravity, velocity.y)
+				
 				if (Input.is_action_just_pressed("move_up")):
 					velocity.x = walkSpeed*-facing
 					velocity.y = jumpSpeed
@@ -75,21 +77,22 @@ func _physics_process(delta):
 					
 					# Transitions to WALL_JUMP state and locks movement until player hits the floor
 					movementState = MovementStates.WALL_JUMP
+					
 			# Sneaking
 			if (!Input.is_action_pressed("run")):
 				velocity.x = walkSpeed*direction
 			# Normal speed
 			else:
 				velocity.x = sneakSpeed*direction
-
 				
-			# Movement speed
+			# Wall grab check
 			if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
 				$"SlidingSFX".stop()
 				movementState = MovementStates.WALL_GRAB
 				$Sight.set_deferred("disabled",true)
 				$Touch.set_deferred("disabled",true)
 				velocity = Vector2(0,0)
+
 		# Wall jump "movement"
 		elif (movementState == MovementStates.WALL_JUMP):
 			if (is_on_floor() || is_on_wall_only()):
