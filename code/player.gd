@@ -27,8 +27,6 @@ var wallJumpGraceLength = 5
 var wallJumpGrace = wallJumpGraceLength
 
 
-
-
 func _ready():
 	# Gets screen size
 	screenSize = get_viewport_rect().size
@@ -113,8 +111,7 @@ func _physics_process(delta):
 			if (is_on_floor()):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
-			if(!$Sight.is_colliding() and !$Touch.is_colliding() && wallJumpGrace < 0):
-				print("here")
+			if (!$Sight.is_colliding() and !$Touch.is_colliding() && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
 			
