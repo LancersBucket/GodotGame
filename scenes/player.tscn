@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=24 format=3 uid="uid://ctjl5c6tui2ke"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_08dyy"]
 [ext_resource type="Texture2D" uid="uid://d24jsdu0yvhyq" path="res://art/player/player sprites wip.png" id="3_knd0l"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dixbv0xh1hhtk" path="res://audio/scampering2.wav" id="12_6dl47"]
 [ext_resource type="AudioStream" uid="uid://bne0prwme5xgj" path="res://audio/sliding.wav" id="12_8bxv0"]
 [ext_resource type="AudioStream" uid="uid://df0g76qlvgeoh" path="res://audio/scampering3.wav" id="13_neovc"]
+[ext_resource type="PackedScene" uid="uid://dfxmo6gab6rnw" path="res://scenes/pause_menu.tscn" id="14_l3637"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8pqkf"]
 atlas = ExtResource("3_knd0l")
@@ -130,6 +131,9 @@ size = Vector2(16, 44.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_08dyy")
+
+[node name="PauseMenu" parent="." instance=ExtResource("14_l3637")]
+z_index = 5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
