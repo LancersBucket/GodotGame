@@ -31,6 +31,10 @@ func _ready():
 	screenSize = get_viewport_rect().size
 	
 func _physics_process(delta):
+	
+	if Input.is_action_just_pressed("menu"):
+		$PauseMenu.pause()
+
 	# Checks if the current state is PLAYER_CONTROL
 	if (playerState == States.PLAYER_CONTROL):
 		# Gravity
