@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=21 format=3 uid="uid://ctjl5c6tui2ke"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_08dyy"]
-[ext_resource type="Shader" path="res://code/blur.gdshader" id="3_f5da2"]
 [ext_resource type="Texture2D" uid="uid://d24jsdu0yvhyq" path="res://art/player/player sprites wip.png" id="3_knd0l"]
 [ext_resource type="Texture2D" uid="uid://d4duw6le0i5vj" path="res://art/player/sup32x50.png" id="3_pncdw"]
 [ext_resource type="Texture2D" uid="uid://ip2yrlr7i2nq" path="res://art/player/sdown32x50.png" id="3_qr2bn"]
@@ -12,12 +11,6 @@
 [ext_resource type="AudioStream" uid="uid://cjks7ls8w7enc" path="res://audio/jump-sound-effect3.wav" id="10_xiwsh"]
 [ext_resource type="AudioStream" uid="uid://bne0prwme5xgj" path="res://audio/sliding.wav" id="12_8bxv0"]
 [ext_resource type="AudioStream" uid="uid://db6mxlf82ry24" path="res://audio/scamperingComplete.wav" id="13_w0hrp"]
-[ext_resource type="PackedScene" uid="uid://dfxmo6gab6rnw" path="res://scenes/pause_menu.tscn" id="14_l3637"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4o0gf"]
-shader = ExtResource("3_f5da2")
-shader_parameter/blur = 0.0
-shader_parameter/brightness = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8pqkf"]
 atlas = ExtResource("3_knd0l")
@@ -135,10 +128,6 @@ size = Vector2(16, 44.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_08dyy")
-
-[node name="PauseMenu" parent="." instance=ExtResource("14_l3637")]
-z_index = 5
-material = SubResource("ShaderMaterial_4o0gf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)

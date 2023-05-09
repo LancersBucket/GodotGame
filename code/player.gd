@@ -35,7 +35,7 @@ func _ready():
 func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("menu"):
-		$PauseMenu.pause()
+		$/root/Main/PauseMenu.pause()
 
 	# Checks if the current state is PLAYER_CONTROL
 	if (playerState == States.PLAYER_CONTROL):
