@@ -197,6 +197,9 @@ func _physics_process(delta):
 		$AnimatedSprite2D.animation = "stun"
 		if (is_on_floor() && stunTimer <= stunTimerLength-1):
 			$AnimatedSprite2D.animation = "stun grounded"
+			if (!$"StunSFX".playing):
+					$"StunSFX".play()
+			
 			velocity.x = 0
 			stunTimer -= 1
 		# Initial stun momentum
