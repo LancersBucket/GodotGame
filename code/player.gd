@@ -23,6 +23,8 @@ var playerState = States.PLAYER_CONTROL
 var movementState = MovementStates.NORMAL
 var stunTimerLength = 50
 var stunTimer = stunTimerLength
+var getUpTimerLength = 50
+var getUpTimer = getUpTimerLength
 var facing = RIGHT
 var wallJumpGraceLength = 5
 var wallJumpGrace = wallJumpGraceLength
@@ -207,8 +209,9 @@ func _physics_process(delta):
 			stunTimer -= 1
 		# If stun timer is 0 reset stun timer
 		elif (stunTimer <= 0):
-			stunTimer = stunTimerLength
-			playerState = States.PLAYER_CONTROL
+			#stunTimer = stunTimerLength
+			$AnimatedSprite2D.animation = "stun getting up"
+			#playerState = States.PLAYER_CONTROL
 		
 		# Normal gravity and movement
 		velocity.y += gravity * delta
@@ -237,3 +240,11 @@ func _on_animated_sprite_2d_animation_finished():
 			position.y -= 32
 			playerState = States.PLAYER_CONTROL
 			movementState = MovementStates.NORMAL
+			
+		if $AnimatedSprite2D.animation == "stun getting up":
+			playerState = States.PLAYER_CONTROL
+
+
+func _on_animated_sprite_2d_animation_changed():
+	if $AnimatedSprite2D.animation == "stun getting up":
+		$AnimatedSprite2D.play("stun getting up")
