@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cq38oyms43uph"]
+[gd_scene load_steps=10 format=3 uid="uid://cq38oyms43uph"]
 
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="2_mm13a"]
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="3_dk37d"]
 [ext_resource type="PackedScene" uid="uid://b2ytxtyv8g1d4" path="res://scenes/spike.tscn" id="4_olnn3"]
 [ext_resource type="PackedScene" uid="uid://dfrv3mmcu1gsc" path="res://scenes/falling_object.tscn" id="5_8hqfp"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="5_e78n0"]
+[ext_resource type="PackedScene" uid="uid://beplkjc26p2r2" path="res://scenes/bigGuy.tscn" id="6_dkopp"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
 tile_data = PackedInt32Array(0, 0, 1, 65536, 131072, 1, 1, 65536, 1, 65537, 196608, 1)
@@ -66,6 +67,10 @@ pattern_0 = SubResource("TileMapPattern_yytis")
 zoom = Vector2(0.75, 0.75)
 editor_draw_drag_margin = true
 
+[node name="BigGuy" parent="." instance=ExtResource("6_dkopp")]
+position = Vector2(-54, 93)
+scale = Vector2(1.5, 1.5)
+
 [node name="TileMap" type="TileMap" parent="." groups=["static"]]
 light_mask = 2
 tile_set = SubResource("TileSet_mach0")
@@ -84,12 +89,12 @@ position = Vector2(-16, 104)
 [node name="FallingObject" parent="." instance=ExtResource("5_8hqfp")]
 position = Vector2(-96, -16)
 
+[node name="FallingObject2" parent="." instance=ExtResource("5_8hqfp")]
+position = Vector2(-488, -8)
+
 [node name="Player" parent="." instance=ExtResource("5_e78n0")]
 position = Vector2(-288, 97)
 
 [node name="Spike3" parent="." instance=ExtResource("4_olnn3")]
 position = Vector2(-504, -8)
 rotation = 3.14159
-
-[node name="FallingObject2" parent="." instance=ExtResource("5_8hqfp")]
-position = Vector2(-488, -8)
