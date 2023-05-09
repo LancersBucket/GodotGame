@@ -5,11 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://b2ytxtyv8g1d4" path="res://scenes/spike.tscn" id="4_olnn3"]
 [ext_resource type="PackedScene" uid="uid://dfrv3mmcu1gsc" path="res://scenes/falling_object.tscn" id="5_8hqfp"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="5_e78n0"]
-<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://bvxl5kg12hqco" path="res://scenes/projectile.tscn" id="6_oi3tk"]
-=======
 [ext_resource type="PackedScene" uid="uid://beplkjc26p2r2" path="res://scenes/bigGuy.tscn" id="6_dkopp"]
->>>>>>> 67f54b3ee7756d0dd2fbbaa1a799af9c8f87d770
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
 tile_data = PackedInt32Array(0, 0, 1, 65536, 131072, 1, 1, 65536, 1, 65537, 196608, 1)
@@ -84,7 +81,6 @@ layer_0/tile_data = PackedInt32Array(524279, 0, 0, 589815, 0, 0, 524278, 0, 0, 5
 
 [node name="HUD" parent="." instance=ExtResource("3_dk37d")]
 
-<<<<<<< HEAD
 [node name="Spike3" parent="." instance=ExtResource("4_olnn3")]
 position = Vector2(-504, -8)
 rotation = 3.14159
@@ -97,23 +93,3 @@ position = Vector2(64, -120)
 
 [node name="Player" parent="." instance=ExtResource("5_e78n0")]
 position = Vector2(-288, 97)
-=======
-[node name="Spike" parent="." instance=ExtResource("4_olnn3")]
-position = Vector2(80, 104)
-
-[node name="Spike2" parent="." instance=ExtResource("4_olnn3")]
-position = Vector2(-16, 104)
-
-[node name="FallingObject" parent="." instance=ExtResource("5_8hqfp")]
-position = Vector2(-96, -16)
-
-[node name="FallingObject2" parent="." instance=ExtResource("5_8hqfp")]
-position = Vector2(-488, -8)
-
-[node name="Player" parent="." instance=ExtResource("5_e78n0")]
-position = Vector2(-288, 97)
-
-[node name="Spike3" parent="." instance=ExtResource("4_olnn3")]
-position = Vector2(-504, -8)
-rotation = 3.14159
->>>>>>> 67f54b3ee7756d0dd2fbbaa1a799af9c8f87d770
