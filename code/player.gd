@@ -209,9 +209,8 @@ func _physics_process(delta):
 			stunTimer -= 1
 		# If stun timer is 0 reset stun timer
 		elif (stunTimer <= 0):
-			#stunTimer = stunTimerLength
-			$AnimatedSprite2D.animation = "stun getting up"
-			#playerState = States.PLAYER_CONTROL
+			stunTimer = stunTimerLength
+			playerState = States.PLAYER_CONTROL
 		
 		# Normal gravity and movement
 		velocity.y += gravity * delta
@@ -223,6 +222,8 @@ func _physics_process(delta):
 	# Camera position code.
 	camera.position.x = position.x - cameraOffsetx
 	camera.position.y = position.y - cameraOffsety
+	
+	print($AnimatedSprite2D.animation)
 	
 func die():
 	get_tree().change_scene_to_file("res://scenes/info_screen.tscn")
@@ -240,11 +241,3 @@ func _on_animated_sprite_2d_animation_finished():
 			position.y -= 32
 			playerState = States.PLAYER_CONTROL
 			movementState = MovementStates.NORMAL
-			
-		if $AnimatedSprite2D.animation == "stun getting up":
-			playerState = States.PLAYER_CONTROL
-
-
-func _on_animated_sprite_2d_animation_changed():
-	if $AnimatedSprite2D.animation == "stun getting up":
-		$AnimatedSprite2D.play("stun getting up")
