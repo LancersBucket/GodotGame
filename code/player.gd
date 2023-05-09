@@ -201,19 +201,22 @@ func _physics_process(delta):
 				
 	# Stun state
 	elif (playerState == States.STUN):
-		#Animation 
-		if (is_on_floor() && playerState == States.STUN):
+		# Checks if on floor and if is set velocity.x to 0 and start decreasing stun timer
+		if (is_on_floor()):
 			$AnimatedSprite2D.animation = "stunUp"
+			if (stunTimer <= stunTimerLength-1):
+				if (!$"ShuffleSFX".playing):
+					$"ShuffleSFX".play()
+				velocity.x = 0
+				stunTimer -= 1
 		else:
 			$AnimatedSprite2D.animation = "stun"
-		# Checks if on floor and if is set velocity.x to 0 and start decreasing stun timer
-		if (is_on_floor() && stunTimer <= stunTimerLength-1):
-			if (!$"StunSFX".playing):
-				$"StunSFX".play()
-			velocity.x = 0
-			stunTimer -= 1
-		# Initial stun momentum
 		if (stunTimer == stunTimerLength):
+			# Initial stun momentum
+			velocity.y = jumpSpeed
+			velocity.x = walkSpeed*-facing
+			stunTimer -= 1
+			# Audio
 			var choice = randi_range(1,3)
 			if choice == 1:
 				$"HurtSFX".play()
@@ -221,9 +224,6 @@ func _physics_process(delta):
 				$"Hurt2SFX".play()
 			else:
 				$"Hurt3SFX".play()
-			velocity.y = jumpSpeed
-			velocity.x = walkSpeed*-facing
-			stunTimer -= 1
 			
 		
 		# Normal gravity and movement
@@ -254,8 +254,5 @@ func _on_animated_sprite_2d_animation_finished():
 			playerState = States.PLAYER_CONTROL
 			movementState = MovementStates.NORMAL
 	if $AnimatedSprite2D.animation == "stunUp":
-		$"StunSFX".stop()
-		if (!$"ShuffleSFX".playing):
-			$"ShuffleSFX".play()
-			stunTimer = stunTimerLength
-			playerState = States.PLAYER_CONTROL
+		stunTimer = stunTimerLength
+		playerState = States.PLAYER_CONTROL
