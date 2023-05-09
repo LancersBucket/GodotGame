@@ -69,7 +69,7 @@ func _physics_process(delta):
 		
 		
 		#Condition checks for wall slide, would not work in condition below
-		if (is_on_wall_only() && velocity.y > 0 && movementState != MovementStates.WALL_GRAB):
+		if (is_on_wall_only() && velocity.y > 0 && movementState != MovementStates.WALL_GRAB && $Sight.is_colliding() and $Touch.is_colliding()):
 				movementState = MovementStates.WALL_SLIDE
 			
 		# Movement
@@ -145,6 +145,8 @@ func _physics_process(delta):
 				$Touch.set_deferred("disabled",true)
 				velocity.y = jumpSpeed
 				velocity.x = walkSpeed*-facing
+				facing = -facing
+				
 				movementState = MovementStates.WALL_JUMP
 			#elif Input.is_action_pressed("move_down"):
 			#	movementState = MovementStates.NORMAL
@@ -153,6 +155,7 @@ func _physics_process(delta):
 					playerState = States.CLIMB
 				else:
 					movementState = MovementStates.NORMAL
+					#position.x -= .5
 			elif (Input.is_action_pressed("move_right")):
 				if (facing == RIGHT):
 					playerState = States.CLIMB
@@ -165,8 +168,8 @@ func _physics_process(delta):
 				facing = RIGHT
 			elif direction == LEFT:
 				facing = LEFT
-			$Sight.target_position.x = 16*facing
-			$Touch.target_position.x = 16*facing
+			$Sight.target_position.x = 12*facing
+			$Touch.target_position.x = 12*facing
 		
 		move_and_slide()
 		
@@ -200,6 +203,8 @@ func _physics_process(delta):
 		if (movementState == MovementStates.WALL_SLIDE):
 			if (velocity.y > 0 && wallJumpGrace < 0):
 				$AnimatedSprite2D.animation = "wall grab"
+		if (movementState == MovementStates.WALL_JUMP):
+			$AnimatedSprite2D.flip_h = -min(0,facing)
 				
 	# Stun state
 	elif (playerState == States.STUN):
