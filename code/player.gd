@@ -201,7 +201,13 @@ func _physics_process(delta):
 			stunTimer -= 1
 		# Initial stun momentum
 		if (stunTimer == stunTimerLength):
-			$"HurtSFX".play()
+			var choice = randi_range(1,3)
+			if choice == 1:
+				$"HurtSFX".play()
+			elif choice == 2:
+				$"Hurt2SFX".play()
+			else:
+				$"Hurt3SFX".play()
 			velocity.y = jumpSpeed
 			velocity.x = walkSpeed*-facing
 			stunTimer -= 1
