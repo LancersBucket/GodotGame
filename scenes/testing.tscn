@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cq38oyms43uph"]
 
-[ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="1_vqd07"]
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="2_mm13a"]
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="3_dk37d"]
 [ext_resource type="PackedScene" uid="uid://b2ytxtyv8g1d4" path="res://scenes/spike.tscn" id="4_olnn3"]
 [ext_resource type="PackedScene" uid="uid://dfrv3mmcu1gsc" path="res://scenes/falling_object.tscn" id="5_8hqfp"]
+[ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="5_e78n0"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
 tile_data = PackedInt32Array(0, 0, 1, 65536, 131072, 1, 1, 65536, 1, 65537, 196608, 1)
@@ -62,9 +62,6 @@ pattern_0 = SubResource("TileMapPattern_yytis")
 
 [node name="Main" type="Node"]
 
-[node name="Player" parent="." instance=ExtResource("1_vqd07")]
-position = Vector2(-285, 88)
-
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
 editor_draw_drag_margin = true
@@ -86,3 +83,6 @@ position = Vector2(-16, 104)
 
 [node name="FallingObject" parent="." instance=ExtResource("5_8hqfp")]
 position = Vector2(-96, -16)
+
+[node name="Player" parent="." instance=ExtResource("5_e78n0")]
+position = Vector2(-288, 97)

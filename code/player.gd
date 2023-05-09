@@ -232,8 +232,6 @@ func _physics_process(delta):
 	camera.position.x = position.x - cameraOffsetx
 	camera.position.y = position.y - cameraOffsety
 	
-	print($AnimatedSprite2D.animation)
-	
 func die():
 	get_tree().change_scene_to_file("res://scenes/info_screen.tscn")
 
