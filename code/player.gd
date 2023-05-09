@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var camera = $"/root/Main/Camera"
 
-@export var walkSpeed = 100
+@export var walkSpeed = 128
 @export var jumpSpeed = -350.0
 @export var cameraOffsety = 30
 @export var cameraOffsetx = 0
@@ -201,13 +201,15 @@ func _physics_process(delta):
 				
 	# Stun state
 	elif (playerState == States.STUN):
+		#Animation 
+		if (is_on_floor() && playerState == States.STUN):
+			$AnimatedSprite2D.animation = "stunUp"
+		else:
+			$AnimatedSprite2D.animation = "stun"
 		# Checks if on floor and if is set velocity.x to 0 and start decreasing stun timer
-		$AnimatedSprite2D.animation = "stun"
 		if (is_on_floor() && stunTimer <= stunTimerLength-1):
-			$AnimatedSprite2D.animation = "stun grounded"
 			if (!$"StunSFX".playing):
-					$"StunSFX".play()
-			
+				$"StunSFX".play()
 			velocity.x = 0
 			stunTimer -= 1
 		# Initial stun momentum
@@ -222,13 +224,7 @@ func _physics_process(delta):
 			velocity.y = jumpSpeed
 			velocity.x = walkSpeed*-facing
 			stunTimer -= 1
-		# If stun timer is 0 reset stun timer
-		elif (stunTimer <= 0):
-			$"StunSFX".stop()
-			if (!$"ShuffleSFX".playing):
-					$"ShuffleSFX".play()
-			stunTimer = stunTimerLength
-			playerState = States.PLAYER_CONTROL
+			
 		
 		# Normal gravity and movement
 		velocity.y += gravity * delta
@@ -257,3 +253,9 @@ func _on_animated_sprite_2d_animation_finished():
 			position.y -= 32
 			playerState = States.PLAYER_CONTROL
 			movementState = MovementStates.NORMAL
+	if $AnimatedSprite2D.animation == "stunUp":
+		$"StunSFX".stop()
+		if (!$"ShuffleSFX".playing):
+			$"ShuffleSFX".play()
+			stunTimer = stunTimerLength
+			playerState = States.PLAYER_CONTROL
