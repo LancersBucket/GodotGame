@@ -69,6 +69,7 @@ zoom = Vector2(0.75, 0.75)
 editor_draw_drag_margin = true
 
 [node name="BigGuy" parent="." instance=ExtResource("6_dkopp")]
+visible = false
 position = Vector2(-54, 93)
 scale = Vector2(1.5, 1.5)
 
