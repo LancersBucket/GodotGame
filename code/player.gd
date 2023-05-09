@@ -23,8 +23,8 @@ var playerState = States.PLAYER_CONTROL
 var movementState = MovementStates.NORMAL
 var stunTimerLength = 50
 var stunTimer = stunTimerLength
-var getUpTimerLength = 50
-var getUpTimer = getUpTimerLength
+var slideSoundTimerLength = 120
+var slideSoundTimer = slideSoundTimerLength
 var facing = RIGHT
 var wallJumpGraceLength = 5
 var wallJumpGrace = wallJumpGraceLength
@@ -82,8 +82,10 @@ func _physics_process(delta):
 				velocity = Vector2(0,0)
 		elif (movementState == MovementStates.WALL_SLIDE):
 			velocity.y = min(wallSlideGravity, velocity.y)
-			
+
 			if (!$"SlidingSFX".playing):
+				while(slideSoundTimer>0):
+					slideSoundTimer -= 1
 				$"SlidingSFX".play()
 			
 			wallJumpGrace -= 1
@@ -100,14 +102,17 @@ func _physics_process(delta):
 				# Transitions to WALL_JUMP state and locks movement until player hits the floor
 				movementState = MovementStates.WALL_JUMP
 				wallJumpGrace = wallJumpGraceLength
+				slideSoundTimer = slideSoundTimerLength
 				$"SlidingSFX".stop()
 			elif (facing == LEFT && Input.is_action_just_pressed("move_right") && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				slideSoundTimer = slideSoundTimerLength
 				$"SlidingSFX".stop()
 			elif (facing == RIGHT && Input.is_action_just_pressed("move_left") && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				slideSoundTimer = slideSoundTimerLength
 				$"SlidingSFX".stop()
 			
 			if (is_on_floor()):
@@ -117,6 +122,7 @@ func _physics_process(delta):
 			if (!$Sight.is_colliding() and !$Touch.is_colliding() && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				slideSoundTimer = slideSoundTimerLength
 				$"SlidingSFX".stop()
 			
 					
