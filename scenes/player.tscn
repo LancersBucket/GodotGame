@@ -333,19 +333,18 @@ script = ExtResource("1_08dyy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -16)
 sprite_frames = SubResource("SpriteFrames_dpxjh")
-animation = &"stun"
-frame_progress = 0.0673756
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_gyhv5")
 
 [node name="Sight" type="RayCast2D" parent="."]
-position = Vector2(3, -22)
+position = Vector2(3, -36)
 target_position = Vector2(6, 0)
 
 [node name="Touch" type="RayCast2D" parent="."]
-position = Vector2(3, -36)
+position = Vector2(3, -32)
 target_position = Vector2(6, 0)
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="."]
