@@ -146,8 +146,8 @@ func _physics_process(delta):
 				velocity.y = jumpSpeed
 				velocity.x = walkSpeed*-facing
 				movementState = MovementStates.WALL_JUMP
-			elif Input.is_action_pressed("move_down"):
-				movementState = MovementStates.NORMAL
+			#elif Input.is_action_pressed("move_down"):
+			#	movementState = MovementStates.NORMAL
 			elif (Input.is_action_pressed("move_left")):
 				if (facing == LEFT):
 					playerState = States.CLIMB
