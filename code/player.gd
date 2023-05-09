@@ -16,7 +16,6 @@ const LEFT = -1
 
 var screenSize
 var gravity = 980
-var sneakSpeed = walkSpeed/2.0
 var wallSlideGravity = gravity/8.0
 var graceTimer = 7
 var playerState = States.PLAYER_CONTROL
@@ -74,13 +73,7 @@ func _physics_process(delta):
 			
 		# Movement
 		if (movementState == MovementStates.NORMAL):
-			# Sneaking
-			if (!Input.is_action_pressed("run")):
-				velocity.x = walkSpeed*direction
-			# Normal speed
-			else:
-				velocity.x = sneakSpeed*direction
-				
+			velocity.x = walkSpeed*direction
 			
 		elif (movementState == MovementStates.WALL_SLIDE):
 			velocity.y = min(wallSlideGravity, velocity.y)
