@@ -177,7 +177,9 @@ script = ExtResource("1_snbyc")
 position = Vector2(0, 2.38419e-07)
 scale = Vector2(1.78529, 1.78529)
 sprite_frames = SubResource("SpriteFrames_fja3o")
-animation = &"idle"
+animation = &"look"
+frame = 13
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rwubp")
