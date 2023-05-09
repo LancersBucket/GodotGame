@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq38oyms43uph"]
+[gd_scene load_steps=11 format=3 uid="uid://cq38oyms43uph"]
 
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="2_mm13a"]
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="3_dk37d"]
 [ext_resource type="PackedScene" uid="uid://b2ytxtyv8g1d4" path="res://scenes/spike.tscn" id="4_olnn3"]
 [ext_resource type="PackedScene" uid="uid://dfrv3mmcu1gsc" path="res://scenes/falling_object.tscn" id="5_8hqfp"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="5_e78n0"]
-[ext_resource type="PackedScene" uid="uid://bvxl5kg12hqco" path="res://scenes/projectile.tscn" id="6_oi3tk"]
 [ext_resource type="PackedScene" uid="uid://beplkjc26p2r2" path="res://scenes/bigGuy.tscn" id="6_dkopp"]
+[ext_resource type="PackedScene" uid="uid://bvxl5kg12hqco" path="res://scenes/projectile.tscn" id="6_oi3tk"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
 tile_data = PackedInt32Array(0, 0, 1, 65536, 131072, 1, 1, 65536, 1, 65537, 196608, 1)
