@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ctjl5c6tui2ke"]
+[gd_scene load_steps=29 format=3 uid="uid://ctjl5c6tui2ke"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_08dyy"]
 [ext_resource type="Texture2D" uid="uid://d24jsdu0yvhyq" path="res://art/player/player sprites wip.png" id="3_knd0l"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cn8m6hdow0gaa" path="res://audio/jump-sound-effect2.wav" id="9_vfvem"]
 [ext_resource type="AudioStream" uid="uid://cjks7ls8w7enc" path="res://audio/jump-sound-effect3.wav" id="10_xiwsh"]
 [ext_resource type="AudioStream" uid="uid://bne0prwme5xgj" path="res://audio/sliding.wav" id="12_8bxv0"]
+[ext_resource type="PackedScene" uid="uid://dfxmo6gab6rnw" path="res://scenes/pause_menu.tscn" id="13_oe8nn"]
 [ext_resource type="AudioStream" uid="uid://db6mxlf82ry24" path="res://audio/scamperingComplete.wav" id="13_w0hrp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8pqkf"]
@@ -221,5 +222,8 @@ pitch_scale = 0.93
 [node name="ScamperingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_w0hrp")
 volume_db = 8.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("13_oe8nn")]
+top_level = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
