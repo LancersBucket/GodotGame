@@ -20,7 +20,7 @@ script = ExtResource("1_4qx3m")
 texture = ExtResource("1_krhmc")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-1, -8, -8, 8, 8, 8, 1, -8)
+polygon = PackedVector2Array(-1.00002, -8, -8, 8, 8, 8, 0.99998, -8)
 
 [node name="Area2D" type="Area2D" parent="."]
 rotation = -3.14159
