@@ -1,18 +1,17 @@
 [gd_scene load_steps=35 format=3 uid="uid://ctjl5c6tui2ke"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_08dyy"]
-[ext_resource type="Shader" path="res://code/blur.gdshader" id="3_f5da2"]
 [ext_resource type="Texture2D" uid="uid://d24jsdu0yvhyq" path="res://art/player/player sprites wip.png" id="3_knd0l"]
 [ext_resource type="Texture2D" uid="uid://d4duw6le0i5vj" path="res://art/player/sup32x50.png" id="3_pncdw"]
 [ext_resource type="Texture2D" uid="uid://ip2yrlr7i2nq" path="res://art/player/sdown32x50.png" id="3_qr2bn"]
 [ext_resource type="Texture2D" uid="uid://cli1mgplwes0o" path="res://art/player/sslide32x50-export.png" id="4_vgrl6"]
-[ext_resource type="Texture2D" uid="uid://cfbqjkq4t3nq3" path="res://art/player/playerstun.png" id="7_e75p4"]
-[ext_resource type="Texture2D" uid="uid://dwrpbvva4fk5" path="res://art/player/playerstungrounded.png" id="8_0njyr"]
+[ext_resource type="Texture2D" uid="uid://dwrpbvva4fk5" path="res://art/player/playerstungrounded.png" id="5_yjhek"]
 [ext_resource type="AudioStream" uid="uid://dw4bg12mjkrnr" path="res://audio/hurt.wav" id="8_7ac8v"]
 [ext_resource type="AudioStream" uid="uid://cuujjwavutqwd" path="res://audio/jump-sound-effect.wav" id="8_ch26s"]
 [ext_resource type="AudioStream" uid="uid://cn8m6hdow0gaa" path="res://audio/jump-sound-effect2.wav" id="9_vfvem"]
 [ext_resource type="AudioStream" uid="uid://cjks7ls8w7enc" path="res://audio/jump-sound-effect3.wav" id="10_xiwsh"]
 [ext_resource type="AudioStream" uid="uid://bne0prwme5xgj" path="res://audio/sliding.wav" id="12_8bxv0"]
+[ext_resource type="PackedScene" uid="uid://dfxmo6gab6rnw" path="res://scenes/pause_menu.tscn" id="13_oe8nn"]
 [ext_resource type="AudioStream" uid="uid://db6mxlf82ry24" path="res://audio/scamperingComplete.wav" id="13_w0hrp"]
 [ext_resource type="PackedScene" uid="uid://dfxmo6gab6rnw" path="res://scenes/pause_menu.tscn" id="14_l3637"]
 [ext_resource type="AudioStream" uid="uid://bplw4rxtsvl31" path="res://audio/stun-get-up-sound-effect.wav" id="16_do6jj"]
@@ -34,40 +33,32 @@ region = Rect2(48, 0, 48, 64)
 atlas = ExtResource("3_knd0l")
 region = Rect2(144, 0, 48, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_picxw"]
-atlas = ExtResource("7_e75p4")
-region = Rect2(0, 0, 33, 46)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p864n"]
+atlas = ExtResource("3_knd0l")
+region = Rect2(192, 0, 48, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r6diq"]
-atlas = ExtResource("7_e75p4")
-region = Rect2(33, 0, 33, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nk5a1"]
-atlas = ExtResource("7_e75p4")
-region = Rect2(66, 0, 33, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_um0s7"]
-atlas = ExtResource("8_0njyr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_we3h2"]
+atlas = ExtResource("5_yjhek")
 region = Rect2(0, 0, 49, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pagc2"]
-atlas = ExtResource("8_0njyr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_eax14"]
+atlas = ExtResource("5_yjhek")
 region = Rect2(49, 0, 49, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjwpe"]
-atlas = ExtResource("8_0njyr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhao4"]
+atlas = ExtResource("5_yjhek")
 region = Rect2(98, 0, 49, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2eq6x"]
-atlas = ExtResource("8_0njyr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_d70gg"]
+atlas = ExtResource("5_yjhek")
 region = Rect2(147, 0, 49, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kht04"]
-atlas = ExtResource("8_0njyr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ve1bb"]
+atlas = ExtResource("5_yjhek")
 region = Rect2(196, 0, 49, 50)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7s01f"]
-atlas = ExtResource("8_0njyr")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6md5c"]
+atlas = ExtResource("5_yjhek")
 region = Rect2(245, 0, 49, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r75d4"]
@@ -126,13 +117,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_picxw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r6diq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nk5a1")
+"texture": SubResource("AtlasTexture_p864n")
 }],
 "loop": true,
 "name": &"stun",
@@ -140,26 +125,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_um0s7")
+"texture": SubResource("AtlasTexture_we3h2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pagc2")
+"texture": SubResource("AtlasTexture_eax14")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mjwpe")
+"texture": SubResource("AtlasTexture_uhao4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2eq6x")
+"texture": SubResource("AtlasTexture_d70gg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kht04")
+"texture": SubResource("AtlasTexture_ve1bb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7s01f")
+"texture": SubResource("AtlasTexture_6md5c")
 }],
 "loop": true,
 "name": &"stun getting up",
-"speed": 6.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -200,14 +185,12 @@ size = Vector2(16, 44.5)
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_08dyy")
 
-[node name="PauseMenu" parent="." instance=ExtResource("14_l3637")]
-z_index = 5
-material = SubResource("ShaderMaterial_4o0gf")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_dpxjh")
 animation = &"stun getting up"
+frame = 4
+frame_progress = 0.87997
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15.75)
@@ -261,5 +244,7 @@ volume_db = 8.0
 stream = ExtResource("16_do6jj")
 volume_db = -17.71
 
-[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
+[node name="PauseMenu" parent="." instance=ExtResource("13_oe8nn")]
+top_level = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

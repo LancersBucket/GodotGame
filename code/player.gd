@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var walkSpeed = 100
 @export var jumpSpeed = -350.0
 @export var cameraOffsety = 30
+@export var cameraOffsetx = 0
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB, WALL_SLIDE}
@@ -60,12 +61,8 @@ func _physics_process(delta):
 		
 		
 		#Condition checks for wall slide, would not work in condition below
-		if (is_on_wall_only()):
-			if (!$"SlidingSFX".playing && velocity.y > 0 && movementState != MovementStates.WALL_GRAB):
-				$"SlidingSFX".play()
+		if (is_on_wall_only() && velocity.y > 0 && movementState != MovementStates.WALL_GRAB):
 				movementState = MovementStates.WALL_SLIDE
-		else:
-			$"SlidingSFX".stop()
 			
 		# Movement
 		if (movementState == MovementStates.NORMAL):
@@ -103,19 +100,24 @@ func _physics_process(delta):
 				# Transitions to WALL_JUMP state and locks movement until player hits the floor
 				movementState = MovementStates.WALL_JUMP
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			elif (facing == LEFT && Input.is_action_just_pressed("move_right") && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			elif (facing == RIGHT && Input.is_action_just_pressed("move_left") && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			
 			if (is_on_floor()):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			if (!$Sight.is_colliding() and !$Touch.is_colliding() && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
+				$"SlidingSFX".stop()
 			
 					
 		# Wall jump "movement"
@@ -216,9 +218,8 @@ func _physics_process(delta):
 			stunTimer -= 1
 		# If stun timer is 0 reset stun timer
 		elif (stunTimer <= 0):
-			#stunTimer = stunTimerLength
-			$AnimatedSprite2D.animation = "stun getting up"
-			#playerState = States.PLAYER_CONTROL
+			stunTimer = stunTimerLength
+			playerState = States.PLAYER_CONTROL
 		
 		# Normal gravity and movement
 		velocity.y += gravity * delta
@@ -228,8 +229,10 @@ func _physics_process(delta):
 		$AnimatedSprite2D.play("ledge jump up")
 	
 	# Camera position code.
-	camera.position.x = position.x
+	camera.position.x = position.x - cameraOffsetx
 	camera.position.y = position.y - cameraOffsety
+	
+	print($AnimatedSprite2D.animation)
 	
 func die():
 	get_tree().change_scene_to_file("res://scenes/info_screen.tscn")
@@ -247,11 +250,3 @@ func _on_animated_sprite_2d_animation_finished():
 			position.y -= 32
 			playerState = States.PLAYER_CONTROL
 			movementState = MovementStates.NORMAL
-			
-		if $AnimatedSprite2D.animation == "stun getting up":
-			playerState = States.PLAYER_CONTROL
-
-
-func _on_animated_sprite_2d_animation_changed():
-	if $AnimatedSprite2D.animation == "stun getting up":
-		$AnimatedSprite2D.play("stun getting up")

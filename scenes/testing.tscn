@@ -55,7 +55,8 @@ texture = ExtResource("2_mm13a")
 5:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_mach0"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_pdo78")
 pattern_0 = SubResource("TileMapPattern_yytis")
 
@@ -68,7 +69,7 @@ position = Vector2(-285, 88)
 zoom = Vector2(0.75, 0.75)
 editor_draw_drag_margin = true
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." groups=["static"]]
 light_mask = 2
 tile_set = SubResource("TileSet_mach0")
 format = 2

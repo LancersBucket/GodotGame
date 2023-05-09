@@ -10,6 +10,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func _physics_process(delta):
+	pass
 
 func _on_area_2d_body_entered(body):
 	# If player is under falling spike, give the spike gravity
@@ -23,3 +26,4 @@ func _on_body_entered(body):
 		player.playerState = player.States.STUN
 		player.stunTimer = player.stunTimerLength
 		player.velocity = Vector2(0,0)
+		set_collision_mask_value(1,false)
