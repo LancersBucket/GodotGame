@@ -218,6 +218,9 @@ func _physics_process(delta):
 			stunTimer -= 1
 		# If stun timer is 0 reset stun timer
 		elif (stunTimer <= 0):
+			$"StunSFX".stop()
+			if (!$"ShuffleSFX".playing):
+					$"ShuffleSFX".play()
 			stunTimer = stunTimerLength
 			playerState = States.PLAYER_CONTROL
 		
