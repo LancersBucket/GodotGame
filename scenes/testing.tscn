@@ -90,3 +90,6 @@ position = Vector2(-288, 97)
 [node name="Spike3" parent="." instance=ExtResource("4_olnn3")]
 position = Vector2(-504, -8)
 rotation = 3.14159
+
+[node name="FallingObject2" parent="." instance=ExtResource("5_8hqfp")]
+position = Vector2(-488, -8)

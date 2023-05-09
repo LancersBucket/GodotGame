@@ -47,13 +47,13 @@ region = Rect2(58, 0, 29, 54)
 atlas = ExtResource("3_yk5he")
 region = Rect2(87, 0, 29, 54)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qeq3g"]
-atlas = ExtResource("4_lxjvs")
-region = Rect2(0, 0, 45, 85)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_prgeo"]
 atlas = ExtResource("4_lxjvs")
 region = Rect2(45, 0, 45, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeq3g"]
+atlas = ExtResource("4_lxjvs")
+region = Rect2(0, 0, 45, 85)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbg3k"]
 atlas = ExtResource("4_lxjvs")
@@ -202,10 +202,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qeq3g")
+"texture": SubResource("AtlasTexture_prgeo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_prgeo")
+"texture": SubResource("AtlasTexture_qeq3g")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kbg3k")
@@ -333,8 +333,9 @@ script = ExtResource("1_08dyy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -16)
 sprite_frames = SubResource("SpriteFrames_dpxjh")
-animation = &"stun"
-frame_progress = 0.0673756
+animation = &"ledge jump up"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
