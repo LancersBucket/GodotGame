@@ -33,16 +33,11 @@ func _physics_process(delta):
 
 func pick_new_state():
 	if (currentState == STATE.IDLE):
-		if (looking):
-			currentState = STATE.LOOK
-			looking = false
-			timer = 50
-		else:
-			currentState = STATE.WALK
-			direction *= -1
-			timer = 50
-			velocity.x = direction * SPEED
-			$AnimatedSprite2D.play("walk")
+		currentState = STATE.WALK
+		direction *= -1
+		timer = 50
+		velocity.x = direction * SPEED
+		$AnimatedSprite2D.play("walk")
 	elif (currentState == STATE.WALK):
 		currentState = STATE.IDLE
 		timer = 50
