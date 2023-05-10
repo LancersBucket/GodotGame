@@ -206,6 +206,7 @@ func _physics_process(delta):
 	elif (playerState == States.STUN):
 		# Checks if on floor and if is set velocity.x to 0 and start decreasing stun timer
 		if (is_on_floor()):
+			set_collision_layer_value(1,false)
 			if (stunTimer <= stunTimerLength-1):
 				$AnimatedSprite2D.animation = "stunUp"
 				if (!$"ShuffleSFX".playing):
@@ -249,6 +250,7 @@ func _on_animated_sprite_2d_animation_finished():
 		movementState = MovementStates.NORMAL
 		move_and_slide()
 	if $AnimatedSprite2D.animation == "stunUp":
+		set_collision_layer_value(1,true)
 		stunTimer = stunTimerLength
 		playerState = States.PLAYER_CONTROL
 		$AnimatedSprite2D.play("idle")
