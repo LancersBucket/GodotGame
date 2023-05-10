@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 [gd_scene load_steps=9 format=3 uid="uid://cq38oyms43uph"]
+=======
+[gd_scene load_steps=11 format=3 uid="uid://cq38oyms43uph"]
+>>>>>>> d555b3bfaf585a217febb4f5cd22f504be85484b
 
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="2_mm13a"]
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="3_dk37d"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="5_e78n0"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://dw784yi1pqidh" path="res://scenes/bigGuy.tscn" id="6_dkopp"]
+=======
+[ext_resource type="PackedScene" uid="uid://beplkjc26p2r2" path="res://scenes/bigGuy.tscn" id="6_dkopp"]
+>>>>>>> d555b3bfaf585a217febb4f5cd22f504be85484b
 [ext_resource type="PackedScene" uid="uid://bvxl5kg12hqco" path="res://scenes/projectile.tscn" id="6_oi3tk"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
@@ -68,6 +76,7 @@ zoom = Vector2(1.5, 1.5)
 editor_draw_drag_margin = true
 
 [node name="BigGuy" parent="." instance=ExtResource("6_dkopp")]
+visible = false
 position = Vector2(-54, 93)
 scale = Vector2(1.5, 1.5)
 
