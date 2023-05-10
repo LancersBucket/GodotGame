@@ -120,4 +120,4 @@ position = Vector2(-173, -25)
 position = Vector2(-303, 91)
 
 [node name="Falling Object Controller" parent="." instance=ExtResource("6_bdqbd")]
-position = Vector2(-591, -346)
+position = Vector2(-540, -346)
