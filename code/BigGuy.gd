@@ -7,8 +7,10 @@ enum STATE { IDLE, WALK, LOOK, NULL }
 const SPEED = 75.0
 
 var direction = -1
-var timerLength = 50
-var timer = timerLength
+var timerLength = 225
+var idleLength = 50 
+var walkContinue = 75
+var timer = idleLength
 var currentState = STATE.IDLE
 
 func _physics_process(delta):
@@ -26,6 +28,7 @@ func _physics_process(delta):
 			# Runs if equal to 1
 			if (randi_range(1,3) == 1):
 				currentState = STATE.LOOK
+				direction *= -1
 			else:
 				currentState = STATE.WALK
 				timer = timerLength
@@ -37,11 +40,11 @@ func _physics_process(delta):
 		if (timer <= 0):
 			# Runs if equal to 1
 			if (randi_range(1,3) == 1):
-				direction *= -1
-				currentState = STATE.LOOK
+				currentState = STATE.WALK
+				timer = walkContinue
 			else:
 				currentState = STATE.IDLE
-				timer = timerLength
+				timer = idleLength
 		
 		# Control
 		velocity.x = direction * SPEED
@@ -59,4 +62,4 @@ func _on_animated_sprite_2d_animation_finished():
 		$AnimatedSprite2D.play("idle")
 		await get_tree().create_timer(.5).timeout
 		currentState = STATE.WALK
-		timer = timerLength
+		timer = walkContinue
