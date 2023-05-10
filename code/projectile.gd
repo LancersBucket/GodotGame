@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 @onready var player = $"/root/Main/Player"
+var speed = .5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	move_and_collide(Vector2(0,0.5))
+	move_and_collide(Vector2(0,speed))
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
