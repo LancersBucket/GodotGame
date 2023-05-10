@@ -102,7 +102,6 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("11_flihs")
 
 [node name="TileMap" type="TileMap" parent="." groups=["static"]]
-visible = false
 light_mask = 2
 tile_set = SubResource("TileSet_mach0")
 format = 2

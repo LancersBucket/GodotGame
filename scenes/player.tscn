@@ -60,27 +60,27 @@ region = Rect2(134, 800, 67, 100)
 atlas = ExtResource("2_3b238")
 region = Rect2(201, 800, 67, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t4lyr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_js272"]
 atlas = ExtResource("2_3b238")
 region = Rect2(268, 300, 67, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c3roj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c4q2"]
 atlas = ExtResource("2_3b238")
 region = Rect2(0, 400, 67, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q3dys"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbsdj"]
 atlas = ExtResource("2_3b238")
 region = Rect2(67, 400, 67, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ua84"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogecj"]
 atlas = ExtResource("2_3b238")
 region = Rect2(134, 400, 67, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iu4g2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrpau"]
 atlas = ExtResource("2_3b238")
 region = Rect2(201, 400, 67, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ip23"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ucxc"]
 atlas = ExtResource("2_3b238")
 region = Rect2(268, 400, 67, 100)
 
@@ -230,22 +230,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t4lyr")
+"texture": SubResource("AtlasTexture_js272")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c3roj")
+"texture": SubResource("AtlasTexture_5c4q2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q3dys")
+"texture": SubResource("AtlasTexture_wbsdj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ua84")
+"texture": SubResource("AtlasTexture_ogecj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iu4g2")
+"texture": SubResource("AtlasTexture_mrpau")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4ip23")
+"texture": SubResource("AtlasTexture_6ucxc")
 }],
 "loop": false,
 "name": &"ledge jump up",
