@@ -88,7 +88,6 @@ func _physics_process(delta):
 				velocity.y = jumpSpeed
 				facing = -facing
 				$AnimatedSprite2D.flip_h = -min(0,facing)
-				$AnimatedSprite2D.animation = "up"
 				#randomizes jump sound
 				get_node("Jump"+str(randi_range(1,3))+"SFX").play()
 				
@@ -97,6 +96,7 @@ func _physics_process(delta):
 				wallJumpGrace = wallJumpGraceLength
 				slideSoundTimer = slideSoundTimerLength
 				$"SlidingSFX".stop()
+				
 			elif (facing == LEFT && Input.is_action_just_pressed("move_right") && wallJumpGrace < 0):
 				movementState = MovementStates.NORMAL
 				wallJumpGrace = wallJumpGraceLength
@@ -127,10 +127,15 @@ func _physics_process(delta):
 				movementState = MovementStates.NORMAL
 			if (is_on_wall_only()):
 				movementState = MovementStates.WALL_SLIDE
+			if velocity.y < 0:
+				$AnimatedSprite2D.animation = "up"
+			elif velocity.y > 0:
+				$AnimatedSprite2D.animation = "down"
 			
 		elif (movementState == MovementStates.WALL_GRAB):
 			velocity.y = 0
 			if (Input.is_action_pressed("move_up")):
+				$AnimatedSprite2D.animation = "wall grab"
 				get_node("Jump"+str(randi_range(1,3))+"SFX").play()
 				$Sight.set_deferred("disabled",true)
 				$Touch.set_deferred("disabled",true)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ip2yrlr7i2nq"
-path="res://.godot/imported/sdown32x50.png-76fd7de7ccf319bd47bae7e512e021b0.ctex"
+uid="uid://bwxhwl2suq3mg"
+path="res://.godot/imported/all anims-Sheet.png-a74b8b224539a422cbba82d487e2eb6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player/sdown32x50.png"
-dest_files=["res://.godot/imported/sdown32x50.png-76fd7de7ccf319bd47bae7e512e021b0.ctex"]
+source_file="res://art/player/all anims-Sheet.png"
+dest_files=["res://.godot/imported/all anims-Sheet.png-a74b8b224539a422cbba82d487e2eb6b.ctex"]
 
 [params]
 
