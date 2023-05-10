@@ -11,7 +11,7 @@ var timerLength = 225
 var idleLength = 50 
 var walkContinue = 75
 var timer = idleLength
-var currentState = STATE.IDLE
+var currentState = STATE.WALK
 
 func _physics_process(delta):
 	timer -= 1
@@ -26,7 +26,7 @@ func _physics_process(delta):
 		if (timer <= 0):
 			direction *= -1
 			# Runs if equal to 1
-			if (randi_range(1,3) == 1):
+			if (randi_range(1,4) == 1):
 				currentState = STATE.LOOK
 				direction *= -1
 			else:

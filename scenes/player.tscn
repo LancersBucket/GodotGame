@@ -333,9 +333,7 @@ script = ExtResource("1_08dyy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -16)
 sprite_frames = SubResource("SpriteFrames_dpxjh")
-animation = &"ledge jump up"
-frame = 5
-frame_progress = 1.0
+animation = &"wall grab"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)

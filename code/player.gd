@@ -59,6 +59,7 @@ func _physics_process(delta):
 		# Wall grab check
 		if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
 			$"SlidingSFX".stop()
+			$AnimatedSprite2D.animation = "wall grab"
 			movementState = MovementStates.WALL_GRAB
 			$Sight.set_deferred("disabled",true)
 			$Touch.set_deferred("disabled",true)

@@ -3,8 +3,8 @@ extends Node2D
 @export var fallingSpeedMin = 1.0
 @export var fallingSpeedMax = 5.0
 # In seconds
-@export var spawnDelayMin = 1.0
-@export var spawnDelayMax = 2.0
+@export var spawnDelayMin = 4.0
+@export var spawnDelayMax = 9.0
 
 # Initilizes array of objects to be generated [preload("..."),preload("...")]
 var objects = [
