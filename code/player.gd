@@ -244,9 +244,11 @@ func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "ledge jump up":
 		$AnimatedSprite2D.play("idle")
 		position.x += 16*facing
-		position.y -= 32
+		position.y -= 30
 		playerState = States.PLAYER_CONTROL
 		movementState = MovementStates.NORMAL
+		move_and_slide()
 	if $AnimatedSprite2D.animation == "stunUp":
 		stunTimer = stunTimerLength
 		playerState = States.PLAYER_CONTROL
+		$AnimatedSprite2D.play("idle")

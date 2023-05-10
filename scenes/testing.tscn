@@ -86,17 +86,17 @@ scale = Vector2(1.5, 1.5)
 
 [node name="Tileset" type="Node" parent="."]
 
-[node name="ledge" type="Sprite2D" parent="Tileset"]
+[node name="ledge" type="Sprite2D" parent="Tileset" groups=["static"]]
 position = Vector2(-120, -81)
 scale = Vector2(2.634, 2.634)
 texture = ExtResource("4_006m5")
 
-[node name="BgFront" type="Sprite2D" parent="Tileset"]
+[node name="BgFront" type="Sprite2D" parent="Tileset" groups=["static"]]
 position = Vector2(-105.769, -87.25)
 scale = Vector2(2.903, 2.903)
 texture = ExtResource("3_6kaho")
 
-[node name="Ahat" type="Sprite2D" parent="Tileset"]
+[node name="Ahat" type="Sprite2D" parent="Tileset" groups=["static"]]
 position = Vector2(-19, -136)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("11_flihs")
