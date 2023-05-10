@@ -4,8 +4,6 @@ extends CharacterBody2D
 
 @export var walkSpeed = 128
 @export var jumpSpeed = -350.0
-@export var cameraOffsety = 30
-@export var cameraOffsetx = 0
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB, WALL_SLIDE}
@@ -175,7 +173,7 @@ func _physics_process(delta):
 		
 		
 		# Clamps player position to stay on screen
-		position.x = maxf(position.x, camera.position.x-(screenSize.x/2)-24)
+		position.x = clamp(position.x, camera.position.x - 420, camera.position.x + 420)
 		
 		# Animation
 		if (movementState == MovementStates.NORMAL):
@@ -239,10 +237,6 @@ func _physics_process(delta):
 		
 	elif (playerState == States.CLIMB):
 		$AnimatedSprite2D.play("ledge jump up")
-	
-	# Camera position code.
-	camera.position.x = position.x - cameraOffsetx
-	camera.position.y = position.y - cameraOffsety
 	
 func die():
 	get_tree().change_scene_to_file("res://scenes/info_screen.tscn")

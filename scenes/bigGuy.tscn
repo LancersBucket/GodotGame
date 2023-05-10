@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://beplkjc26p2r2"]
+[gd_scene load_steps=26 format=3 uid="uid://dw784yi1pqidh"]
 
 [ext_resource type="Script" path="res://code/BigGuy.gd" id="1_snbyc"]
 [ext_resource type="Texture2D" uid="uid://dib1i4adqx77e" path="res://art/big guy/wipbigguy.png" id="2_r0ojl"]

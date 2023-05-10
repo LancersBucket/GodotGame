@@ -12,7 +12,6 @@ func _process(delta):
 	move_and_collide(Vector2(0,0.5))
 
 func _on_area_2d_body_entered(body):
-	print("Collide")
 	if body.is_in_group("Player"):
 		player.playerState = player.States.STUN
 		player.stunTimer = player.stunTimerLength
