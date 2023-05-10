@@ -236,16 +236,11 @@ func die():
 func _on_animated_sprite_2d_animation_finished():
 	#climb playerstate
 	if $AnimatedSprite2D.animation == "ledge jump up":
-		if (facing == RIGHT):
-			position.x += 16*facing
-			position.y -= 32
-			playerState = States.PLAYER_CONTROL
-			movementState = MovementStates.NORMAL
-		elif (facing == LEFT):
-			position.x += 16*facing
-			position.y -= 32
-			playerState = States.PLAYER_CONTROL
-			movementState = MovementStates.NORMAL
+		position.x += 16*facing
+		position.y -= 32
+		playerState = States.PLAYER_CONTROL
+		movementState = MovementStates.NORMAL
+		$AnimatedSprite2D.play("idle")
 	if $AnimatedSprite2D.animation == "stunUp":
 		stunTimer = stunTimerLength
 		playerState = States.PLAYER_CONTROL
