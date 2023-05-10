@@ -114,10 +114,10 @@ layer_0/tile_data = PackedInt32Array(524272, 0, 0, 458753, 0, 0, 458754, 0, 0, 4
 position = Vector2(-250, 64)
 
 [node name="Projectile" parent="." instance=ExtResource("6_oi3tk")]
-position = Vector2(-173, -25)
+position = Vector2(-178, -144)
 
 [node name="Player" parent="." instance=ExtResource("5_e78n0")]
-position = Vector2(-303, 91)
+position = Vector2(-306, -128)
 
 [node name="Falling Object Controller" parent="." instance=ExtResource("6_bdqbd")]
 position = Vector2(-540, -346)
