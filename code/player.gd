@@ -58,12 +58,13 @@ func _physics_process(delta):
 		
 		# Wall grab check
 		if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
-			$"SlidingSFX".stop()
-			$AnimatedSprite2D.animation = "wall grab"
-			movementState = MovementStates.WALL_GRAB
-			$Sight.set_deferred("disabled",true)
-			$Touch.set_deferred("disabled",true)
-			velocity = Vector2(0,0)
+			### THIS LINE NEEDS TO BE UPDATED WHEN ADDING MORE PROJECTILES ###
+			# (.name relates to the actual node name, not the scene name)
+			if !$Touch.get_collider().name == "Projectile":
+				$"SlidingSFX".stop()
+				$AnimatedSprite2D.animation = "wall grab"
+				movementState = MovementStates.WALL_GRAB
+				velocity = Vector2(0,0)
 		
 		
 		#Condition checks for wall slide, would not work in condition below
