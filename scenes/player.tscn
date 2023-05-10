@@ -383,7 +383,7 @@ pitch_scale = 0.93
 
 [node name="ScamperingSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_w0hrp")
-volume_db = 8.0
+volume_db = -5.0
 
 [node name="StunSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_do6jj")
