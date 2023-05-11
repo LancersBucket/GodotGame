@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @onready var camera = $"/root/Main/Camera"
 
-@export var walkSpeed = 128
-@export var jumpSpeed = -350.0
+@export var walkSpeed = 200
+@export var jumpSpeed = -450.0
 @export var cameraOffsetY = 120
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
