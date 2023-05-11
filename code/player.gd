@@ -68,6 +68,12 @@ func _physics_process(delta):
 				$AnimatedSprite2D.animation = "wall grab"
 				movementState = MovementStates.WALL_GRAB
 				velocity = Vector2(0,0)
+			elif ($Touch.get_collider().name == "Projectile"):
+				if (!$Touch.get_collider().falling):
+					$"SlidingSFX".stop()
+					$AnimatedSprite2D.animation = "wall grab"
+					movementState = MovementStates.WALL_GRAB
+					velocity = Vector2(0,0)
 		
 		
 		#Condition checks for wall slide, would not work in condition below
