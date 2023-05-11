@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @export var walkSpeed = 128
 @export var jumpSpeed = -350.0
+@export var cameraOffsetY = 120
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB, WALL_SLIDE}
@@ -33,8 +34,9 @@ func _ready():
 	
 func _physics_process(delta):
 	#Camera vertical follow
-	camera.position.y = position.y
-	$"../Bg".position.y = position.y
+	camera.position.y = position.y - cameraOffsetY
+	$"/root/Main/Falling Object Controller".position.y = position.y - 280 - cameraOffsetY
+	$"/root/Main/Bg".position.y = position.y
 	
 	#Pause Menu
 	if Input.is_action_just_pressed("menu"):
@@ -69,6 +71,12 @@ func _physics_process(delta):
 				$AnimatedSprite2D.animation = "wall grab"
 				movementState = MovementStates.WALL_GRAB
 				velocity = Vector2(0,0)
+			elif ($Touch.get_collider().name == "Projectile"):
+				if (!$Touch.get_collider().falling):
+					$"SlidingSFX".stop()
+					$AnimatedSprite2D.animation = "wall grab"
+					movementState = MovementStates.WALL_GRAB
+					velocity = Vector2(0,0)
 		
 		
 		#Condition checks for wall slide, would not work in condition below

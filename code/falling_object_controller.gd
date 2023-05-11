@@ -29,12 +29,13 @@ func _on_timer_timeout():
 	spawn_location.progress_ratio = randf()
 	
 	# Set the falling's position to a random location
-	falling.position = spawn_location.position
+	falling.position = position + spawn_location.position
+	falling.position.y = position.y
 	
 	# Set a random falling speed
 	falling.speed = randf_range(fallingSpeedMin, fallingSpeedMax)
 	
 	# Spawn the falling by adding it to the main scene
-	add_child(falling)
+	add_sibling(falling)
 	
 	$SpawnTimer.wait_time = randf_range(spawnDelayMin, spawnDelayMax)
