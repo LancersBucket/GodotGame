@@ -6,6 +6,8 @@ extends Node2D
 @export var spawnDelayMin = 4.0
 @export var spawnDelayMax = 9.0
 
+@export var DespawnTimer = 3.0
+
 # Initilizes array of objects to be generated [preload("..."),preload("...")]
 var objects = [
 	### For every object you want to add you must use preload("filePath") or else it won't work ###
