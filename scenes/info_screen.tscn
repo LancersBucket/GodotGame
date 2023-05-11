@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyore245ejqw6"]
+[gd_scene load_steps=3 format=3 uid="uid://788m6aegta6d"]
 
 [ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="1_24vey"]
-[ext_resource type="Script" path="res://code/info_screen.gd" id="1_uh2md"]
+
+[sub_resource type="GDScript" id="GDScript_2teu6"]
+script/source = "extends Control
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	await get_tree().create_timer(2).timeout
+	get_tree().change_scene_to_file(\"res://scenes/main.tscn\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="InfoScreen" type="Control"]
 layout_mode = 3
@@ -10,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_uh2md")
+script = SubResource("GDScript_2teu6")
 
 [node name="World" type="Label" parent="."]
 layout_mode = 0
