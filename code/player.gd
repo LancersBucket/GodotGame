@@ -34,6 +34,7 @@ func _ready():
 func _physics_process(delta):
 	#Camera vertical follow
 	camera.position.y = position.y
+	$"../Bg".position.y = position.y
 	
 	#Pause Menu
 	if Input.is_action_just_pressed("menu"):
