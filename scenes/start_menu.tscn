@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5yhbrs4yohp4"]
+[gd_scene load_steps=5 format=3 uid="uid://c5yhbrs4yohp4"]
 
 [ext_resource type="Script" path="res://code/StartMenu.gd" id="1_jo5fh"]
+[ext_resource type="Texture2D" uid="uid://dwcyk6h5b3qjk" path="res://art/Background/BG.png" id="2_w8uxa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g6xl3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xucfy"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -11,14 +16,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jo5fh")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+texture = ExtResource("2_w8uxa")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -29,30 +34,37 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(512, 384)
+custom_minimum_size = Vector2(512, 440)
 layout_mode = 2
-alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "REALLY COOL GAME"
+theme_override_font_sizes/font_size = 75
+text = "The Rat and the Hat"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 alignment = 1
 
-[node name="Start" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
+alignment = 2
+
+[node name="Start" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g6xl3")
 text = "Start"
 
-[node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xucfy")
 text = "Quit"
