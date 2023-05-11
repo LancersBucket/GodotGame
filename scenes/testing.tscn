@@ -78,8 +78,8 @@ offset = Vector2(0, -60)
 metadata/_edit_lock_ = true
 
 [node name="BigGuy" parent="." instance=ExtResource("6_dkopp")]
-position = Vector2(-144, -384)
-scale = Vector2(5, 5)
+position = Vector2(-71, 75)
+scale = Vector2(1.5, 1.5)
 
 [node name="Tileset" type="Node" parent="."]
 
