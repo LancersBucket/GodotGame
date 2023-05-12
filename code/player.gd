@@ -33,10 +33,6 @@ func _ready():
 	screenSize = get_viewport_rect().size
 	
 func _physics_process(delta):
-	#Camera vertical follow
-	camera.position.y = position.y - cameraOffsetY
-	
-	$"/root/Main/Bg".position.y = position.y
 	
 	#Pause Menu
 	if Input.is_action_just_pressed("menu"):
