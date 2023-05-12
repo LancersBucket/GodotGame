@@ -3,9 +3,9 @@ extends StaticBody2D
 @onready var player = $"/root/Main/Player"
 
 @export var fadeOutTime = 30.0
-# 0 is reguler, 1 is fall and regenerate
-@export_range(0,1,1) var mode = 0
 @export var fallingSpeed = .5
+# 0 is reguler, 1 is fall and regenerate
+@export var mode = true
 #@export var respawnDelayTime = 0
 
 var falling = true
@@ -21,9 +21,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (falling):
-		# Moves the object
-		var temp = move_and_collide(Vector2(0,fallingSpeed))
 	if (delete):
 		# If in delete mode, start fading to invisible
 		deleteFade -= 1
@@ -78,3 +75,8 @@ func _on_area_2d_body_entered(body):
 
 func _on_despawn_timer_timeout():
 	delete = true
+
+func _physics_process(delta):
+	if (falling):
+		# Moves the object
+		var temp = move_and_collide(Vector2(0,fallingSpeed))

@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cy0a8skx8x8xl"]
+[gd_scene load_steps=15 format=3 uid="uid://cy0a8skx8x8xl"]
 
 [ext_resource type="Texture2D" uid="uid://dwcyk6h5b3qjk" path="res://art/Background/BG.png" id="1_6whhv"]
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="2_mm13a"]
 [ext_resource type="Texture2D" uid="uid://uaeb42naha64" path="res://art/Background/bgBase2.png" id="3_6kaho"]
-[ext_resource type="PackedScene" uid="uid://cc4b3ggia1t3j" path="res://scenes/HUD.tscn" id="3_dk37d"]
 [ext_resource type="Texture2D" uid="uid://i56b5jjyn0ym" path="res://art/Background/shelf2ex.png" id="4_006m5"]
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="5_e78n0"]
 [ext_resource type="PackedScene" uid="uid://dw784yi1pqidh" path="res://scenes/bigGuy.tscn" id="6_dkopp"]
@@ -82,24 +81,24 @@ metadata/_edit_lock_ = true
 position = Vector2(-71, 75)
 scale = Vector2(1.5, 1.5)
 
-[node name="Tileset" type="Node" parent="."]
+[node name="Tile Map Coverup" type="Node" parent="."]
 
-[node name="ledge" type="Sprite2D" parent="Tileset" groups=["static"]]
+[node name="ledge" type="Sprite2D" parent="Tile Map Coverup" groups=["static"]]
 position = Vector2(-120, -81)
 scale = Vector2(2.634, 2.634)
 texture = ExtResource("4_006m5")
 
-[node name="ledge2" type="Sprite2D" parent="Tileset" groups=["static"]]
+[node name="ledge2" type="Sprite2D" parent="Tile Map Coverup" groups=["static"]]
 position = Vector2(-120, -81)
 scale = Vector2(2.634, 2.634)
 texture = ExtResource("4_006m5")
 
-[node name="BgFront" type="Sprite2D" parent="Tileset" groups=["static"]]
+[node name="BgFront" type="Sprite2D" parent="Tile Map Coverup" groups=["static"]]
 position = Vector2(-105.769, -87.25)
 scale = Vector2(2.903, 2.903)
 texture = ExtResource("3_6kaho")
 
-[node name="Ahat" type="Sprite2D" parent="Tileset" groups=["static"]]
+[node name="Ahat" type="Sprite2D" parent="Tile Map Coverup" groups=["static"]]
 position = Vector2(-19, -136)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("11_flihs")
