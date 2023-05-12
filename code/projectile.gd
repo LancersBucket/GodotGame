@@ -21,9 +21,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if (falling):
-		# Moves the object
-		var temp = move_and_collide(Vector2(0,fallingSpeed))
 	if (delete):
 		# If in delete mode, start fading to invisible
 		deleteFade -= 1
@@ -78,3 +75,8 @@ func _on_area_2d_body_entered(body):
 
 func _on_despawn_timer_timeout():
 	delete = true
+
+func _physics_process(delta):
+	if (falling):
+		# Moves the object
+		var temp = move_and_collide(Vector2(0,fallingSpeed))
