@@ -35,7 +35,7 @@ func _ready():
 func _physics_process(delta):
 	#Camera vertical follow
 	camera.position.y = position.y - cameraOffsetY
-	$"/root/Main/Falling Object Controller".position.y = position.y - 280 - cameraOffsetY
+	
 	$"/root/Main/Bg".position.y = position.y
 	
 	#Pause Menu
