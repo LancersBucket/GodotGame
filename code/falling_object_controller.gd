@@ -35,7 +35,7 @@ func _on_timer_timeout():
 	falling.position.y = position.y
 	
 	# Set a random falling speed
-	falling.speed = randf_range(fallingSpeedMin, fallingSpeedMax)
+	falling.fallingSpeed = randf_range(fallingSpeedMin, fallingSpeedMax)
 	
 	# Spawn the falling by adding it to the main scene
 	add_sibling(falling)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctyltek64paph"]
+[gd_scene load_steps=15 format=3 uid="uid://ctyltek64paph"]
 
 [ext_resource type="Texture2D" uid="uid://dwcyk6h5b3qjk" path="res://art/Background/BG.png" id="1_6whhv"]
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="2_mm13a"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ctjl5c6tui2ke" path="res://scenes/player.tscn" id="5_e78n0"]
 [ext_resource type="PackedScene" uid="uid://ddcyqs8qgixpb" path="res://scenes/falling_object_controller.tscn" id="6_bdqbd"]
 [ext_resource type="PackedScene" uid="uid://dw784yi1pqidh" path="res://scenes/bigGuy.tscn" id="6_dkopp"]
+[ext_resource type="PackedScene" uid="uid://bvxl5kg12hqco" path="res://scenes/projectile.tscn" id="11_083y5"]
 [ext_resource type="Texture2D" uid="uid://bvbsx7q8s0gg6" path="res://art/Background/ahat.png" id="11_flihs"]
 [ext_resource type="PackedScene" uid="uid://dfxmo6gab6rnw" path="res://scenes/pause_menu.tscn" id="11_ujrck"]
 
@@ -124,3 +125,7 @@ editor_draw_drag_margin = true
 [node name="PauseMenu" parent="Camera" instance=ExtResource("11_ujrck")]
 
 [node name="HUD" parent="Camera" instance=ExtResource("3_dk37d")]
+
+[node name="Projectile" parent="." instance=ExtResource("11_083y5")]
+position = Vector2(-410, -20)
+mode = 1
