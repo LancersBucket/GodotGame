@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfxmo6gab6rnw"]
+[gd_scene load_steps=11 format=3 uid="uid://dfxmo6gab6rnw"]
 
 [ext_resource type="Script" path="res://code/pause_menu.gd" id="2_xt770"]
+[ext_resource type="AudioStream" uid="uid://biybha08jtays" path="res://audio/beep.wav" id="3_li7bh"]
 [ext_resource type="Shader" path="res://code/blur.gdshader" id="3_t1h36"]
+[ext_resource type="AudioStream" uid="uid://bixdq7hbj8jn3" path="res://audio/beep2.wav" id="4_p6yji"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dfosi"]
 shader = ExtResource("3_t1h36")
@@ -192,3 +194,11 @@ autoplay = "Unpause"
 libraries = {
 "": SubResource("AnimationLibrary_0ufc2")
 }
+
+[node name="BeepSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_li7bh")
+volume_db = -8.771
+
+[node name="Beep2SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p6yji")
+volume_db = -13.783
