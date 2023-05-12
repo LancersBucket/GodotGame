@@ -43,7 +43,10 @@ func _process(delta):
 			falling = true
 			delete = false
 			deleteFade = fadeOutTime
-			
+	if (player.playerState == player.States.PLAYER_CONTROL):
+		print("enabled")
+		set_collision_layer_value(3,true)
+		set_collision_mask_value(3,true)
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
@@ -52,11 +55,17 @@ func _on_area_2d_body_entered(body):
 			player.stunTimer = player.stunTimerLength
 			set_collision_layer_value(3,false)
 			set_collision_mask_value(3,false)
+			set_collision_layer_value(1,false)
+			set_collision_mask_value(1,false)
+			print("disabled")
 		if (player.playerState == player.States.PLAYER_CONTROL):
+			print("enabled")
 			set_collision_layer_value(3,true)
 			set_collision_mask_value(3,true)
 	if body.is_in_group("static"):
 		falling = false
+		set_collision_layer_value(1,true)
+		set_collision_mask_value(1,true)
 		$DespawnTimer.wait_time = $"/root/Main/Falling Object Controller".DespawnTimer
 		$DespawnTimer.start()
 
