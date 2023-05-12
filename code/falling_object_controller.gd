@@ -11,7 +11,9 @@ extends Node2D
 # Initilizes array of objects to be generated [preload("..."),preload("...")]
 var objects = [
 	### For every object you want to add you must use preload("filePath") or else it won't work ###
-	preload("res://scenes/projectile.tscn")    # Rememeber to add the "," if adding more
+	preload("res://scenes/Projectiles/projectile.tscn"), 
+	preload("res://scenes/Projectiles/needle.tscn"),
+	preload("res://scenes/Projectiles/button.tscn")  # Rememeber to add the "," if adding more
 ]
 
 # Called when the node enters the scene tree for the first time.

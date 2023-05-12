@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://db781nyyd6v52"]
+
+[ext_resource type="Script" path="res://code/projectile.gd" id="1_ogah5"]
+[ext_resource type="Texture2D" uid="uid://ck1iscih5bqxr" path="res://art/Falling Objects/ButtonDown.png" id="2_8wqic"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufswo"]
+size = Vector2(6.28572, 1.28572)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2di7t"]
+size = Vector2(6, 0.314279)
+
+[node name="Projectile" type="StaticBody2D" groups=["falling"]]
+scale = Vector2(7, 7)
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("1_ogah5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.921569, 0.403922, 0.490196, 1)
+scale = Vector2(0.113056, 0.113056)
+texture = ExtResource("2_8wqic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.36239e-07, 0.0714286)
+scale = Vector2(0.999998, 0.999998)
+shape = SubResource("RectangleShape2D_ufswo")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.57527e-07, 0.571428)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_2di7t")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
