@@ -3,9 +3,9 @@ extends StaticBody2D
 @onready var player = $"/root/Main/Player"
 
 @export var fadeOutTime = 30.0
-# 0 is reguler, 1 is fall and regenerate
-@export_range(0,1,1) var mode = 0
 @export var fallingSpeed = .5
+# 0 is reguler, 1 is fall and regenerate
+@export var mode = true
 #@export var respawnDelayTime = 0
 
 var falling = true

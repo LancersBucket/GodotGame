@@ -122,30 +122,24 @@ editor_draw_drag_margin = true
 
 [node name="Projectile" parent="." instance=ExtResource("11_083y5")]
 position = Vector2(-171, -52)
-mode = 1
 fallingSpeed = 2.0
 
 [node name="Projectile2" parent="." instance=ExtResource("11_083y5")]
 position = Vector2(43, -246)
-mode = 1
 fallingSpeed = 2.0
 
 [node name="Projectile5" parent="." instance=ExtResource("12_0mpkm")]
 position = Vector2(-88, -439)
-mode = 1
 fallingSpeed = 3.0
 
 [node name="Projectile3" parent="." instance=ExtResource("13_p5bt5")]
 position = Vector2(-385, -49)
-mode = 1
 fallingSpeed = 1.0
 
 [node name="Projectile4" parent="." instance=ExtResource("13_p5bt5")]
 position = Vector2(-261, -81)
-mode = 1
 fallingSpeed = 1.0
 
 [node name="Projectile6" parent="." instance=ExtResource("13_p5bt5")]
 position = Vector2(40.9999, -377)
-mode = 1
 fallingSpeed = 1.0
