@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db6m65k0k4efu"
-path="res://.godot/imported/0all.png-904efc7a2faf2ac665b50648632fe3c3.ctex"
+uid="uid://mga812qqyy2x"
+path="res://.godot/imported/all big-Sheet22.png-543d1aaccaeaf15c5189f4d1e82ac7a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player/0all.png"
-dest_files=["res://.godot/imported/0all.png-904efc7a2faf2ac665b50648632fe3c3.ctex"]
+source_file="res://art/big guy/all big-Sheet22.png"
+dest_files=["res://.godot/imported/all big-Sheet22.png-543d1aaccaeaf15c5189f4d1e82ac7a1.ctex"]
 
 [params]
 
