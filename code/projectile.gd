@@ -50,6 +50,11 @@ func _on_area_2d_body_entered(body):
 		if (falling):
 			player.playerState = player.States.STUN
 			player.stunTimer = player.stunTimerLength
+			set_collision_layer_value(3,false)
+			set_collision_mask_value(3,false)
+		if (player.playerState == player.States.PLAYER_CONTROL):
+			set_collision_layer_value(3,true)
+			set_collision_mask_value(3,true)
 	if body.is_in_group("static"):
 		falling = false
 		$DespawnTimer.wait_time = $"/root/Main/Falling Object Controller".DespawnTimer

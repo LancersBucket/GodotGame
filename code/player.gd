@@ -264,6 +264,9 @@ func _on_animated_sprite_2d_animation_finished():
 		move_and_slide()
 	if $AnimatedSprite2D.animation == "stunUp":
 		set_collision_layer_value(1,true)
+		set_collision_layer_value(3,true)
+		set_collision_mask_value(3,true)
 		stunTimer = stunTimerLength
 		playerState = States.PLAYER_CONTROL
 		$AnimatedSprite2D.play("idle")
+		
