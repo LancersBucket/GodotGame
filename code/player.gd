@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var walkSpeed = 200
 @export var jumpSpeed = -425.0
+@export var endCreditScene = 99
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB, WALL_SLIDE}
@@ -240,6 +241,8 @@ func _physics_process(delta):
 		
 	elif (playerState == States.CLIMB):
 		$AnimatedSprite2D.play("ledge jump up")
+	if (endCreditScene == $/root/Main/Player/Camera2D.cur_screen.x):
+		get_tree().change_scene_to_file("res://scenes/credits.tscn")
 	
 func die():
 	get_tree().change_scene_to_file("res://scenes/info_screen.tscn")

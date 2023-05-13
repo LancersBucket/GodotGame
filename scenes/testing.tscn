@@ -401,6 +401,7 @@ screen = 5
 
 [node name="Player" parent="." instance=ExtResource("5_e78n0")]
 position = Vector2(80, -208)
+endCreditScene = 7
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(-232, 304)
