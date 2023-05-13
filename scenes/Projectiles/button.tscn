@@ -15,8 +15,6 @@ collision_layer = 12
 collision_mask = 12
 script = ExtResource("1_ogah5")
 
-[node name="Projectile" type="Node" parent="."]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.921569, 0.403922, 0.490196, 1)
 scale = Vector2(0.113056, 0.113056)
