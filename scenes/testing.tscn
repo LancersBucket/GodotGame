@@ -287,6 +287,7 @@ scale = Vector2(2.634, 2.634)
 texture = ExtResource("4_006m5")
 
 [node name="BgFront" type="Sprite2D" parent="Tile Map Coverup" groups=["static"]]
+visible = false
 position = Vector2(430.231, -247.25)
 scale = Vector2(2.903, 2.903)
 texture = ExtResource("3_6kaho")
@@ -317,6 +318,87 @@ scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_3u28k")
 format = 2
 
+[node name="Projectiles" type="Node" parent="."]
+
+[node name="Projectile" parent="Projectiles" instance=ExtResource("11_083y5")]
+position = Vector2(1424, -584)
+fallingSpeed = 2.0
+screen = 1
+
+[node name="Projectile2" parent="Projectiles" instance=ExtResource("12_18iai")]
+position = Vector2(1888, -576)
+fallingSpeed = 1.0
+despawnDelay = 0.1
+screen = 2
+
+[node name="Projectile3" parent="Projectiles" instance=ExtResource("12_18iai")]
+position = Vector2(2176, -575)
+fallingSpeed = 1.0
+despawnDelay = 0.1
+screen = 2
+
+[node name="Projectile4" parent="Projectiles" instance=ExtResource("13_jknts")]
+position = Vector2(2775, -768)
+fallingSpeed = 3.0
+despawnDelay = 0.5
+screen = 3
+
+[node name="Projectile5" parent="Projectiles" instance=ExtResource("13_jknts")]
+position = Vector2(3088, -768)
+fallingSpeed = 3.0
+screen = 3
+
+[node name="Projectile6" parent="Projectiles" instance=ExtResource("13_jknts")]
+position = Vector2(3255, -768)
+fallingSpeed = 3.0
+screen = 3
+
+[node name="Projectile7" parent="Projectiles" instance=ExtResource("13_jknts")]
+position = Vector2(3792, -768)
+fallingSpeed = 3.0
+despawnDelay = 0.1
+screen = 4
+
+[node name="Projectile8" parent="Projectiles" instance=ExtResource("11_083y5")]
+position = Vector2(4024, -612)
+fallingSpeed = 2.0
+screen = 4
+
+[node name="Projectile10" parent="Projectiles" instance=ExtResource("12_18iai")]
+position = Vector2(4160, -576)
+fallingSpeed = 1.0
+despawnDelay = 0.01
+respawnDelayTime = 2.0
+screen = 4
+
+[node name="Projectile9" parent="Projectiles" instance=ExtResource("13_jknts")]
+position = Vector2(4472, -768)
+fadeOutTime = 10.0
+fallingSpeed = 3.0
+despawnDelay = 0.01
+screen = 5
+
+[node name="Projectile11" parent="Projectiles" instance=ExtResource("13_jknts")]
+position = Vector2(4664, -800)
+fadeOutTime = 10.0
+fallingSpeed = 5.0
+despawnDelay = 0.01
+screen = 5
+
+[node name="Projectile12" parent="Projectiles" instance=ExtResource("13_jknts")]
+position = Vector2(4857, -781)
+fadeOutTime = 10.0
+fallingSpeed = 7.0
+despawnDelay = 0.01
+screen = 5
+
+[node name="Projectile13" parent="Projectiles" instance=ExtResource("13_jknts")]
+position = Vector2(5048, -952)
+fadeOutTime = 10.0
+fallingSpeed = 11.0
+despawnDelay = 0.01
+screen = 5
+
 [node name="Player" parent="." instance=ExtResource("5_e78n0")]
 position = Vector2(80, -208)
 
@@ -324,82 +406,3 @@ position = Vector2(80, -208)
 position = Vector2(-232, 304)
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("8_5li1v")
-
-[node name="Projectile" parent="." instance=ExtResource("11_083y5")]
-position = Vector2(1424, -584)
-fallingSpeed = 2.0
-screen = 1
-
-[node name="Projectile2" parent="." instance=ExtResource("12_18iai")]
-position = Vector2(1888, -576)
-fallingSpeed = 1.0
-despawnDelay = 0.1
-screen = 2
-
-[node name="Projectile3" parent="." instance=ExtResource("12_18iai")]
-position = Vector2(2176, -575)
-fallingSpeed = 1.0
-despawnDelay = 0.1
-screen = 2
-
-[node name="Projectile4" parent="." instance=ExtResource("13_jknts")]
-position = Vector2(2775, -768)
-fallingSpeed = 3.0
-despawnDelay = 0.5
-screen = 3
-
-[node name="Projectile5" parent="." instance=ExtResource("13_jknts")]
-position = Vector2(3088, -768)
-fallingSpeed = 3.0
-screen = 3
-
-[node name="Projectile6" parent="." instance=ExtResource("13_jknts")]
-position = Vector2(3255, -768)
-fallingSpeed = 3.0
-screen = 3
-
-[node name="Projectile7" parent="." instance=ExtResource("13_jknts")]
-position = Vector2(3792, -768)
-fallingSpeed = 3.0
-despawnDelay = 0.1
-screen = 4
-
-[node name="Projectile8" parent="." instance=ExtResource("11_083y5")]
-position = Vector2(4024, -612)
-fallingSpeed = 2.0
-screen = 4
-
-[node name="Projectile10" parent="." instance=ExtResource("12_18iai")]
-position = Vector2(4160, -576)
-fallingSpeed = 1.0
-despawnDelay = 0.01
-respawnDelayTime = 2.0
-screen = 4
-
-[node name="Projectile9" parent="." instance=ExtResource("13_jknts")]
-position = Vector2(4472, -768)
-fadeOutTime = 10.0
-fallingSpeed = 3.0
-despawnDelay = 0.01
-screen = 5
-
-[node name="Projectile11" parent="." instance=ExtResource("13_jknts")]
-position = Vector2(4664, -800)
-fadeOutTime = 10.0
-fallingSpeed = 5.0
-despawnDelay = 0.01
-screen = 5
-
-[node name="Projectile12" parent="." instance=ExtResource("13_jknts")]
-position = Vector2(4857, -781)
-fadeOutTime = 10.0
-fallingSpeed = 7.0
-despawnDelay = 0.01
-screen = 5
-
-[node name="Projectile13" parent="." instance=ExtResource("13_jknts")]
-position = Vector2(5048, -952)
-fadeOutTime = 10.0
-fallingSpeed = 11.0
-despawnDelay = 0.01
-screen = 5
