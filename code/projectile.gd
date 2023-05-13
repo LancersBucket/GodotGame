@@ -4,6 +4,7 @@ extends StaticBody2D
 
 @export var fadeOutTime = 30.0
 @export var fallingSpeed = .5
+@export var despawnDelay = 3
 # 0 is reguler, 1 is fall and regenerate
 @export var mode = true
 #@export var respawnDelayTime = 0
@@ -18,6 +19,7 @@ var previousSpeed
 func _ready():
 	previousPos = position
 	previousSpeed = fallingSpeed
+	$DespawnTimer.wait_time = despawnDelay
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
