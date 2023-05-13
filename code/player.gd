@@ -31,6 +31,9 @@ func _ready():
 	screenSize = get_viewport_rect().size
 	
 func _physics_process(delta):
+	if (position.y < -470):
+		velocity.y = 0
+		position.y = clamp(position.y, -470, 0)
 	
 	#Pause Menu
 	if Input.is_action_just_pressed("menu"):
@@ -74,7 +77,7 @@ func _physics_process(delta):
 		
 		
 		#Condition checks for wall slide, would not work in condition below
-		if (is_on_wall_only() && velocity.y > 0 && movementState != MovementStates.WALL_GRAB && $Sight.is_colliding() and $Touch.is_colliding()):
+		if (is_on_wall_only() && movementState != MovementStates.WALL_GRAB && $Sight.is_colliding() and $Touch.is_colliding()):
 				movementState = MovementStates.WALL_SLIDE
 			
 		# Movement
