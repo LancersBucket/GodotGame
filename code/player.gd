@@ -180,7 +180,6 @@ func _physics_process(delta):
 		
 		move_and_slide()
 		
-		
 		# Animation
 		if (movementState == MovementStates.NORMAL):
 			if velocity.y < 0:
