@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@onready var camera = $"/root/Main/Camera"
-
 @export var walkSpeed = 200
 @export var jumpSpeed = -450.0
 @export var cameraOffsetY = 120
@@ -143,7 +141,8 @@ func _physics_process(delta):
 			
 		elif (movementState == MovementStates.WALL_GRAB):
 			velocity.y = 0
-			if (Input.is_action_pressed("move_up")):
+			playerState = States.CLIMB
+			"""if (Input.is_action_pressed("move_up")):
 				$AnimatedSprite2D.animation = "wall grab"
 				get_node("Jump"+str(randi_range(1,3))+"SFX").play()
 				$Sight.set_deferred("disabled",true)
@@ -165,7 +164,7 @@ func _physics_process(delta):
 				if (facing == RIGHT):
 					playerState = States.CLIMB
 				else:
-					movementState = MovementStates.NORMAL
+					movementState = MovementStates.NORMAL"""
 		
 		# Some code for wall jump movement and direction detection so it doesn't fall to 0 breaking code
 		if (movementState != MovementStates.WALL_JUMP):
@@ -178,9 +177,6 @@ func _physics_process(delta):
 		
 		move_and_slide()
 		
-		
-		# Clamps player position to stay on screen
-		position.x = clamp(position.x, camera.position.x - 420, camera.position.x + 420)
 		
 		# Animation
 		if (movementState == MovementStates.NORMAL):
