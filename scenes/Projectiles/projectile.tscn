@@ -9,7 +9,7 @@ size = Vector2(10, 10.5714)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2di7t"]
 size = Vector2(10, 0.399999)
 
-[node name="Projectile" type="StaticBody2D" groups=["falling"]]
+[node name="Projectile2" type="StaticBody2D" groups=["falling"]]
 scale = Vector2(7, 7)
 collision_layer = 12
 collision_mask = 12
@@ -37,7 +37,6 @@ wait_time = 3.0
 one_shot = true
 
 [node name="SpawnTimer" type="Timer" parent="."]
-one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
