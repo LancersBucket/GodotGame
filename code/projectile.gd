@@ -5,7 +5,7 @@ extends StaticBody2D
 @export var fadeOutTime = 30.0
 @export var fallingSpeed = .5
 @export var despawnDelay = 3.0
-@export var respawnDelayTime = 0
+@export var respawnDelayTime = 0.0
 @export var screen = 0
 # 0 is reguler, 1 is fall and regenerate
 @export var mode = true
@@ -21,11 +21,6 @@ func _ready():
 	previousPos = position
 	previousSpeed = fallingSpeed
 	$DespawnTimer.wait_time = despawnDelay
-	$SpawnTimer.wait_time = delay
-	$SpawnTimer.start()
-	$SpawnTimer.paused  = true
-	$SpawnTimer.one_shot  = true
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -55,7 +50,7 @@ func _on_despawn_timer_timeout():
 	delete = true
 
 func _physics_process(delta):
-	if (screen == $/root/Main/Player/Camera2D.cur_screen.x && $SpawnTimer.time_left == 0):
+	if (screen == $/root/Main/Player/Camera2D.cur_screen.x):
 		if (falling):
 			# Moves the object
 			var temp = move_and_collide(Vector2(0,fallingSpeed))
