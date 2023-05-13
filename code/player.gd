@@ -63,12 +63,13 @@ func _physics_process(delta):
 		if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
 			### THIS LINE NEEDS TO BE UPDATED WHEN ADDING MORE PROJECTILES ###
 			# (.name relates to the actual node name, not the scene name)
-			if !$Touch.get_collider().name == "Projectile":
+			print()#.get_tree().get_child(0).name)
+			if !$Touch.get_collider().get_child(0).name == "Projectile":
 				$"SlidingSFX".stop()
 				$AnimatedSprite2D.animation = "wall grab"
 				movementState = MovementStates.WALL_GRAB
 				velocity = Vector2(0,0)
-			elif ($Touch.get_collider().name == "Projectile"):
+			elif ($Touch.get_collider().get_child(0).name == "Projectile"):
 				if (!$Touch.get_collider().falling):
 					$"SlidingSFX".stop()
 					$AnimatedSprite2D.animation = "wall grab"
