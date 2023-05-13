@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @export var walkSpeed = 200
 @export var jumpSpeed = -425.0
-@export var cameraOffsetY = 120
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB, WALL_SLIDE}
