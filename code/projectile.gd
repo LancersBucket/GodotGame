@@ -5,10 +5,10 @@ extends StaticBody2D
 @export var fadeOutTime = 30.0
 @export var fallingSpeed = .5
 @export var despawnDelay = 3.0
+@export var respawnDelayTime = 0
 @export var screen = 0
 # 0 is reguler, 1 is fall and regenerate
 @export var mode = true
-#@export var respawnDelayTime = 0
 
 var falling = true
 var delete = false
@@ -25,7 +25,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (screen == $/root/Main/Player/Camera2D.cur_screen.x):
-		print("here")
 		if (delete):
 			# If in delete mode, start fading to invisible
 			deleteFade -= 1
@@ -38,25 +37,22 @@ func _process(delta):
 			# If mode == 1, instead reset object pos to starting
 			else:
 				# Ignore this code, this is left over from a failed control
-				#if (respawnDelayTime > 0):
-				#	await get_tree().create_timer(respawnDelayTime).timeout
-				#	position = previousPos
-				#	modulate = Color(1, 1, 1, 1)
-				#	falling = true
-				#	delete = false
-				#	deleteFade = fadeOutTime
-				#else:
-				# Resets all object data
-				position = previousPos
-				modulate = Color(1, 1, 1, 1)
-				falling = true
-				delete = false
-				deleteFade = fadeOutTime
-				$DespawnTimer.stop()
-		# If player has control, enable interaction
-		if (player.playerState == player.States.PLAYER_CONTROL):
-			set_collision_layer_value(3,true)
-			set_collision_mask_value(3,true)
+				if (respawnDelayTime > 0):
+					await get_tree().create_timer(respawnDelayTime).timeout
+					position = previousPos
+					modulate = Color(1, 1, 1, 1)
+					falling = true
+					delete = false
+					deleteFade = fadeOutTime
+					$DespawnTimer.stop()
+				else:
+					# Resets all object data
+					position = previousPos
+					modulate = Color(1, 1, 1, 1)
+					falling = true
+					delete = false
+					deleteFade = fadeOutTime
+					$DespawnTimer.stop()
 
 func _on_area_2d_body_entered(body):
 	# If stun zone collides with player and is falling, stun player and disable interaction with player
@@ -86,4 +82,9 @@ func _physics_process(delta):
 	if (screen == $/root/Main/Player/Camera2D.cur_screen.x):
 		if (falling):
 			# Moves the object
+			print(falling)
 			var temp = move_and_collide(Vector2(0,fallingSpeed))
+	# If player has control, enable interaction
+	if (player.playerState == player.States.PLAYER_CONTROL):
+		set_collision_layer_value(3,true)
+		set_collision_mask_value(3,true)
