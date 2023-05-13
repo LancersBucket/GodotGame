@@ -6,6 +6,7 @@ extends StaticBody2D
 @export var fallingSpeed = .5
 @export var despawnDelay = 3.0
 @export var screen = 0
+@export var delay = 0.01
 # 0 is reguler, 1 is fall and regenerate
 @export var mode = true
 #@export var respawnDelayTime = 0
@@ -21,42 +22,51 @@ func _ready():
 	previousPos = position
 	previousSpeed = fallingSpeed
 	$DespawnTimer.wait_time = despawnDelay
+	$SpawnTimer.wait_time = delay
+	$SpawnTimer.start()
+	$SpawnTimer.paused  = true
+	$SpawnTimer.one_shot  = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (screen == $/root/Main/Player/Camera2D.cur_screen.x):
+		print($SpawnTimer.time_left)
+		$SpawnTimer.paused  = false
 		print("here")
-		if (delete):
-			# If in delete mode, start fading to invisible
-			deleteFade -= 1
-			# Fades obj
-			modulate = Color(1, 1, 1, deleteFade/fadeOutTime)
-		if (deleteFade <= 0):
-			# If mode == 0, delete the object
-			if (!mode):
-				queue_free()
-			# If mode == 1, instead reset object pos to starting
-			else:
-				# Ignore this code, this is left over from a failed control
-				#if (respawnDelayTime > 0):
-				#	await get_tree().create_timer(respawnDelayTime).timeout
-				#	position = previousPos
-				#	modulate = Color(1, 1, 1, 1)
-				#	falling = true
-				#	delete = false
-				#	deleteFade = fadeOutTime
-				#else:
-				# Resets all object data
-				position = previousPos
-				modulate = Color(1, 1, 1, 1)
-				falling = true
-				delete = false
-				deleteFade = fadeOutTime
-				$DespawnTimer.stop()
-		# If player has control, enable interaction
-		if (player.playerState == player.States.PLAYER_CONTROL):
-			set_collision_layer_value(3,true)
-			set_collision_mask_value(3,true)
+		if ($SpawnTimer.time_left == 0):
+			if (delete):
+				# If in delete mode, start fading to invisible
+				deleteFade -= 1
+				# Fades obj
+				modulate = Color(1, 1, 1, deleteFade/fadeOutTime)
+			if (deleteFade <= 0):
+				# If mode == 0, delete the object
+				if (!mode):
+					queue_free()
+				# If mode == 1, instead reset object pos to starting
+				else:
+					# Ignore this code, this is left over from a failed control
+					#if (respawnDelayTime > 0):
+					#	await get_tree().create_timer(respawnDelayTime).timeout
+					#	position = previousPos
+					#	modulate = Color(1, 1, 1, 1)
+					#	falling = true
+					#	delete = false
+					#	deleteFade = fadeOutTime
+					#else:
+					# Resets all object data
+					position = previousPos
+					modulate = Color(1, 1, 1, 1)
+					falling = true
+					delete = false
+					deleteFade = fadeOutTime
+					$DespawnTimer.stop()
+			# If player has control, enable interaction
+			if (player.playerState == player.States.PLAYER_CONTROL):
+				set_collision_layer_value(3,true)
+				set_collision_mask_value(3,true)
+	else:
+		$SpawnTimer.paused  = true
 
 func _on_area_2d_body_entered(body):
 	# If stun zone collides with player and is falling, stun player and disable interaction with player
@@ -83,7 +93,10 @@ func _on_despawn_timer_timeout():
 	delete = true
 
 func _physics_process(delta):
-	if (screen == $/root/Main/Player/Camera2D.cur_screen.x):
+	if (screen == $/root/Main/Player/Camera2D.cur_screen.x && $SpawnTimer.time_left == 0):
 		if (falling):
 			# Moves the object
 			var temp = move_and_collide(Vector2(0,fallingSpeed))
+
+func _on_spawn_timer_timeout():
+	delete = true
