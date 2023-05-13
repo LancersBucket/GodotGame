@@ -23,13 +23,13 @@ func _ready():
 	previousPos = position
 	previousSpeed = fallingSpeed
 	$DespawnTimer.wait_time = despawnDelay
-	$SpawnTimer.wait_time = spawnDelay
-	$SpawnTimer.start()
-	$SpawnTimer.timeout.connect(_on_spawn_timer_timeout)
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if (screen == $/root/Main/Player/Camera2D.cur_screen.x):
+		await get_tree().create_timer(spawnDelay).timeout
+		spawn = true
 
 func _on_area_2d_body_entered(body):
 	# If stun zone collides with player and is falling, stun player and disable interaction with player
@@ -57,7 +57,6 @@ func _on_despawn_timer_timeout():
 
 func _physics_process(delta):
 	if (screen == $/root/Main/Player/Camera2D.cur_screen.x):
-		$SpawnTimer.start()
 		if (spawn):
 			if (falling):
 				# Moves the object
@@ -95,6 +94,3 @@ func _physics_process(delta):
 	if (player.playerState == player.States.PLAYER_CONTROL):
 		set_collision_layer_value(3,true)
 		set_collision_mask_value(3,true)
-
-func _on_spawn_timer_timeout():
-	spawn = true
