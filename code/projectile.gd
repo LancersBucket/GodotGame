@@ -4,6 +4,7 @@ extends StaticBody2D
 
 @export var fadeOutTime = 30.0
 @export var fallingSpeed = .5
+@export var despawnDelay = 3
 # 0 is reguler, 1 is fall and regenerate
 @export var mode = true
 #@export var respawnDelayTime = 0
@@ -18,6 +19,7 @@ var previousSpeed
 func _ready():
 	previousPos = position
 	previousSpeed = fallingSpeed
+	$DespawnTimer.wait_time = despawnDelay
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -47,6 +49,7 @@ func _process(delta):
 			falling = true
 			delete = false
 			deleteFade = fadeOutTime
+			$DespawnTimer.stop()
 	# If player has control, enable interaction
 	if (player.playerState == player.States.PLAYER_CONTROL):
 		set_collision_layer_value(3,true)
@@ -67,7 +70,7 @@ func _on_area_2d_body_entered(body):
 			set_collision_layer_value(3,true)
 			set_collision_mask_value(3,true)
 	# If colliding with ground, stop falling and start to despawn
-	if body.is_in_group("static"):
+	if body.is_in_group("static") && !delete:
 		falling = false
 		set_collision_layer_value(1,true)
 		set_collision_mask_value(1,true)
