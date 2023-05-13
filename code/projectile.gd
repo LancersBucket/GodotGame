@@ -21,6 +21,10 @@ func _ready():
 	previousPos = position
 	previousSpeed = fallingSpeed
 	$DespawnTimer.wait_time = despawnDelay
+	$SpawnTimer.wait_time = delay
+	$SpawnTimer.start()
+	$SpawnTimer.paused  = true
+	$SpawnTimer.one_shot  = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -51,7 +55,7 @@ func _on_despawn_timer_timeout():
 	delete = true
 
 func _physics_process(delta):
-	if (screen == $/root/Main/Player/Camera2D.cur_screen.x):
+	if (screen == $/root/Main/Player/Camera2D.cur_screen.x && $SpawnTimer.time_left == 0):
 		if (falling):
 			# Moves the object
 			var temp = move_and_collide(Vector2(0,fallingSpeed))
