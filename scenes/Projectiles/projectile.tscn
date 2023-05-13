@@ -9,7 +9,7 @@ size = Vector2(10, 10.5714)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2di7t"]
 size = Vector2(10, 0.399999)
 
-[node name="Projectile" type="StaticBody2D" groups=["falling"]]
+[node name="Projectile2" type="StaticBody2D" groups=["falling"]]
 scale = Vector2(7, 7)
 collision_layer = 12
 collision_mask = 12
