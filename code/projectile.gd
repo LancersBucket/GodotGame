@@ -4,7 +4,7 @@ extends StaticBody2D
 
 @export var fadeOutTime = 30.0
 @export var fallingSpeed = .5
-@export var despawnDelay = 3
+@export var despawnDelay = 3.0
 @export var screen = 0
 # 0 is reguler, 1 is fall and regenerate
 @export var mode = true
