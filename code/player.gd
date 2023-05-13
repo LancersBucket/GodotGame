@@ -61,8 +61,6 @@ func _physics_process(delta):
 		
 		# Wall grab check
 		if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
-			### THIS LINE NEEDS TO BE UPDATED WHEN ADDING MORE PROJECTILES ###
-			# (.name relates to the actual node name, not the scene name)
 			if !$Touch.get_collider().name.contains("Projectile"):
 				$"SlidingSFX".stop()
 				$AnimatedSprite2D.animation = "wall grab"
