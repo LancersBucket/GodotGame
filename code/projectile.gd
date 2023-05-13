@@ -47,6 +47,7 @@ func _process(delta):
 			falling = true
 			delete = false
 			deleteFade = fadeOutTime
+			$DespawnTimer.stop()
 	# If player has control, enable interaction
 	if (player.playerState == player.States.PLAYER_CONTROL):
 		set_collision_layer_value(3,true)
@@ -67,7 +68,7 @@ func _on_area_2d_body_entered(body):
 			set_collision_layer_value(3,true)
 			set_collision_mask_value(3,true)
 	# If colliding with ground, stop falling and start to despawn
-	if body.is_in_group("static"):
+	if body.is_in_group("static") && !delete:
 		falling = false
 		set_collision_layer_value(1,true)
 		set_collision_mask_value(1,true)
