@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var walkSpeed = 200
 @export var jumpSpeed = -425.0
-@export var cameraOffsetY = 120
+@export var endCreditScene = 99
 
 enum States {PLAYER_CONTROL, STUN, CLIMB}
 enum MovementStates {NORMAL, WALL_JUMP, WALL_GRAB, WALL_SLIDE}
@@ -61,8 +61,6 @@ func _physics_process(delta):
 		
 		# Wall grab check
 		if (!$Sight.is_colliding() and $Touch.is_colliding() and velocity.y > 0 and !is_on_floor()):
-			### THIS LINE NEEDS TO BE UPDATED WHEN ADDING MORE PROJECTILES ###
-			# (.name relates to the actual node name, not the scene name)
 			if !$Touch.get_collider().name.contains("Projectile"):
 				$"SlidingSFX".stop()
 				$AnimatedSprite2D.animation = "wall grab"
@@ -243,6 +241,8 @@ func _physics_process(delta):
 		
 	elif (playerState == States.CLIMB):
 		$AnimatedSprite2D.play("ledge jump up")
+	if (endCreditScene == $/root/Main/Player/Camera2D.cur_screen.x):
+		get_tree().change_scene_to_file("res://scenes/credits.tscn")
 	
 func die():
 	get_tree().change_scene_to_file("res://scenes/info_screen.tscn")
