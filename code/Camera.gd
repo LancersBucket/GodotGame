@@ -18,3 +18,4 @@ func _update_screen(new_screen : Vector2):
 	cur_screen = new_screen
 	global_position = cur_screen * SCREEN_SIZE + SCREEN_SIZE * 0.5
 	$"../../Bg".position = position
+	$"../../BigGuy".position = position
