@@ -37,7 +37,7 @@ func _physics_process(delta):
 	
 	#Pause Menu
 	if Input.is_action_just_pressed("menu"):
-		$"../Camera/PauseMenu".pause()
+		$"/root/Main/Player/Camera2D/PauseMenu".pause()
 
 	# Checks if the current state is PLAYER_CONTROL
 	if (playerState == States.PLAYER_CONTROL):
