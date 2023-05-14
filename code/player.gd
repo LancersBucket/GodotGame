@@ -34,10 +34,6 @@ func _physics_process(delta):
 	if (position.y < -470):
 		velocity.y = 0
 		position.y = clamp(position.y, -470, 0)
-	
-	#Pause Menu
-	if Input.is_action_just_pressed("menu"):
-		$"../Camera/PauseMenu".pause()
 
 	# Checks if the current state is PLAYER_CONTROL
 	if (playerState == States.PLAYER_CONTROL):
@@ -84,7 +80,7 @@ func _physics_process(delta):
 			
 		elif (movementState == MovementStates.WALL_SLIDE):
 			velocity.y = min(wallSlideGravity, velocity.y)
-			if (!$"SlidingSFX".playing):
+			if (!$"SlidingSFX".playing && velocity.y > 0):
 				while (slideSoundTimer>0):
 					slideSoundTimer -= 1
 				$"SlidingSFX".play()

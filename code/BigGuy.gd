@@ -13,7 +13,7 @@ var walkContinue = 75
 var timer = idleLength
 var currentState = STATE.WALK
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	timer -= 1
 	
 	# Flip for facing left first
