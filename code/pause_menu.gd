@@ -22,6 +22,7 @@ func unpause():
 	animator.play("Unpause")
 	get_tree().paused = false
 	#exit.disabled = true
+	$/root/Main/AudioStreamPlayer.stream_paused = false
 
 func pause():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -32,5 +33,6 @@ func pause():
 	animator.play("Pause")
 	get_tree().paused = true
 	#exit.disabled = false
+	$/root/Main/AudioStreamPlayer.stream_paused = true
 	
 
