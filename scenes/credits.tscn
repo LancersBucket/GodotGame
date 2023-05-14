@@ -11,6 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="EndScreen" type="Sprite2D" parent="."]
-scale = Vector2(5, 5)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_m3nul")
 centered = false
