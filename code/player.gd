@@ -34,10 +34,6 @@ func _physics_process(delta):
 	if (position.y < -470):
 		velocity.y = 0
 		position.y = clamp(position.y, -470, 0)
-	
-	#Pause Menu
-	if Input.is_action_just_pressed("menu"):
-		$"/root/Main/Player/Camera2D/PauseMenu".pause()
 
 	# Checks if the current state is PLAYER_CONTROL
 	if (playerState == States.PLAYER_CONTROL):
