@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://btxi7nd303oe6"]
+[gd_scene load_steps=31 format=3 uid="uid://dntpvasq0qa8n"]
 
 [ext_resource type="Texture2D" uid="uid://dwcyk6h5b3qjk" path="res://art/Background/BG.png" id="1_6whhv"]
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="2_mm13a"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://db781nyyd6v52" path="res://scenes/Projectiles/button.tscn" id="12_18iai"]
 [ext_resource type="PackedScene" uid="uid://cp733k0ab8pxf" path="res://scenes/Projectiles/needle.tscn" id="13_jknts"]
 [ext_resource type="PackedScene" uid="uid://dfxmo6gab6rnw" path="res://scenes/pause_menu.tscn" id="15_8a2ip"]
-[ext_resource type="AudioStream" uid="uid://clk3xmrpre7gk" path="res://untitled_music.wav" id="16_wiirq"]
+[ext_resource type="AudioStream" uid="uid://clk3xmrpre7gk" path="res://audio/untitled_music.wav" id="16_xw1qj"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yytis"]
 tile_data = PackedInt32Array(0, 0, 1, 65536, 131072, 1, 1, 65536, 1, 65537, 196608, 1)
@@ -419,5 +419,5 @@ script = ExtResource("8_5li1v")
 [node name="PauseMenu" parent="Player/Camera2D" instance=ExtResource("15_8a2ip")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_wiirq")
+stream = ExtResource("16_xw1qj")
 autoplay = true
