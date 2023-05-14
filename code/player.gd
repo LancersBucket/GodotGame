@@ -84,7 +84,7 @@ func _physics_process(delta):
 			
 		elif (movementState == MovementStates.WALL_SLIDE):
 			velocity.y = min(wallSlideGravity, velocity.y)
-			if (!$"SlidingSFX".playing):
+			if (!$"SlidingSFX".playing && velocity.y > 0):
 				while (slideSoundTimer>0):
 					slideSoundTimer -= 1
 				$"SlidingSFX".play()
