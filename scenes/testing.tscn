@@ -177,6 +177,7 @@ scale = Vector2(2.634, 2.634)
 texture = ExtResource("4_006m5")
 
 [node name="BgFront" type="Sprite2D" parent="Tile Map Coverup" groups=["static"]]
+visible = false
 position = Vector2(430.231, -247.25)
 scale = Vector2(2.903, 2.903)
 texture = ExtResource("3_6kaho")
