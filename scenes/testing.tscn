@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://4wbl23i5h3r8"]
+[gd_scene load_steps=32 format=3 uid="uid://4wbl23i5h3r8"]
 
 [ext_resource type="Texture2D" uid="uid://dwcyk6h5b3qjk" path="res://art/Background/BG.png" id="1_6whhv"]
+[ext_resource type="Script" path="res://scenes/testing.gd" id="1_83yg4"]
 [ext_resource type="Texture2D" uid="uid://c6ru8dbgxw56q" path="res://art/brick.png" id="2_mm13a"]
 [ext_resource type="Texture2D" uid="uid://uaeb42naha64" path="res://art/Background/bgBase2.png" id="3_6kaho"]
 [ext_resource type="Texture2D" uid="uid://i56b5jjyn0ym" path="res://art/Background/shelf2ex.png" id="4_006m5"]
@@ -273,6 +274,7 @@ pattern_1 = SubResource("TileMapPattern_ci038")
 pattern_2 = SubResource("TileMapPattern_4ylu5")
 
 [node name="Main" type="Node"]
+script = ExtResource("1_83yg4")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="Bg" type="Sprite2D" parent="."]
@@ -493,3 +495,5 @@ script = ExtResource("8_5li1v")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_xw1qj")
 autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
