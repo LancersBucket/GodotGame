@@ -46,7 +46,7 @@ text = "The Rat and the Hat"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 400)
+custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 alignment = 1
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvxl5kg12hqco"]
 
-[ext_resource type="Script" path="res://code/projectile.gd" id="1_bfb8m"]
-[ext_resource type="Texture2D" uid="uid://c6ekakukxdhj8" path="res://art/Falling Objects/Spool.png" id="2_p51io"]
+[ext_resource type="Script" path="res://code/projectile.gd" id="1_twsn0"]
+[ext_resource type="Texture2D" uid="uid://c6ekakukxdhj8" path="res://art/Falling Objects/Spool.png" id="2_jpfj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufswo"]
 size = Vector2(10, 10.5714)
@@ -13,13 +13,13 @@ size = Vector2(10, 0.399999)
 scale = Vector2(7, 7)
 collision_layer = 12
 collision_mask = 12
-script = ExtResource("1_bfb8m")
+script = ExtResource("1_twsn0")
 
 [node name="Projectile" type="Node" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
-texture = ExtResource("2_p51io")
+texture = ExtResource("2_jpfj5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.285715)
