@@ -139,29 +139,6 @@ func _physics_process(delta):
 		elif (movementState == MovementStates.WALL_GRAB):
 			velocity.y = 0
 			playerState = States.CLIMB
-			"""if (Input.is_action_pressed("move_up")):
-				$AnimatedSprite2D.animation = "wall grab"
-				get_node("Jump"+str(randi_range(1,3))+"SFX").play()
-				$Sight.set_deferred("disabled",true)
-				$Touch.set_deferred("disabled",true)
-				velocity.y = jumpSpeed
-				velocity.x = walkSpeed*-facing
-				facing = -facing
-				
-				movementState = MovementStates.WALL_JUMP
-			#elif Input.is_action_pressed("move_down"):
-			#	movementState = MovementStates.NORMAL
-			elif (Input.is_action_pressed("move_left")):
-				if (facing == LEFT):
-					playerState = States.CLIMB
-				else:
-					movementState = MovementStates.NORMAL
-					#position.x -= .5
-			elif (Input.is_action_pressed("move_right")):
-				if (facing == RIGHT):
-					playerState = States.CLIMB
-				else:
-					movementState = MovementStates.NORMAL"""
 		
 		# Some code for wall jump movement and direction detection so it doesn't fall to 0 breaking code
 		if (movementState != MovementStates.WALL_JUMP):
